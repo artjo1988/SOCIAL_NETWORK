@@ -17,15 +17,18 @@
         Please Login!
     </div>
     <form method="post" action="/login">
-        <label for="login">Логин
+        <p><label for="login">Логин
             <input class="input-field" type="text" id="login" name="login">
-        </label>
-        <label for="password">Пароль
+        </label></p>
+        <p><label for="password">Пароль
             <input class="input-field" type="password" id="password" name="password">
-        </label>
-        <label for="remember-me">
-            <input type="checkbox" id="remember-me" name="remember-me">Запомнить меня</label>
-        <input type="submit" value="Login">
+        </label></p>
+        <p/><label for="remember-me">
+            <input type="checkbox" id="remember-me" name="remember-me">Запомнить меня</label></p>
+        <p><input type="submit" value="Login"></p>
+    </form>
+    <form method="get" action="/signUp">
+        <button type="submit">Регистрация</button>
     </form>
 </div>
 </body>
