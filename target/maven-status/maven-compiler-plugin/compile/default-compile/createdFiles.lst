@@ -1,0 +1,11 @@
+ru\itpark\forms\UserForm.class
+ru\itpark\repositories\UserRepositori.class
+ru\itpark\controllers\SignUpController.class
+ru\itpark\forms\UserForm$UserFormBuilder.class
+ru\itpark\models\User$UserBuilder.class
+ru\itpark\models\Role.class
+ru\itpark\app\Application.class
+ru\itpark\service\UserServiceImpl.class
+ru\itpark\models\State.class
+ru\itpark\models\User.class
+ru\itpark\service\UserService.class
