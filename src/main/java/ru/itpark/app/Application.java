@@ -29,6 +29,6 @@ public class Application {
     static private UserRepositori userRepositori;
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(Application.class);
     }
 }

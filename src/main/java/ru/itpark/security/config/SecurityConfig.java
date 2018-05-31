@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import ru.itpark.models.Role;
+import ru.itpark.models.User;
 
 import javax.sql.DataSource;
 
@@ -38,14 +40,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/signUp/**").permitAll()
-                    .antMatchers("/").authenticated()
+                    .antMatchers("/").permitAll()
+                    .antMatchers("/register/**").permitAll()
                     .antMatchers("/css/**").permitAll()
-                    .anyRequest().authenticated()
+                    .anyRequest().permitAll()
                     .and()
                 .formLogin()
                     .usernameParameter("login")
-                    .defaultSuccessUrl("/")
+                    .defaultSuccessUrl("/profile")
                     .loginPage("/login")
                     .permitAll()
                     .and()

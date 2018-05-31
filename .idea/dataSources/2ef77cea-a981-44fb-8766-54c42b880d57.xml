@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2018-05-27.13:43:41.455</IntrospectionTimestamp>
-      <IntrospectionStateNumber>646</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-05-29.14:38:54.166</IntrospectionTimestamp>
+      <IntrospectionStateNumber>667</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -30,8 +30,8 @@
       <ObjectId>12648</ObjectId>
     </schema>
     <sequence id="9" parent="3" name="user_sn_id_seq">
-      <ObjectId>40993</ObjectId>
-      <StateNumber>643</StateNumber>
+      <ObjectId>41045</ObjectId>
+      <StateNumber>667</StateNumber>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
     <table id="10" parent="3" name="persistent_logins">
@@ -39,8 +39,8 @@
       <StateNumber>646</StateNumber>
     </table>
     <table id="11" parent="3" name="user_sn">
-      <ObjectId>40995</ObjectId>
-      <StateNumber>643</StateNumber>
+      <ObjectId>41047</ObjectId>
+      <StateNumber>667</StateNumber>
     </table>
     <column id="12" parent="10" name="username">
       <Position>1</Position>
@@ -81,7 +81,7 @@
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>643</StateNumber>
+      <StateNumber>667</StateNumber>
       <SequenceName>user_sn_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;user_sn_id_seq&apos;::regclass)</DefaultExpression>
     </column>
@@ -89,79 +89,73 @@
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>643</StateNumber>
+      <StateNumber>667</StateNumber>
     </column>
     <column id="20" parent="11" name="hash_password">
       <Position>3</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>643</StateNumber>
+      <StateNumber>667</StateNumber>
     </column>
     <column id="21" parent="11" name="first_name">
       <Position>4</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>643</StateNumber>
+      <StateNumber>667</StateNumber>
     </column>
     <column id="22" parent="11" name="last_name">
       <Position>5</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>643</StateNumber>
+      <StateNumber>667</StateNumber>
     </column>
-    <column id="23" parent="11" name="data_birthday">
+    <column id="23" parent="11" name="city">
       <Position>6</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>643</StateNumber>
+      <StateNumber>667</StateNumber>
     </column>
-    <column id="24" parent="11" name="city">
+    <column id="24" parent="11" name="e_mail">
       <Position>7</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>643</StateNumber>
+      <StateNumber>667</StateNumber>
     </column>
-    <column id="25" parent="11" name="e_mail">
+    <column id="25" parent="11" name="state">
       <Position>8</Position>
-      <DataType>varchar(50)|0</DataType>
+      <DataType>varchar(10)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>643</StateNumber>
+      <StateNumber>667</StateNumber>
     </column>
-    <column id="26" parent="11" name="state">
+    <column id="26" parent="11" name="role">
       <Position>9</Position>
       <DataType>varchar(10)|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>643</StateNumber>
+      <StateNumber>667</StateNumber>
     </column>
-    <column id="27" parent="11" name="role">
+    <column id="27" parent="11" name="avatar">
       <Position>10</Position>
-      <DataType>varchar(10)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>643</StateNumber>
-    </column>
-    <column id="28" parent="11" name="avatar">
-      <Position>11</Position>
       <DataType>varchar(100)|0</DataType>
-      <StateNumber>643</StateNumber>
+      <StateNumber>667</StateNumber>
     </column>
-    <index id="29" parent="11" name="user_sn_pkey">
-      <ObjectId>41002</ObjectId>
+    <index id="28" parent="11" name="user_sn_pkey">
+      <ObjectId>41051</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="30" parent="11" name="user_sn_login_key">
-      <ObjectId>41004</ObjectId>
+    <index id="29" parent="11" name="user_sn_login_key">
+      <ObjectId>41053</ObjectId>
       <ColNames>login</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="31" parent="11" name="user_sn_pkey">
-      <ObjectId>41003</ObjectId>
+    <key id="30" parent="11" name="user_sn_pkey">
+      <ObjectId>41052</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>user_sn_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="32" parent="11" name="user_sn_login_key">
-      <ObjectId>41005</ObjectId>
+    <key id="31" parent="11" name="user_sn_login_key">
+      <ObjectId>41054</ObjectId>
       <ColNames>login</ColNames>
       <UnderlyingIndexName>user_sn_login_key</UnderlyingIndexName>
     </key>

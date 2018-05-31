@@ -2,7 +2,6 @@ package ru.itpark.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ru.itpark.forms.UserForm;
 import ru.itpark.models.Role;
@@ -28,13 +27,14 @@ public class UserServiceImpl implements UserService {
         userRepositori.save(User.builder()
                 .login(userForm.getLogin())
                 .hasPassword(hashPassword)
-                .firstName(userForm.getFirst_name())
-                .lastName(userForm.getLast_name())
-                .dataBirthday(userForm.getData_birthday())
+                .firstName(userForm.getFirstName())
+                .lastName(userForm.getLastName())
+//                .dataBirthday(userForm.getData_birthday())
                 .city(userForm.getCity())
-                .eMail(userForm.getE_mail())
+                .eMail(userForm.getEMail())
                 .state(State.ACTIVE)
                 .role(Role.USER)
+                .avatar(null)
                 .build()
         );
     }

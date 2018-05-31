@@ -13,18 +13,21 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class UserDto {
+    private Long id;
     private String login;
-    private String first_name;
-    private String last_name;
-    private LocalDate data_birthday;
+    private String firstName;
+    private String lastName;
+//    private LocalDate data_birthday;
     private String city;
+
 
     public static UserDto dtoUserFromDetails(User user){
         return UserDto.builder()
+                .id(user.getId())
                 .login(user.getLogin())
-                .first_name(user.getFirstName())
-                .last_name(user.getLastName())
-                .data_birthday(user.getDataBirthday())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+//                .data_birthday(user.getDataBirthday())
                 .city(user.getCity())
                 .build();
     }

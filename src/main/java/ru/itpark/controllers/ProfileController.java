@@ -10,10 +10,10 @@ import ru.itpark.security.details.UserDetailsImpl;
 
 @Controller
 public class ProfileController {
-    @GetMapping("/")
+    @GetMapping("/profile")
     public String getProfilePage(ModelMap modelMap, Authentication authentication){
         if(authentication == null){
-            return "redirect:login";
+            return "redirect:/login";
         }
         UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
         UserDto userDto = UserDto.dtoUserFromDetails(details.getUser());
