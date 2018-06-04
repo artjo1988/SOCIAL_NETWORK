@@ -82,7 +82,14 @@
 				</#if>
 					<ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
 						<li>
-							<a href="/profile"><i class="fa fa-briefcase"></i>Профайл</a>					
+							<a href="/profile"><i class="ion-person"></i>Моя страница</a>
+                        </li>
+                        <li>
+                            <a href="/changePassword"><i class="ion-person"></i>Изменить пароль</a>
+                        </li>
+                        <li>
+                            <a href="/changeEmail"><i class="ion-person"></i>Изменить Email</a>
+                        </li>
 						<li>
 							<a href="/logout"><i class="fa fa-sign-out"></i> Выйти</a>
 						</li>
@@ -203,7 +210,7 @@
 
 		</section>
 
-		<div class="demo-options">
+		<div class="demo-options" style="padding-top: 150px">
 			<div class="demo-options-icon">
 				<i class="fa fa-cog"></i>
 			</div>

@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itpark.fileStorageUtil.FileStorageUtil;
 import ru.itpark.models.FileInfo;
@@ -20,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+@Transactional
 @Service
 public class FileStorageServiceImpl implements FileStorageService {
 
@@ -29,12 +31,14 @@ public class FileStorageServiceImpl implements FileStorageService {
     @Autowired
     private FileInfoRepository fileInfoRepository;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public String saveFile(MultipartFile multipartFile, Authentication authentication) {
         FileInfo fileInfo = fileStorageUtil.converterFromMultipartfile(multipartFile);
         fileStorageUtil.saveToStorage(multipartFile, fileInfo.getStorageName());
-        UserDetailsImpl userDetailsImpl = (UserDetailsImpl) authentication.getPrincipal();
-        User user = userDetailsImpl.getUser();
+        User user = userService.getUserInfo(authentication);
         if (user.getAvatarFileInfo() != null) {
             fileInfoRepository.updateFileInfoById(
                     fileInfo.getOriginalName(),

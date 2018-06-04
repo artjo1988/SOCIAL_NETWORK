@@ -5,14 +5,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.itpark.dto.UserDto;
 import ru.itpark.forms.UserForm;
 import ru.itpark.models.Role;
 import ru.itpark.models.State;
 import ru.itpark.models.User;
 import ru.itpark.repositories.UserRepositori;
 import ru.itpark.security.details.UserDetailsImpl;
-
 import java.util.List;
 
 @Transactional
@@ -38,7 +36,6 @@ public class UserServiceImpl implements UserService {
                 .eMail(userForm.getEMail())
                 .state(State.ACTIVE)
                 .role(Role.USER)
-//                .avatar("/img/no_avatar.jpg")
                 .build()
         );
     }
@@ -50,8 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void changeData(UserForm userForm, Authentication authentication) {
-        UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
-        User user = details.getUser();
+        User user = getUserInfo(authentication);
         Long id = user.getId();
         String login = userForm.getLogin();
         String firstName = userForm.getFirstName();
@@ -59,4 +55,11 @@ public class UserServiceImpl implements UserService {
         String city = userForm.getCity();
         userRepositori.updateUserByIdFromForm(login, firstName, lastName, city, id);
     }
+
+    @Override
+    public User getUserInfo(Authentication authentication) {
+        UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
+        return details.getUser();
+    }
+
 }

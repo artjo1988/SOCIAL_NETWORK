@@ -86,7 +86,8 @@
 					<h3 class="text-center m-t-10"> Редактирование профиля </h3>
 				</div>
 
-                <div class="alert alert-info alert-dismissable" style="margin-top: -10px">
+                <div style="padding-top: 50px">
+				<div class="alert alert-info alert-dismissable" style="margin-top: -10px">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                         ×
                     </button>
@@ -104,9 +105,9 @@
                     <input type="hidden" id="file_hidden">
                     <div class="filename"></div>
                 </div>
+                </div>
 
 				<form class="form-horizontal m-t-40" method="post" action="/edit">
-
 
 					<div class="form-group ">
 						<div class="col-xs-12">
@@ -115,7 +116,6 @@
 							</label>
 						</div>
 					</div>
-
 					<#--<div class="form-group">-->
 						<#--<div class="col-xs-12">-->
 							<#--<label for="password">-->
@@ -123,7 +123,6 @@
 							<#--</label>-->
 						<#--</div>-->
 					<#--</div>-->
-
 					<div class="form-group ">
 						<div class="col-xs-12">
 							<label for="firstName">
@@ -131,7 +130,6 @@
 							</label>
 						</div>
 					</div>
-
 					<div class="form-group ">
 						<div class="col-xs-12">
 							<label for="lastName">
@@ -139,7 +137,6 @@
 							</label>
 						</div>
 					</div>
-
 					<div class="form-group ">
 						<div class="col-xs-12">
 							<label for="city">
