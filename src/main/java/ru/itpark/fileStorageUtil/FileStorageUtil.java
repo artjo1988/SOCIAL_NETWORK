@@ -1,7 +1,6 @@
 package ru.itpark.fileStorageUtil;
 
 
-import javafx.scene.shape.Path;
 import lombok.Data;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FilenameUtils;

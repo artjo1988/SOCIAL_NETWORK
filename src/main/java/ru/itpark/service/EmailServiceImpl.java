@@ -16,8 +16,8 @@ import java.util.concurrent.Executors;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-//    @Autowired
-//    private JavaMailSender javaMailSender;
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     private ExecutorService executorService;
 
