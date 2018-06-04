@@ -24,6 +24,6 @@ public class RegisterController {
     @PostMapping("/register")
     public String postSignUpPage(@ModelAttribute UserForm userForm){
         userService.registerNewUser(userForm);
-        return "redirect:/login";
+        return "redirect:/logout";
     }
 }

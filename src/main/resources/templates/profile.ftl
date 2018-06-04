@@ -45,10 +45,9 @@
 		<script src="js/respond.min.js"></script>
 		<![endif]-->
 
-	</head>
+	<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6AE77042-A858-0442-B452-785E2AAF4DA7/main.js" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/7AD4FAA2E587-254B-2440-858A-24077EA6/abn/main.css"/></head>
 
 	<body>
-
 		<!-- Header -->
 		<header class="top-head container-fluid navbar-fixed-top">
 			<!-- logo -->
@@ -76,7 +75,11 @@
 				<!-- End messages -->			
 				<!-- User Menu Dropdown -->
 				<li class="dropdown text-center">
-					<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="/img/no_avatar.jpg" class="img-circle profile-img thumb-sm"> <span class="username">Ray Shannon </span> <span class="caret"></span> </a>
+				<#if user.avatarUrl??>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="${user.avatarUrl}" class="img-circle profile-img thumb-sm"> <span class="username">${user.firstName} ${user.lastName}</span> <span class="caret"></span> </a>
+				<#else>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="/img/no_avatar.jpg" class="img-circle profile-img thumb-sm"> <span class="username">${user.firstName} ${user.lastName}</span> <span class="caret"></span> </a>
+				</#if>
 					<ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
 						<li>
 							<a href="/profile"><i class="fa fa-briefcase"></i>Профайл</a>					
@@ -90,10 +93,8 @@
 			<!-- End Right Navbar -->
 		</header>
 		<!-- End Header -->
-
 		<!-- Aside Menu -->
 		<aside class="left-panel">
-
 			<!-- Navbar -->
 			<nav class="navigation">
 				<ul class="list-unstyled">
@@ -106,25 +107,25 @@
 					<li class="active">
 						<a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Сообщения</span></a>
 					</li>
-
 				</ul>
 			</nav>
 			<!-- End Navbar -->
-
 		</aside>
 		<!-- End Aside -->
-
 		<!--Main Content -->
 		<section class="content">
-
 			<!-- Page Content -->
-
 			<div class="wraper container-fluid">
-
+				<div class="flexWrap profileBlock">	
+					<div class="flexItem avatarCollumn">
 						<!-- Avatar -->
-						<div style="clear: both;" class="avatar tile-stats white-bg">
+						<div class="avatar tile-stats white-bg">
 							<div class="chat-send">
-								<img src="/img/no_avatar.jpg"  style="width: 210px; height: 230px:">
+								<#if user.avatarUrl??>
+                             	   <img src= "${user.avatarUrl}" style="width: 210px; height: 230px:">
+								<#else>
+                            	    <img src="/img/no_avatar.jpg"  style="width: 210px; height: 230px:">
+								</#if>
 								<form method="get" action="/edit">
 								<button  class="btn btn-purple w-md" style="margin-top: 15px;">
 									Редактировать
@@ -132,11 +133,65 @@
 								</form>
 							</div>
 						</div>
-						<!-- end Avatar -->
-                        <!-- User information -->
-                        <div style="clear: both;" class="user-information tile-stats white-bg">
-                        <!-- end User information -->
+						<div class="white-bg dopBlock">
+							дополнительный блок можно удалить
 						</div>
+						<!-- end Avatar -->
+					</div><!--flexItem-->
+					<div class="flexItem infoCollumn">					
+                        <!-- User information -->
+                        <div class="user-information tile-stats white-bg">
+							<div class=fontForName >${user.firstName} ${user.lastName}</div>
+							<#--<div class="profileInfo">-->
+                                <div class="flexWrap profileInfo">
+                                    <div style="padding-right: 150px; padding-left: 30px;">
+										<ul>
+											<li class="forLi">День рождения :</li>
+											<li class="forLi">Город :</li>
+										</ul>
+                                    </div>
+									<div>
+										<ul>
+											<li class="forLi">-------</li>
+											<li class="forLi">${user.city}</li>
+										</ul>
+                                    </div>
+								</div>
+							<#--</div>-->
+							<div class="flexWrap profileNums">
+								<div class="flexItem"><a href="#"><span>1</span>текст</a></div>
+								<div class="flexItem"><a href="#"><span>2</span>текст</a></div>
+							</div>
+						</div>
+						<!-- end User information -->
+						<div class="white-bg dopBlock">
+							дополнительный блок можно удалить
+						</div>
+					</div><!--flexItem-->
+				</div><!--flexWrap profileBlock-->
+
+						
+<style>
+	.fontForName {font-size: 35px;}
+	.forLi{padding: 8px; font-size: 18px;}
+	.flexWrap {display: flex; width:100%;}
+	.infoCollumn {flex-grow:1; margin-left: 25px;}
+	.flexItem .user-information {margin:0; width:100%; float: none;}
+	.avatarCollumn .dopBlock {padding: 25px; box-sizing: border-box; width: 250px;}
+	.infoCollumn .dopBlock {padding: 25px; box-sizing: border-box; margin-top: 20px;}
+	.profileInfo {  margin: 10px 0 0 0; padding: 15px 0;}
+    .flexWrap.profileInfo {border-top: 2px solid rgba(202, 194, 199, 0.96);margin: 10px 0 0 0; padding: 15px 0;justify-content: flex-start;}
+	.flexWrap.profileNums {border-top: 2px solid rgba(202, 194, 199, 0.96); margin: 5px 0 0 0; padding: 25px 0;justify-content: space-around;}
+	.flexWrap.profileNums .flexItem {}
+	.flexWrap.profileNums a span {display: block; text-align: center; font-weight: bold; font-size: 15px;}
+</style>
+						
+						
+						
+						
+						
+						
+						
 			</div>
 			<!-- End Content -->
 

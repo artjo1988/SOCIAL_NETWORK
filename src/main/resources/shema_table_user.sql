@@ -8,6 +8,5 @@ CREATE TABLE user_sn (
   city VARCHAR(50) NOT NULL,
   e_mail VARCHAR(50) NOT NULL,
   state VARCHAR(10) NOT NULL,
-  role VARCHAR(10) NOT NULL, 
-  avatar VARCHAR(100)
-);
+  role VARCHAR(10) NOT NULL
+ );

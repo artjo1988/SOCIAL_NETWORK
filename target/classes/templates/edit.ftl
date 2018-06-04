@@ -12,7 +12,7 @@
 
 		<link rel="shortcut icon" href="/img/icon.png">
 
-		<title>Регистрация</title>
+		<title>Редактирование</title>
 
 		<!-- Google Fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -44,6 +44,37 @@
 		<script src="js/html5shiv.js"></script>
 		<script src="js/respond.min.js"></script>
 		<![endif]-->
+        <script src="/js/jquery.js"></script>
+        <script>
+            function sendFile(file) {
+                var formData = new FormData();
+                formData.append("file", file);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/files", true);
+                xhr.send(formData);
+            }
+//
+// 			function senFile(file) {
+//   			 var formData = new FormData();
+//   			 formData.append("file", file);
+//    		$.ajax({
+//       		 type: "POST",
+//       		 url: "/images/files",
+//       		 data: formData,
+//       		 contentType: false,
+//       		 processData: false,
+//       		 success: function (data) {
+//        	    $("#avatar").html("<img class=\"img-circle\" width='100' height='100' src='/files/" +
+//						data + "'/>");
+//
+//       		 },
+//       		 error: function (data) {
+//       	 	    alert(data)
+//       		 }
+//   		 });
+//		}
+
+		</script>
 
 	</head>
 
@@ -55,15 +86,28 @@
 					<h3 class="text-center m-t-10"> Редактирование профиля </h3>
 				</div>
 
+                <div class="alert alert-info alert-dismissable" style="margin-top: -10px">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        ×
+                    </button>
+                    <div class="text-center"> Выберите <b>Вашу</b> фотографию для загрузки!</div>
+                </div>
+                <div class="form-group m-b-0 ">
+                    <div class="input-group" style="margin-left: 15px">
+                        <input type="file" id="fileInput" name="file" class="form-control" placeholder="Имя файла..."/>
+                    </div>
+                </div>
+                <div class="form-group text-right" style="margin-bottom: 15px; margin-top: 15px ">
+                    <button onclick="sendFile(($('#fileInput'))[0]['files'][0])"
+                            class="btn btn-purple w-md">Загрузить файл
+                    </button>
+                    <input type="hidden" id="file_hidden">
+                    <div class="filename"></div>
+                </div>
+
 				<form class="form-horizontal m-t-40" method="post" action="/edit">
 
-                    <div class="form-group text-right">
-                        <div class="col-xs-12">
-                            <button class="btn btn-purple w-md" type="submit">
-                                Загрузить фотографию
-                            </button>
-                        </div>
-                    </div>
+
 					<div class="form-group ">
 						<div class="col-xs-12">
 							<label for="login" for="login">
@@ -72,13 +116,13 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-						<div class="col-xs-12">
-							<label for="password">
-								<input class="form-control " type="password" id="password" name="password" required="" placeholder="Пароль">
-							</label>
-						</div>
-					</div>
+					<#--<div class="form-group">-->
+						<#--<div class="col-xs-12">-->
+							<#--<label for="password">-->
+								<#--<input class="form-control " type="password" id="password" name="password" required="" placeholder="Пароль">-->
+							<#--</label>-->
+						<#--</div>-->
+					<#--</div>-->
 
 					<div class="form-group ">
 						<div class="col-xs-12">
@@ -103,14 +147,13 @@
 							</label>
 						</div>
 					</div>
-
-					<div class="form-group">
-						<div class="col-xs-12">
-							<label for="eMail">
-								<input class="form-control" type="email" id="eMail" name="eMail" required="" placeholder="Email">
-							</label>
-						</div>
-					</div>
+					<#--<div class="form-group">-->
+						<#--<div class="col-xs-12">-->
+							<#--<label for="eMail">-->
+								<#--<input class="form-control" type="email" id="eMail" name="eMail" required="" placeholder="Email">-->
+							<#--</label>-->
+						<#--</div>-->
+					<#--</div>-->
 					<div class="form-group text-right">
 						<div class="col-xs-12">
 							<button class="btn btn-purple w-md" type="submit">

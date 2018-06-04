@@ -1,13 +1,13 @@
 package ru.itpark.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -20,7 +20,7 @@ public class User {
     @Column(name = "login")
     private String login;
     @Column(name = "hashPassword")
-    private String hasPassword;
+    private String hashPassword;
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
@@ -35,6 +35,14 @@ public class User {
     private State state;
     @Enumerated(value = EnumType.STRING)
     private Role role;
-    @Column(name = "avatar")
-    private String avatar;
+    @OneToOne(mappedBy = "owner")
+    private FileInfo avatarFileInfo;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "friendly_roles",
+            joinColumns = {@JoinColumn(name = "basic_role")},
+            inverseJoinColumns = {@JoinColumn(name = "supporting_role")})
+    private List<User> who_you_friend;
+    @ManyToMany(cascade = CascadeType.MERGE, mappedBy = "who_you_friend")
+    private List<User> friends;
+
 }

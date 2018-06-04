@@ -1,14 +1,13 @@
 package ru.itpark.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import ru.itpark.models.FileInfo;
 import ru.itpark.models.User;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -19,9 +18,13 @@ public class UserDto {
     private String lastName;
 //    private LocalDate data_birthday;
     private String city;
+    private String avatarUrl;
 
 
-    public static UserDto dtoUserFromDetails(User user){
+    public static UserDto dtoUserFromUser(User user){
+        String avatarUrlUser = null;
+        if(user.getAvatarFileInfo() != null) avatarUrlUser = "/files/" + user.getAvatarFileInfo().getStorageName();
+
         return UserDto.builder()
                 .id(user.getId())
                 .login(user.getLogin())
@@ -29,6 +32,7 @@ public class UserDto {
                 .lastName(user.getLastName())
 //                .data_birthday(user.getDataBirthday())
                 .city(user.getCity())
+                .avatarUrl(avatarUrlUser)
                 .build();
     }
 }
