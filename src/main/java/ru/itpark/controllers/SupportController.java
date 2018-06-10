@@ -37,10 +37,10 @@ public class SupportController {
     }
 
     @PostMapping("/checkLogin")
-    public ResponseEntity<Object> postCheckLogin(@RequestParam(name = "login") String login){
+    public boolean postCheckLogin(@RequestParam(name = "login") String login){
         Optional<User> optional = userRepositori.findOneByLogin(login);
-        if(optional.isPresent()) ResponseEntity.notFound().build();
-        return ResponseEntity.ok().build();
+        if(optional.isPresent()) return true;
+        return false;
     }
 
     @PostMapping("/checkEmail")

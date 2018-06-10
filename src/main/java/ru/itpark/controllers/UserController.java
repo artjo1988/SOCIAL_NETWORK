@@ -96,9 +96,57 @@ public class UserController {
         UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
         UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(details.getUser().getId()));
         modelMap.addAttribute("user",userDto);
-        List<User> users = userRepositori.findUsersByFirstNameContainsOrLastNameContains("Аде", "Мир");
+        List<User> users = userRepositori.findAllByIdIsNot(userDto.getId());
         modelMap.addAttribute("users", users);
         return "users";
+    }
+
+    @PostMapping("/users/find")
+    public String postUsersFind(HttpServletRequest request, ModelMap modelMap,
+                                Authentication authentication){
+        String paramFind = request.getParameter("paramFind");
+        UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
+        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(details.getUser().getId()));
+        List<User> users = userRepositori.findAllByIdIsNot(userDto.getId());
+        if (paramFind == null){
+            modelMap.addAttribute("user",userDto);
+            modelMap.addAttribute("users", users);
+            return "users";
+        }
+        else {
+
+            String[] arrStr = paramFind.split("\\s+");
+
+            if(arrStr.length==2) {
+                String paramFindOne = arrStr[0];
+                String paramFindTwo = arrStr[1];
+                List<User> listFindOne = userRepositori.findUsersByFirstNameContainsOrLastNameContains(paramFindOne, paramFindTwo);
+                List<User> listFindTwo = userRepositori.findUsersByFirstNameContainsOrLastNameContains(paramFindTwo, paramFindOne);
+                for (User user : listFindOne) {
+                    if (listFindTwo.contains(user)) listFindTwo.remove(user);
+                }
+                listFindOne.addAll(listFindTwo);
+                if (listFindOne.contains(userService.getUserInfo(authentication)))
+                    listFindOne.remove(userService.getUserInfo(authentication));
+                modelMap.addAttribute("users", listFindOne);
+                modelMap.addAttribute("user", userDto);
+                return "users";
+            }
+            else{
+                String paramFindOne = arrStr[0];
+                List<User> listFindOne = userRepositori.findUsersByFirstNameContains(paramFindOne);
+                List<User> listFindTwo = userRepositori.findUsersByLastNameContains(paramFindOne);
+                for (User user : listFindOne) {
+                    if (listFindTwo.contains(user)) listFindTwo.remove(user);
+                }
+                listFindOne.addAll(listFindTwo);
+                if (listFindOne.contains(userService.getUserInfo(authentication)))
+                    listFindOne.remove(userService.getUserInfo(authentication));
+                modelMap.addAttribute("users", listFindOne);
+                modelMap.addAttribute("user", userDto);
+                return "users";
+            }
+        }
     }
 
     @GetMapping("/users/{id-candidate}")

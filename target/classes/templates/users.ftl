@@ -129,31 +129,39 @@
 					<div class="flexItem infoCollumn">
                         <div class="white-bg dopBlock">
                             дополнительный блок можно удалить
-							<#list users as user>
-                                <div class="user-thumb">
-										<#if user.avatarUrl??>
-                                            <a class="dropdown-toggle" href="#"> <img alt="" src="${user.avatarUrl}" class="img-circle profile-img thumb-sm">
-												<span class="username"><a href="/users/${user.id}"> ${user.firstName} ${user.lastName}</a></span> <span class="caret"></span> </a>
-                                            	<div>${user.city}</div>
-                                           	 	<a href="/users/${user.id}/message">Написать сообщение</a>
-                                            	<form method="post" action="/${candidate.id}/sendRequst">
-                                                	<button class="btn btn-purple w-md" style="margin-top: 15px;">
-														<#if status??>
-														${status}
-														<#else>
-                                                        Добавить в друзья
-													</#if>
-                                                </button>
-                                            </form>
-
-										<#else>
-                                            <a class="dropdown-toggle" href="#"> <img alt="" src="/img/no_avatar.jpg" class="img-circle profile-img thumb-sm">
-												<span class="username"><a href="/users/${user.id}"> ${user.firstName} ${user.lastName}</a></span>  </a>
-												<div>${user.city}</div>
-                                            	<a href="/users/${user.id}/message">Написать сообщение</a>
-
-										</#if>
+							<br>
+                            <form method="post" action="/users/find">
+                            <div class="form-group m-b-0">
+                                <div class="input-group">
+                                    <input id="paramFind" name="paramFind"  type="text" class="form-control" placeholder="Введите имя и фамилию">
+                                    <span class="input-group-btn">
+								<button type="submit" class="btn btn-primary">
+									Найти
+								</button> </span>
                                 </div>
+                            </div>
+							<br>
+							<#list users as user>
+								<#if user.avatarUrl??>
+									<a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
+								<#else>
+								<a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="/img/no_avatar.jpg">
+								</#if>
+								<div>
+									<a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
+								</div>
+								<div>
+									${user.city}
+								</div>
+								<a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
+								<form method="post" action="/${user.id}/sendRequst">
+									<button class="btn btn-purple w-md" style="margin-top: 15px;">
+										<#if status??>
+											${status}
+										<#else>
+											Добавить в друзья
+										</#if></button>
+								</form>
                                 <br>
 							</#list>
                         </div>

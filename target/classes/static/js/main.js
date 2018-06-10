@@ -19,16 +19,17 @@ function senFile(file) {
     });
 }
 
-var login,
-    eMail,
-    password,
-    password2,
-    loginStat,
-    eMailStat,
-    passwordStat,
-    password2Stat;
+
 
 $(function() {
+    var login,
+        eMail,
+        password,
+        password2,
+        loginStat,
+        eMailStat,
+        passwordStat,
+        password2Stat;
     //Логин
     $("#login").change(function(){
         login = $("#login").val();
@@ -43,15 +44,17 @@ $(function() {
             $.ajax({
                 url: "/checkLogin",
                 type: "POST",
-                data: "login=" + login,
+                data: "?login=" + login,
                 cache: false,
-                success: function(){
-                    $("#login").next().hide().text("Логин занят").css("color","red").fadeIn(400);
-                    $("#login").removeClass().addClass("inputRed");
-                },
-                error: function () {
-                    $("#login").removeClass().addClass("inputGreen");
-                    $("#login").next().text("");
+                success: function(response){
+                    if(response == true){
+                        $("#login").next().hide().text("Логин занят").css("color","red").fadeIn(400);
+                        $("#login").removeClass().addClass("inputRed");
+                    }else{
+                        $("#login").removeClass().addClass("inputGreen");
+                        $("#login").next().text("");
+                    }
+
                 }
             });
             loginStat = 1;
@@ -77,15 +80,17 @@ $(function() {
             $.ajax({
                 url: "/checkEmail",
                 type: "POST",
-                data: "eMail=" + eMail,
+                data: "?eMail=" + eMail,
                 cache: false,
-                success: function(){
-                        $("#email").next().hide().text("Email занят").css("color","red").fadeIn(400);
-                        $("#email").removeClass().addClass("inputRed");
-                },
-                error: function () {
-                    $("#email").removeClass().addClass("inputGreen");
-                    $("#email").next().text("");
+                success: function(response){
+                    if(response == true){
+                        $("#eMail").next().hide().text("Email занят").css("color","red").fadeIn(400);
+                        $("#eMail").removeClass().addClass("inputRed");
+                    }else{
+                        $("#eMail").removeClass().addClass("inputGreen");
+                        $("#eMail").next().text("");
+                    }
+
                 }
             });
             eMailStat = 1;

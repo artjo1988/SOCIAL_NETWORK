@@ -16,7 +16,10 @@ public interface UserRepositori extends JpaRepository<User, Long>{
     Optional<User> findOneByLogin(String login);
     Optional<User> findOneByEMail(String eMail);
     Optional<User> findOneById(Long id);
-    List<User> findUsersByFirstNameContainsOrLastNameContains(String str, String str2);
+    List<User> findUsersByFirstNameContainsOrLastNameContains(String firstNameOne, String lastNameTwo);
+    List<User> findUsersByFirstNameContains(String firstName);
+    List<User> findUsersByLastNameContains(String firstName);
+    List<User> findAllByIdIsNot(Long id);
 
     @Modifying
     @Query(nativeQuery = true, value = "UPDATE user_sn SET login = ?1, first_name =?2, " +
