@@ -39,12 +39,6 @@
 		<link href="/css/helper.css" rel="stylesheet">
 		<link href="/css/style-responsive.css" rel="stylesheet" />
 
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-		<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
-		<![endif]-->
-
 	<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6AE77042-A858-0442-B452-785E2AAF4DA7/main.js" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/7AD4FAA2E587-254B-2440-858A-24077EA6/abn/main.css"/></head>
 
 	<body>
@@ -70,9 +64,14 @@
 			<ul class="list-inline navbar-right top-menu top-right-menu">
 				<!-- Messages -->
 				<li class="dropdown">
-					<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="fa fa-envelope-o "></i> <span class="badge badge-sm up bg-purple count">4</span> </a>
+					<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count"></span> </a>
 				</li>
-				<!-- End messages -->			
+				<!-- End messages -->
+                <!-- Notification -->
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+                </li>
+                <!-- End Notification -->
 				<!-- User Menu Dropdown -->
 				<li class="dropdown text-center">
 				<#if user.avatarUrl??>
@@ -109,11 +108,14 @@
 						<a href="/profile"><i class="ion-home"></i> <span class="nav-label">Моя стрвница</span></a>
 					</li>
                     <li class="active">
-                        <a href="/profile"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
+                        <a href="/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
                     </li>
 					<li class="active">
 						<a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Сообщения</span></a>
 					</li>
+                    <li class="active">
+                        <a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>
+                    </li>
 				</ul>
 			</nav>
 			<!-- End Navbar -->
@@ -176,38 +178,13 @@
 						</div>
 					</div><!--flexItem-->
 				</div><!--flexWrap profileBlock-->
-
-						
-<style>
-	.fontForName {font-size: 35px;}
-	.forLi{padding: 8px; font-size: 18px;}
-	.flexWrap {display: flex; width:100%;}
-	.infoCollumn {flex-grow:1; margin-left: 25px;}
-	.flexItem .user-information {margin:0; width:100%; float: none;}
-	.avatarCollumn .dopBlock {padding: 25px; box-sizing: border-box; width: 250px;}
-	.infoCollumn .dopBlock {padding: 25px; box-sizing: border-box; margin-top: 20px;}
-	.profileInfo {  margin: 10px 0 0 0; padding: 15px 0;}
-    .flexWrap.profileInfo {border-top: 2px solid rgba(202, 194, 199, 0.96);margin: 10px 0 0 0; padding: 15px 0;justify-content: flex-start;}
-	.flexWrap.profileNums {border-top: 2px solid rgba(202, 194, 199, 0.96); margin: 5px 0 0 0; padding: 25px 0;justify-content: space-around;}
-	.flexWrap.profileNums .flexItem {}
-	.flexWrap.profileNums a span {display: block; text-align: center; font-weight: bold; font-size: 15px;}
-</style>
-						
-						
-						
-						
-						
-						
-						
 			</div>
 			<!-- End Content -->
-
 			<!-- Footer -->
 			<footer class="footer">
 				2018 © "Друзья" автор Артём Пьянов 
 			</footer>
 			<!-- End Footer -->
-
 		</section>
 
 		<div class="demo-options" style="padding-top: 150px">
@@ -217,16 +194,12 @@
 			<div class="demo-heading">
 				Настройки
 			</div>
-
 			<div class="demo-body">
-
 				<label class="control-label">Фиксация верхней панели</label>
 				<div class="control-label">
 					<div class="toggle toggle-default active fixedTop"></div>
 				</div>
-
 			</div>
-
 			<div class="demo-body">
 				<div class="option-title">
 					Цвет верхней панели
@@ -262,10 +235,8 @@
 					<li>
 						<span class="themecolor white"></span>
 					</li>
-
 				</ul>
 			</div>
-
 		</div>
 
 		<!-- Basic Plugins -->
@@ -279,30 +250,9 @@
 		<script src="/plugins/chat/moment-2.2.1.js"></script>
 		<script src="/plugins/toggles/toggles.min.js"></script>
 
-		<!-- Counter up -->
-		<script src="/js/waypoints.min.js" type="text/javascript"></script>
-		<script src="/js/jquery.counterup.min.js" type="text/javascript"></script>
-
-		<!-- jQuery Flot Chart-->
-		<script src="/plugins/flot-chart/jquery.flot.js"></script>
-		<script src="/plugins/flot-chart/jquery.flot.tooltip.min.js"></script>
-		<script src="/plugins/flot-chart/jquery.flot.resize.js"></script>
-
-		<!--Morris Chart-->
-		<script src="/plugins/morris/morris.min.js"></script>
-		<script src="/plugins/morris/raphael.min.js"></script>
-		<script src="/plugins/morris/morris.init.js"></script>
-
-		<!-- Sparkline -->
-		<script src="/plugins/sparkline-chart/jquery.sparkline.min.js" type="text/javascript"></script>
-		<script src="/js/sparkline_demo.js" type="text/javascript"></script>
-
 		<!-- Sweet Alerts -->
 		<script src="/plugins/sweet-alert/sweet-alert.min.js"></script>
 		<script src="/plugins/sweet-alert/sweet-alert.init.js"></script>
-
-		<!-- Todo -->
-		<script src="/js/todo.js"></script>
 
 		<!-- Site Script -->
 		<script src="/js/app.js"></script>

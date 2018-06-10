@@ -39,55 +39,23 @@
 		<link href="/css/helper.css" rel="stylesheet">
 		<link href="/css/style-responsive.css" rel="stylesheet" />
 
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-		<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
-		<![endif]-->
-        <script src="/js/jquery.js"></script>
-        <script>
-            function sendFile(file) {
-                var formData = new FormData();
-                formData.append("file", file);
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "/files", true);
-                xhr.send(formData);
-            }
-//
-// 			function senFile(file) {
-//   			 var formData = new FormData();
-//   			 formData.append("file", file);
-//    		$.ajax({
-//       		 type: "POST",
-//       		 url: "/images/files",
-//       		 data: formData,
-//       		 contentType: false,
-//       		 processData: false,
-//       		 success: function (data) {
-//        	    $("#avatar").html("<img class=\"img-circle\" width='100' height='100' src='/files/" +
-//						data + "'/>");
-//
-//       		 },
-//       		 error: function (data) {
-//       	 	    alert(data)
-//       		 }
-//   		 });
-//		}
-
-		</script>
-
 	</head>
 
 	<body>
-
 		<div class="wrapper-page animated fadeInDown">
 			<div class="panel panel-color panel-primary">
 				<div class="panel-heading">
 					<h3 class="text-center m-t-10"> Редактирование профиля </h3>
 				</div>
-
+                <div id="avatar" style="margin-left: 110px;">
+				<#if user.avatarUrl??>
+                    <img class="img-circle text-center m-t-15" width='100' height='100'  src="${user.avatarUrl}">
+				<#else>
+                    <img class="img-circle text-center m-t-15" width='100' height='100' src="/img/no_avatar.jpg">
+				</#if>
+                </div>
                 <div style="padding-top: 50px">
-				<div class="alert alert-info alert-dismissable" style="margin-top: -10px">
+				<div class="alert alert-info alert-dismissable" style="margin-top: -35px">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                         ×
                     </button>
@@ -95,20 +63,16 @@
                 </div>
                 <div class="form-group m-b-0 ">
                     <div class="input-group" style="margin-left: 15px">
-                        <input type="file" id="fileInput" name="file" class="form-control" placeholder="Имя файла..."/>
+                        <input type="file" id="fileInput" name="fileInput" class="form-control" placeholder="Имя файла..."/>
                     </div>
                 </div>
                 <div class="form-group text-right" style="margin-bottom: 15px; margin-top: 15px ">
                     <button onclick="sendFile(($('#fileInput'))[0]['files'][0])"
                             class="btn btn-purple w-md">Загрузить файл
                     </button>
-                    <input type="hidden" id="file_hidden">
-                    <div class="filename"></div>
                 </div>
                 </div>
-
-				<form class="form-horizontal m-t-40" method="post" action="/edit">
-
+				<form class="form-horizontal m-t-20" method="post" action="/edit">
 					<div class="form-group ">
 						<div class="col-xs-12">
 							<label for="login" for="login">
@@ -116,13 +80,6 @@
 							</label>
 						</div>
 					</div>
-					<#--<div class="form-group">-->
-						<#--<div class="col-xs-12">-->
-							<#--<label for="password">-->
-								<#--<input class="form-control " type="password" id="password" name="password" required="" placeholder="Пароль">-->
-							<#--</label>-->
-						<#--</div>-->
-					<#--</div>-->
 					<div class="form-group ">
 						<div class="col-xs-12">
 							<label for="firstName">
@@ -144,13 +101,6 @@
 							</label>
 						</div>
 					</div>
-					<#--<div class="form-group">-->
-						<#--<div class="col-xs-12">-->
-							<#--<label for="eMail">-->
-								<#--<input class="form-control" type="email" id="eMail" name="eMail" required="" placeholder="Email">-->
-							<#--</label>-->
-						<#--</div>-->
-					<#--</div>-->
 					<div class="form-group text-right">
 						<div class="col-xs-12">
 							<button class="btn btn-purple w-md" type="submit">
@@ -161,15 +111,14 @@
 				</form>
 			</div>
 		</div>
+
 		<!-- Basic Plugins -->
 		<script src="/js/jquery.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/pace.min.js"></script>
 		<script src="/js/wow.min.js"></script>
 		<script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
-
 		<script src="/js/app.js"></script>
 
 	</body>
-
 </html>

@@ -1,6 +1,7 @@
 package ru.itpark.service;
 
 import org.springframework.security.core.Authentication;
+import ru.itpark.dto.UserDto;
 import ru.itpark.forms.EmailForm;
 import ru.itpark.forms.PasswordForm;
 import ru.itpark.forms.UserForm;
@@ -13,6 +14,7 @@ public interface UserService {
     List<User> getAllUsers();
     void changeData(UserForm userForm, Authentication authentication);
     User getUserInfo(Authentication authentication);
+    User getUserById(Long id);
 
 
 }

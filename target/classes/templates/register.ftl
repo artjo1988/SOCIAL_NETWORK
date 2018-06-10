@@ -28,9 +28,6 @@
 		<!--Animation css-->
 		<link href="/css/animate.css" rel="stylesheet">
 
-		<!--Morris Chart CSS -->
-		<link rel="stylesheet" href="/plugins/morris/morris.css">
-
 		<!-- sweet alerts -->
 		<link href="/plugins/sweet-alert/sweet-alert.min.css" rel="stylesheet">
 
@@ -38,12 +35,6 @@
 		<link href="/css/style.css" rel="stylesheet">
 		<link href="/css/helper.css" rel="stylesheet">
 		<link href="/css/style-responsive.css" rel="stylesheet" />
-
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-		<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
-		<![endif]-->
 
 	</head>
 
@@ -54,90 +45,82 @@
 				<div class="panel-heading">
 					<h3 class="text-center m-t-10"> Регистрация </h3>
 				</div>
-
 				<form class="form-horizontal m-t-40" method="post" action="/register">
-
 					<div class="form-group ">
 						<div class="col-xs-12">
 							<label for="login" for="login">
-								<input class="form-control " type="text" id="login" name="login" required="" placeholder="Логин">
+								<input class="form-control " type="text" id="login" name="login" required="" placeholder="Логин"><span></span>
 							</label>
 						</div>
 					</div>
-
 					<div class="form-group">
 						<div class="col-xs-12">
 							<label for="password">
-								<input class="form-control " type="password" id="password" name="password" required="" placeholder="Пароль">
+								<input class="form-control " type="password" id="password" name="password" required="" placeholder="Пароль"><span></span>
 							</label>
 						</div>
 					</div>
-
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label for="password">
+                                <input class="form-control " type="password" id="password2" name="password2" required="" placeholder="Повторите пароль"><span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label for="eMail">
+                                <input class="form-control" type="email" id="eMail" name="eMail" required="" placeholder="Email"><span></span>
+                            </label>
+                        </div>
+                    </div>
 					<div class="form-group ">
 						<div class="col-xs-12">
 							<label for="firstName">
-								<input class="form-control " type="text" id="firstName" name="firstName" required="" placeholder="Имя">
+								<input class="form-control " type="text" id="firstName" name="firstName" required="" placeholder="Имя"><span></span>
 							</label>
 						</div>
 					</div>
-
 					<div class="form-group ">
 						<div class="col-xs-12">
 							<label for="lastName">
-								<input class="form-control " type="text" id="lastName" name="lastName" required="" placeholder="Фамилия">
+								<input class="form-control " type="text" id="lastName" name="lastName" required="" placeholder="Фамилия"><span></span>
 							</label>
 						</div>
 					</div>
-
 					<div class="form-group ">
 						<div class="col-xs-12">
 							<label for="city">
-								<input class="form-control " type="text" id="city" name="city" required="" placeholder="Город">
+								<input class="form-control " type="text" id="city" name="city" required="" placeholder="Город"><span></span>
 							</label>
 						</div>
 					</div>
-
-					<div class="form-group">
-						<div class="col-xs-12">
-							<label for="eMail">
-								<input class="form-control" type="email" id="eMail" name="eMail" required="" placeholder="Email">
-							</label>
-						</div>
-					</div>
-
-					<!-- <div class="form-group ">
-						<div class="col-xs-12">
-							<label class="cr-styled">
-								<input type="checkbox" checked>
-								<i class="fa"></i> I accept <strong><a href="#">Terms and Conditions</a></strong> </label>
-						</div>
-					</div> -->
-
 					<div class="form-group text-right">
 						<div class="col-xs-12">
-							<button class="btn btn-purple w-md" type="submit">
+
+							<button class="btn btn-purple w-md" type="submit"  >
 								Зарегистрироваться
 							</button>
 						</div>
 					</div>
-
-					<div class="form-group m-t-30">
+					<div class="form-group m-t-20">
 						<div class="col-sm-12 text-center">
 							<a href="login.html">Уже зарегистрированы?</a>
 						</div>
 					</div>
 				</form>
-
 			</div>
 		</div>
+
 		<!-- Basic Plugins -->
 		<script src="/js/jquery.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/pace.min.js"></script>
 		<script src="/js/wow.min.js"></script>
 		<script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
-
 		<script src="/js/app.js"></script>
+        <script src="/js/main.js"></script>
+
 
 	</body>
 

@@ -17,18 +17,25 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "login")
     private String login;
+
     @Column(name = "hashPassword")
     private String hashPassword;
+
     @Column(name = "firstName")
     private String firstName;
+
     @Column(name = "lastName")
     private String lastName;
+
     //    @Column(name = "data_birthday")
 //    private LocalDate dataBirthday;
+
     @Column(name = "city")
     private String city;
+
     @Column(name = "eMail")
     private String eMail;
 
@@ -40,6 +47,12 @@ public class User {
 
     @OneToOne(mappedBy = "owner")
     private FileInfo avatarFileInfo;
+
+    @OneToMany(mappedBy = "person")
+    private List<Requesting> outputRequestings;
+
+    @OneToMany(mappedBy = "candidate")
+    private List<Requesting> inputRequestings;
 
     @ManyToMany
     @JoinTable(name="tbl_friends",

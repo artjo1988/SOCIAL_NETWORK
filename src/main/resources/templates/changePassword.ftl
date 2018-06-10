@@ -12,7 +12,7 @@
 
 		<link rel="shortcut icon" href="/img/icon.png">
 
-		<title>Редактирование</title>
+		<title>Изменение пароля</title>
 
 		<!-- Google Fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -39,37 +39,26 @@
 		<link href="/css/helper.css" rel="stylesheet">
 		<link href="/css/style-responsive.css" rel="stylesheet" />
 
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-		<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
-		<![endif]-->
-
-	</head>
+		</head>
 
 	<body>
 	<#if error??>
 		<div class="alert alert-danger" role="alert"> ${message} </div>
 	</#if>
-
     	<div class="wrapper-page animated fadeInDown">
 			<div class="panel panel-color panel-primary">
-            <form method="post" action="/changePassword" role="form" class="text-center">
-
-				<div class="alert alert-info alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                        ×
-                    </button>
-                    <h1><i class="fa fa-envelope-o text-info"></i></h1> На Ваш <b>Email</b> придет уведомление о изменении пароля!
-                </div>
-
-
+        	    <form method="post" action="/changePassword" role="form" class="text-center">
+					<div class="alert alert-info alert-dismissable">
+                	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    	    ×
+						</button>
+                    	<h1><i class="fa fa-envelope-o text-info"></i></h1> На Ваш <b>Email</b> придет уведомление о изменении пароля!
+                	</div>
                 	<div class="form-group m-b-0" style="padding-bottom: 20px; padding-top: 10px">
 						<div class="input-group">
                        		<input class="form-control" type="password" id="oldPassword" name="oldPassword" required="" placeholder="Старый пароль">
                     	</div>
                 	</div>
-
 					<div class="form-group m-b-0" style="padding-bottom: 20px">
                     	<div class="input-group">
                         	<input class="form-control" type="password" id="newPassword" name="newPassword" required="" placeholder="Новый пароль">
@@ -87,8 +76,7 @@
                             </button>
                         </div>
                     </div>
-
-            </form>
+            	</form>
 			</div>
 		</div>
 
@@ -99,9 +87,7 @@
 		<script src="/js/pace.min.js"></script>
 		<script src="/js/wow.min.js"></script>
 		<script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
-
 		<script src="/js/app.js"></script>
 
 	</body>
-
 </html>

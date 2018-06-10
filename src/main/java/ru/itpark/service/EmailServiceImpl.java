@@ -25,18 +25,22 @@ public class EmailServiceImpl implements EmailService {
         executorService = Executors.newFixedThreadPool(10);
     }
 
-    @Override
     @SneakyThrows
     public String sendMail(String text, String subject, String email) {
-//        executorService.submit(() -> {
-//            MimeMessage message = javaMailSender.createMimeMessage();
-//            message.setContent(text, "text/html");
-//            MimeMessageHelper messageHelper = new MimeMessageHelper(message, true);
-//            messageHelper.setTo(email);
-//            messageHelper.setSubject(subject);
-//            messageHelper.setText(text, true);
-//            javaMailSender.send(message);
-//        });
+        executorService.submit(() -> {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            try {
+                message.setContent(text, "text/html");
+                MimeMessageHelper messageHelper = new MimeMessageHelper(message, true);
+                messageHelper.setTo(email);
+                messageHelper.setSubject(subject);
+                messageHelper.setText(text, true);
+            }
+            catch(Exception e){
+                throw new IllegalArgumentException(e);
+            }
+            javaMailSender.send(message);
+        });
         return "Отправка сообщения прошла успешно";
     }
 }

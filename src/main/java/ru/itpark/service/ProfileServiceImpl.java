@@ -33,6 +33,14 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
+    public void changePasswordRecover(PasswordForm passwordForm, String eMail) {
+        User user = userRepositori.findOneByEMail(eMail).orElseThrow(IllegalArgumentException::new);
+        String newPassword = passwordForm.getNewPassword();
+        user.setHashPassword(passwordEncoder.encode(newPassword));
+        userRepositori.save(user);
+    }
+
+    @Override
     public void changeEmail(EmailForm emailForm, Authentication authentication) {
         User user = userService.getUserInfo(authentication);
         String newEmail= emailForm.getNewEmail();
@@ -62,4 +70,6 @@ public class ProfileServiceImpl implements ProfileService {
         if(eMail.equals(oldPassword) && newPassword.equals(reNewPassword)) return true;
         return false;
     }
+
+
 }

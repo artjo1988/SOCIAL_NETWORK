@@ -10,19 +10,25 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Setter
-@Table (name = "avatar_sn")
+@Table (name = "avatar")
 
 public class FileInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "original_name")
     private String originalName;
+
     @Column(name = "storage_name")
     private String storageName;
+
     private Long size;
+
     private String type;
+
     private String url;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_avatar")
     private User owner;

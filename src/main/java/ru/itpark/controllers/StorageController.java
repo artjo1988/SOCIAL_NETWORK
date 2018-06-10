@@ -26,7 +26,7 @@ public class StorageController {
     }
 
     @PostMapping("/files")
-    public ResponseEntity<String> hundlerFileDownload(@RequestParam("file")MultipartFile multipartFile, Authentication authentication){
+    public ResponseEntity<String> hundlerFileDownload(@RequestParam("file") MultipartFile multipartFile, Authentication authentication){
         String filePath = fileStorageService.saveFile(multipartFile, authentication);
         return ResponseEntity.ok().body(filePath);
     }

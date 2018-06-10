@@ -62,4 +62,9 @@ public class UserServiceImpl implements UserService {
         return details.getUser();
     }
 
+    @Transactional
+    @Override
+    public User getUserById(Long id) {
+        return userRepositori.findOneById(id).orElseThrow(IllegalArgumentException::new);
+    }
 }

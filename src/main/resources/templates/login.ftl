@@ -39,27 +39,18 @@
 		<link href="/css/helper.css" rel="stylesheet">
 		<link href="/css/style-responsive.css" rel="stylesheet" />
 
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-		<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
-		<![endif]-->
-
 	</head>
-
 
     <body>
 
     	<#if error??>
 		<div class="alert alert-danger" role="alert">Логин или пароль введены неверно</div>
 		</#if>
-
         <div class="wrapper-page animated fadeInDown">
             <div class="panel panel-color panel-primary">
                 <div class="panel-heading"> 
-                   <h3 class="text-center m-t-10"> Войти в социальную сеть <strong>Друзья</strong> </h3>
-                </div> 
-
+                   <h3 class="text-center m-t-10"> Войти в социальную сеть <strong>"Друзья"</strong> </h3>
+                </div>
                 <form class="form-horizontal m-t-40" method="post" action="/login">                                           
                     <div class="form-group ">
                         <div class="col-xs-12">
@@ -75,7 +66,6 @@
                             </label>
                         </div>
                     </div>
-
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <label for="remember-me" class="cr-styled" >
@@ -85,27 +75,22 @@
                             </label>
                         </div>
                     </div>
-                    
                     <div class="form-group text-right">
                         <div class="col-xs-12">
                             <button class="btn btn-primary w-md" type="submit">Войти</button>
                         </div>
                     </div>
-                    <div class="form-group text-right">
-                        <!-- <div class="col-sm-7">
-                            <a href="recover_password.html"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
-                        </div> -->
-                        <div class="col-xs-12">
-                            <a href="register.html" class="btn btn-primary w-md" >Регистрация</a>
+                    <div class="form-group m-t-30">
+                        <div class="col-sm-7">
+                            <a href="/recoverPassword/email"><i class="fa fa-lock m-r-5"></i> Забыли пароль? </a>
+                        </div>
+                        <div class="col-sm-5 text-right">
+                            <a href="/register" class="btn btn-primary w-md" >Регистрация</a>
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
-
-    
-
 
 		 <!-- Basic Plugins -->
 		<script src="/js/jquery.js"></script>
@@ -113,10 +98,7 @@
 		<script src="/js/pace.min.js"></script>
 		<script src="/js/wow.min.js"></script>
 		<script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
-
 		<script src="/js/app.js"></script>
-
     
     </body>
-
 </html>

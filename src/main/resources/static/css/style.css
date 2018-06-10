@@ -4,6 +4,26 @@
  *  */
 
 /* Basic Elements */
+
+
+/* Custom CSS */
+.indexBody{background-image: url("//img//background.jpg"); background-repeat: no-repeat; background-attachment: scroll; background-size: cover;}
+.inputRed{	border:1px solid #ff4040;background: #ffcece;}
+.inputGreen{border:1px solid #83c954;background: #e8ffce;}
+.fontForName {font-size: 35px;}
+.forLi{padding: 8px; font-size: 18px;}
+.flexWrap {display: flex; width:100%;}
+.infoCollumn {flex-grow:1; margin-left: 25px;}
+.flexItem .user-information {margin:0; width:100%; float: none;}
+.avatarCollumn .dopBlock {padding: 25px; box-sizing: border-box; width: 250px;}
+.infoCollumn .dopBlock {padding: 25px; box-sizing: border-box; margin-top: 20px;}
+.profileInfo {  margin: 10px 0 0 0; padding: 15px 0;}
+.flexWrap.profileInfo {border-top: 2px solid rgba(202, 194, 199, 0.96);margin: 10px 0 0 0; padding: 15px 0;justify-content: flex-start;}
+.flexWrap.profileNums {border-top: 2px solid rgba(202, 194, 199, 0.96); margin: 5px 0 0 0; padding: 25px 0;justify-content: space-around;}
+.flexWrap.profileNums .flexItem {}
+.flexWrap.profileNums a span {display: block; text-align: center; font-weight: bold; font-size: 15px;}
+/* End Custom CSS */
+
 body {
 	color: #797979;
 	background-color: #edf0f0;

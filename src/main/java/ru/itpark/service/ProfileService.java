@@ -10,4 +10,6 @@ public interface ProfileService {
     void changePassword(PasswordForm passwordForm, Authentication authentication);
     boolean correctEmail(EmailForm emailForm, Authentication authentication);
     void changeEmail(EmailForm emailForm, Authentication authentication);
+    void changePasswordRecover(PasswordForm passwordForm, String eMail);
+
 }
