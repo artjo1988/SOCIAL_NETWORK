@@ -69,10 +69,10 @@
         <!-- End messages -->
         <!-- User Menu Dropdown -->
         <li class="dropdown text-center">
-		<#if person.avatarUrl??>
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="${person.avatarUrl}" class="img-circle profile-img thumb-sm"> <span class="username">${person.firstName} ${person.lastName}</span> <span class="caret"></span> </a>
+		<#if user.avatarUrl??>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="${user.avatarUrl}" class="img-circle profile-img thumb-sm"> <span class="username">${user.firstName} ${user.lastName}</span> <span class="caret"></span> </a>
 		<#else>
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="/img/no_avatar.jpg" class="img-circle profile-img thumb-sm"> <span class="username">${person.firstName} ${person.lastName}</span> <span class="caret"></span> </a>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="/img/no_avatar.jpg" class="img-circle profile-img thumb-sm"> <span class="username">${user.firstName} ${user.lastName}</span> <span class="caret"></span> </a>
 		</#if>
             <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
                 <li>
@@ -95,7 +95,7 @@
 </header>
 <!-- End Header -->
 <!-- Aside Menu -->
-<aside class="left-panel">
+<aside class="left-panel" style="margin-top: 10px">
     <!-- Navbar -->
     <nav class="navigation">
         <ul class="list-unstyled">
@@ -106,7 +106,10 @@
                 <a href="/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
             </li>
             <li class="active">
-                <a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Сообщения</span></a>
+                <a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
+            </li>
+            <li class="active">
+                <a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>
             </li>
         </ul>
     </nav>
@@ -122,15 +125,15 @@
                 <!-- Avatar -->
                 <div class="avatar tile-stats white-bg">
                     <div class="chat-send">
-					<#if user.avatarUrl??>
+					<#if candidate.avatarUrl??>
                         <img src= "${candidate.avatarUrl}" style="width: 210px; height: 230px:">
 					<#else>
                         <img src="/img/no_avatar.jpg"  style="width: 210px; height: 230px:">
 					</#if>
                         <form method="post" action="/${candidate.id}/sendRequst">
                             <button class="btn btn-purple w-md" style="margin-top: 15px;">
-							<#if status??>
-                                ${status}
+							<#if info.status??>
+                                ${info.status}
 							<#else>
                                 Добавить в друзья
 							</#if>
@@ -147,7 +150,6 @@
                 <!-- User information -->
                 <div class="user-information tile-stats white-bg">
                     <div class=fontForName >${candidate.firstName} ${candidate.lastName}</div>
-				<#--<div class="profileInfo">-->
                     <div class="flexWrap profileInfo">
                         <div style="padding-right: 150px; padding-left: 30px;">
                             <ul>
@@ -162,10 +164,11 @@
                             </ul>
                         </div>
                     </div>
-				<#--</div>-->
                     <div class="flexWrap profileNums">
-                        <div class="flexItem"><a href="#"><span>1</span>текст</a></div>
-                        <div class="flexItem"><a href="#"><span>2</span>текст</a></div>
+                        <div class="flexItem"><a href="#"><span>${info.friends}</span>друзей</a></div>
+                        <div class="flexItem"><a href="#"><span>${info.subscribers}</span>подписчиков</a></div>
+                        <div class="flexItem"><a href="#"><span>${info.posts}</span>постов</a></div>
+                        <div class="flexItem"><a href="#"><span>${info.chats}</span>диалогов</a></div>
                     </div>
                 </div>
                 <!-- end User information -->

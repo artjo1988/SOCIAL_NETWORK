@@ -7,19 +7,41 @@
 
 
 /* Custom CSS */
+.usersCollumn{
+	float: left;
+	margin-top: 15px;
+	width: 100px;
+	margin-right: 20px;
+	text-align: center;
+}
 .indexBody{background-image: url("//img//background.jpg"); background-repeat: no-repeat; background-attachment: scroll; background-size: cover;}
-.inputRed{	border:1px solid #ff4040;background: #ffcece;}
+.inputRed{border:1px solid #ff4040;background: #ffcece;}
 .inputGreen{border:1px solid #83c954;background: #e8ffce;}
 .fontForName {font-size: 35px;}
 .forLi{padding: 8px; font-size: 18px;}
 .flexWrap {display: flex; width:100%;}
 .infoCollumn {flex-grow:1; margin-left: 25px;}
+.infoCollumnUsers {flex-grow:1; margin-right: 25px;}
 .flexItem .user-information {margin:0; width:100%; float: none;}
-.avatarCollumn .dopBlock {padding: 25px; box-sizing: border-box; width: 250px;}
+.avatarCollumn .dopBlock {padding: 15px; box-sizing: border-box; width: 250px;}
+.searchCollumnUsers .dopBlock {padding: 15px; box-sizing: border-box; height: 300px; width: 250px;}
 .infoCollumn .dopBlock {padding: 25px; box-sizing: border-box; margin-top: 20px;}
-.profileInfo {  margin: 10px 0 0 0; padding: 15px 0;}
-.flexWrap.profileInfo {border-top: 2px solid rgba(202, 194, 199, 0.96);margin: 10px 0 0 0; padding: 15px 0;justify-content: flex-start;}
-.flexWrap.profileNums {border-top: 2px solid rgba(202, 194, 199, 0.96); margin: 5px 0 0 0; padding: 25px 0;justify-content: space-around;}
+.infoCollumn .dopBlockPosts {padding: 15px 15px 7px 15px ; box-sizing: border-box; margin-top: 20px; width:100%}
+.infoCollumnUsers .dopBlock {padding: 25px; box-sizing: border-box;}
+.profileInfo {border-top:1px solid #000000; margin: 5px 0 0 0; padding: 5px 0;}
+.flexWrap.profileNums {border-top:1px solid #000000; margin: 5px 0 0 0; padding: 5px 0;justify-content: space-around;}
+.flexWrap.profileNums .flexItem {}
+.flexWrap.profileNums a span {display: block; text-align: center; font-weight: bold; font-size: 22px;}
+.flexWrap.profileInfo {
+	border-top: 2px solid rgba(202, 194, 199, 0.96);
+	margin: 10px 0 0 0;
+	padding: 15px 0;
+	justify-content: flex-start;}
+.flexWrap.profileNums {
+	border-top: 2px solid rgba(202, 194, 199, 0.96);
+	margin: 5px 0 0 0;
+	padding: 25px 0;
+	justify-content: space-around;}
 .flexWrap.profileNums .flexItem {}
 .flexWrap.profileNums a span {display: block; text-align: center; font-weight: bold; font-size: 15px;}
 /* End Custom CSS */
@@ -28,7 +50,7 @@ body {
 	color: #797979;
 	background-color: #edf0f0;
 	font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	padding: 0 !important;
+	padding: 15px !important;
 	margin: 0 !important;
 	font-size: 14px;
 	position: relative;
@@ -350,7 +372,6 @@ header {
 	font-weight: 600;
 	background-color: #e6eaed;
 	border-top: 1px solid #ddd;
-	height: 70px;
 
 }
 

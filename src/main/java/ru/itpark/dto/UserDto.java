@@ -2,11 +2,8 @@ package ru.itpark.dto;
 
 import lombok.*;
 import org.springframework.transaction.annotation.Transactional;
-import ru.itpark.models.FileInfo;
-import ru.itpark.models.Requesting;
-import ru.itpark.models.User;
+import ru.itpark.models.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -26,6 +23,8 @@ public class UserDto {
     private List<User> friends;
     private List<Requesting> outputRequestings;
     private List<Requesting> inputRequestings;
+    private List<Post> posts;
+    private List<Chat> chats;
 
 
     public static UserDto dtoUserFromUser(User user){
@@ -43,6 +42,8 @@ public class UserDto {
                 .friends(user.getFriends())
                 .outputRequestings(user.getOutputRequestings())
                 .inputRequestings(user.getInputRequestings())
+                .posts(user.getPosts())
+                .chats(user.getChats())
                 .build();
     }
 }

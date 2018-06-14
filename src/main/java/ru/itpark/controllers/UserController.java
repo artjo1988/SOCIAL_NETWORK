@@ -1,6 +1,7 @@
 package ru.itpark.controllers;
 
 import org.hibernate.Hibernate;
+import org.hibernate.boot.jaxb.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.method.P;
@@ -12,11 +13,15 @@ import org.springframework.web.bind.annotation.*;
 import ru.itpark.dto.UserDto;
 import ru.itpark.forms.PasswordForm;
 import ru.itpark.forms.UserForm;
+import ru.itpark.models.Post;
 import ru.itpark.models.Requesting;
+import ru.itpark.models.SupportInfo;
 import ru.itpark.models.User;
 import ru.itpark.repositories.UserRepositori;
 import ru.itpark.security.details.UserDetailsImpl;
 import ru.itpark.service.EmailService;
+import ru.itpark.service.PostService;
+import ru.itpark.service.PostServiceImpl;
 import ru.itpark.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +39,10 @@ public class UserController {
     private EmailService emailService;
 
     @Autowired
-    UserRepositori userRepositori;
+    private UserRepositori userRepositori;
+
+    @Autowired
+    private PostService postService;
 
     @GetMapping("/register")
     public String getSignUpPage(ModelMap modelMap){
@@ -56,6 +64,15 @@ public class UserController {
         UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
         UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(details.getUser().getId()));
         modelMap.addAttribute("user",userDto);
+        List<Post> reverseList = postService.reverseList(userDto.getPosts());
+        modelMap.addAttribute("posts", reverseList);
+        SupportInfo info = SupportInfo.builder()
+                .friends(userDto.getFriends().size())
+                .subscribers(userDto.getInputRequestings().size())
+                .posts(userDto.getPosts().size())
+                .chats(userDto.getChats().size())
+                .build();
+        modelMap.addAttribute("info", info);
         return "profile";
     }
 
@@ -86,8 +103,9 @@ public class UserController {
 
     @GetMapping("/friends")
     public String getFriendsPage(ModelMap modelMap, Authentication authentication){
-//        UserDto userDto = UserDto.dtoUserFromUser(userService.getUserInfo(authentication));
-//        modelMap.addAttribute("user", userDto);
+        UserDto userDto = UserDto.dtoUserFromUser(userService.getUserInfo(authentication));
+        modelMap.addAttribute("user",userDto);
+        modelMap.addAttribute("users", userDto.getFriends());
         return "friends";
     }
 
@@ -105,6 +123,9 @@ public class UserController {
     public String postUsersFind(HttpServletRequest request, ModelMap modelMap,
                                 Authentication authentication){
         String paramFind = request.getParameter("paramFind");
+        String paramCity = request.getParameter("city_hidden");
+        String paramdataBirthday = request.getParameter("dataBirthday_hidden");
+        System.out.println(paramCity);
         UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
         UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(details.getUser().getId()));
         List<User> users = userRepositori.findAllByIdIsNot(userDto.getId());
@@ -114,9 +135,7 @@ public class UserController {
             return "users";
         }
         else {
-
             String[] arrStr = paramFind.split("\\s+");
-
             if(arrStr.length==2) {
                 String paramFindOne = arrStr[0];
                 String paramFindTwo = arrStr[1];
@@ -154,13 +173,15 @@ public class UserController {
                                 @PathVariable("id-candidate") Long idCandidate){
         User userPerson = userService.getUserInfo(authentication);
         UserDto personDto = UserDto.dtoUserFromUser(userPerson);
-        modelMap.addAttribute("person", personDto);
+        modelMap.addAttribute("user", personDto);
         User userCandidate = userService.getUserById(idCandidate);
         UserDto candidateDto = UserDto.dtoUserFromUser(userCandidate);
         modelMap.addAttribute("candidate", candidateDto);
-        List<Requesting> requestings = userPerson.getOutputRequestings();
-        Hibernate.initialize(userCandidate);
-        if (requestings.contains(userCandidate))modelMap.addAttribute("status", "Вы подписаны");
+        List<Post> reverseList = postService.reverseList(candidateDto.getPosts());
+        modelMap.addAttribute("posts", reverseList);
+//        List<Requesting> requestings = userPerson.getOutputRequestings();
+//        Hibernate.initialize(userCandidate);
+//        if (requestings.contains(userCandidate))modelMap.addAttribute("status", "Вы подписаны");
         return "profileCandidate";
     }
 

@@ -68,11 +68,16 @@
 
 			<!-- Right navbar -->
 			<ul class="list-inline navbar-right top-menu top-right-menu">
-				<!-- Messages -->
-				<li class="dropdown">
-					<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="fa fa-envelope-o "></i> <span class="badge badge-sm up bg-purple count">4</span> </a>
-				</li>
-				<!-- End messages -->			
+                <!-- Messages -->
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count"></span> </a>
+                </li>
+                <!-- End messages -->
+                <!-- Notification -->
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+                </li>
+                <!-- End Notification -->
 				<!-- User Menu Dropdown -->
 				<li class="dropdown text-center">
 				<#if user.avatarUrl??>
@@ -101,7 +106,7 @@
 		</header>
 		<!-- End Header -->
 		<!-- Aside Menu -->
-		<aside class="left-panel">
+        <aside class="left-panel" style="margin-top: 10px">
 			<!-- Navbar -->
 			<nav class="navigation">
 				<ul class="list-unstyled">
@@ -109,11 +114,14 @@
 						<a href="/profile"><i class="ion-home"></i> <span class="nav-label">Моя стрвница</span></a>
 					</li>
                     <li class="active">
-                        <a href="/profile"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
+                        <a href="/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
                     </li>
 					<li class="active">
 						<a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Сообщения</span></a>
 					</li>
+                    <li class="active">
+                        <a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>
+                    </li>
 				</ul>
 			</nav>
 			<!-- End Navbar -->

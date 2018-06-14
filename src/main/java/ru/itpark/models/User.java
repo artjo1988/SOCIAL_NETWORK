@@ -68,4 +68,12 @@ public class User {
     )
     private List<User> friendOf;
 
+    @OneToMany(mappedBy = "ownerPost")
+    private List<Post> posts;
+
+    @ManyToMany
+    @JoinTable(name = "user_chat",
+            joinColumns = @JoinColumn(name = "user_sn"),
+            inverseJoinColumns = @JoinColumn(name = "chat"))
+    private List<Chat> chats;
 }

@@ -4,13 +4,15 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity()
-@AllArgsConstructor
-@NoArgsConstructor
+
+
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@Table (name = "avatar")
+@Entity
+@Table(name = "avatar")
 
 public class FileInfo {
     @Id

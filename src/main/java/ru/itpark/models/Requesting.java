@@ -22,13 +22,13 @@ public class Requesting {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person")
-    User person;
+    private User person;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "candidate")
-    User candidate;
+    private User candidate;
 
     @Enumerated(EnumType.STRING)
-    RoleRequesting roleRequesting;
+    private RoleRequesting roleRequesting;
 
 }

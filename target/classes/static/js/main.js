@@ -1,5 +1,5 @@
 
-function senFile(file) {
+function sendFile(file) {
     var formData = new FormData();
     formData.append("file", file);
     $.ajax({
@@ -36,7 +36,7 @@ $(function() {
         var expLogin = /^[a-zA-Z0-9_]+$/g;
         var resLogin = login.search(expLogin);
         if(resLogin == -1){
-            $("#login").next().hide().text("Неверный логин").css("color","red").fadeIn(400);
+            $("#login").next().hide().text(" Неверный логин").css("color","red").fadeIn(400);
             $("#login").removeClass().addClass("inputRed");
             loginStat = 0;
             buttonOnAndOff();
@@ -48,7 +48,7 @@ $(function() {
                 cache: false,
                 success: function(response){
                     if(response == true){
-                        $("#login").next().hide().text("Логин занят").css("color","red").fadeIn(400);
+                        $("#login").next().hide().text(" Логин занят").css("color","red").fadeIn(400);
                         $("#login").removeClass().addClass("inputRed");
                     }else{
                         $("#login").removeClass().addClass("inputGreen");
@@ -67,13 +67,13 @@ $(function() {
     });
 
     // Email
-    $("#email").change(function(){
-        email = $("#email").val();
+    $("#eMail").change(function(){
+        eMail = $("#eMail").val();
         var expEmail = /[-0-9a-z_]+@[-0-9a-z_]+\.[a-z]{2,6}/i;
-        var resEmail = email.search(expEmail);
+        var resEmail = eMail.search(expEmail);
         if(resEmail == -1){
-            $("#email").next().hide().text("Неверный формат Email").css("color","red").fadeIn(400);
-            $("#email").removeClass().addClass("inputRed");
+            $("#eMail").next().hide().text(" Неверный Email").css("color","red").fadeIn(400);
+            $("#eMail").removeClass().addClass("inputRed");
             emailStat = 0;
             buttonOnAndOff();
         }else{
@@ -97,9 +97,9 @@ $(function() {
             buttonOnAndOff();
         }
     });
-    $("#email").keyup(function(){
-        $("#email").removeClass();
-        $("#email").next().text("");
+    $("#eMail").keyup(function(){
+        $("#eMail").removeClass();
+        $("#eMail").next().text("");
     });
 
     //Пароль

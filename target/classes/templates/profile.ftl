@@ -54,12 +54,6 @@
 				<span class="icon-toggle ion-navicon-round"></span>
 			</button>
 
-			<!-- Search -->
-			<!-- <form role="search" class="navbar-left app-search pull-left hidden-xs">
-				<input type="text" placeholder="Search..." class="form-control">
-			</form> -->
-			<!-- End Search -->
-
 			<!-- Right navbar -->
 			<ul class="list-inline navbar-right top-menu top-right-menu">
 				<!-- Messages -->
@@ -84,10 +78,10 @@
 							<a href="/profile"><i class="ion-person"></i>Моя страница</a>
                         </li>
                         <li>
-                            <a href="/changePassword"><i class="ion-person"></i>Изменить пароль</a>
+                            <a href="/changePassword"><i class="ion-key"></i>Изменить пароль</a>
                         </li>
                         <li>
-                            <a href="/changeEmail"><i class="ion-person"></i>Изменить Email</a>
+                            <a href="/changeEmail"><i class="ion-email"></i>Изменить Email</a>
                         </li>
 						<li>
 							<a href="/logout"><i class="fa fa-sign-out"></i> Выйти</a>
@@ -100,7 +94,7 @@
 		</header>
 		<!-- End Header -->
 		<!-- Aside Menu -->
-		<aside class="left-panel">
+		<aside class="left-panel" style="margin-top: 10px">
 			<!-- Navbar -->
 			<nav class="navigation">
 				<ul class="list-unstyled">
@@ -111,7 +105,7 @@
                         <a href="/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
                     </li>
 					<li class="active">
-						<a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Сообщения</span></a>
+						<a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
 					</li>
                     <li class="active">
                         <a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>
@@ -151,7 +145,6 @@
                         <!-- User information -->
                         <div class="user-information tile-stats white-bg">
 							<div class=fontForName >${user.firstName} ${user.lastName}</div>
-							<#--<div class="profileInfo">-->
                                 <div class="flexWrap profileInfo">
                                     <div style="padding-right: 150px; padding-left: 30px;">
 										<ul>
@@ -166,15 +159,67 @@
 										</ul>
                                     </div>
 								</div>
-							<#--</div>-->
 							<div class="flexWrap profileNums">
-								<div class="flexItem"><a href="#"><span>1</span>текст</a></div>
-								<div class="flexItem"><a href="#"><span>2</span>текст</a></div>
+                                <div class="flexItem"><a href="#"><span>${info.friends}</span>друзей</a></div>
+                                <div class="flexItem"><a href="#"><span>${info.subscribers}</span>подписчиков</a></div>
+                                <div class="flexItem"><a href="#"><span>${info.posts}</span>постов</a></div>
+                                <div class="flexItem"><a href="#"><span>${info.chats}</span>диалогов</a></div>
 							</div>
 						</div>
 						<!-- end User information -->
 						<div class="white-bg dopBlock">
-							дополнительный блок можно удалить
+                            <form method="post" action="/addPost">
+                                <div class="form-group m-b-15">
+                                    <#--<div class="input-group">-->
+										<div class="col-lg-12" style="margin-left: -15px; height: 125px; width: 104%">
+											<textarea style="border-color: #c6c6c6" class="form-control " id="inputText" name="inputText" aria-required="true" cols="61" rows = "5" maxlength = "765" autocomplete="on" wrap="hard" required></textarea>
+										</div>
+                                        <div class="input-group-btn" >
+											<button type="submit" class="btn btn-primary" style="float: right">
+												Отправить
+											</button>
+										</div>
+                                    <#--</div>-->
+                                </div>
+                            </form>
+							<#if posts??>
+								<#list posts as post>
+								<div class="dopBlockPosts" style="background: #ebf0ec" display: block" >
+									<div style="display: flex; margin-bottom: 10px;">
+										<div style="margin-right: 15px">
+											<#if user.avatarUrl??>
+                                                <img src= "${user.avatarUrl}" class="img-circle text-center " width='65' height='65'>
+											<#else>
+                                                <img src="/img/no_avatar.jpg"  class="img-circle text-center " width='65' height='65'>
+											</#if>
+										</div>
+                                        <div style="display: block; margin-right: 54%">
+                                            <div style="margin: 6px 0 3px 0;">
+												<strong>${user.firstName} ${user.lastName}</strong>
+                                            </div>
+											<div>
+												<em>время</em>
+											</div>
+
+                                        </div>
+										<div class="dropdown text-center" style="margin-top: 6px;">
+											<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span>действие</span> <span class="caret"></span> </a>
+												<ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -40px">
+                                                    <li>
+                                                        <a href="#" onclick="insertEditPost();"><i class="ion-edit"></i>Редактировать</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/deletePost/${post.id}"><i class="ion-close"></i>Удалить</a>
+                                                    </li>
+												</ul>
+										</div>
+									</div>
+									<div style="padding-bottom: 6px">
+										${post.content}
+									</div>
+								</div>
+								</#list>
+							</#if>
 						</div>
 					</div><!--flexItem-->
 				</div><!--flexWrap profileBlock-->
@@ -240,6 +285,7 @@
 		</div>
 
 		<!-- Basic Plugins -->
+        <script src="/js/main.js"></script>
 		<script src="/js/jquery-2.1.4.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/modernizr.min.js"></script>

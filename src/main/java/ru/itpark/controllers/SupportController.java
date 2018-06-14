@@ -4,16 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.itpark.dto.UserDto;
+import ru.itpark.models.Post;
 import ru.itpark.models.Requesting;
 import ru.itpark.models.RoleRequesting;
 import ru.itpark.models.User;
+import ru.itpark.repositories.PostRepository;
 import ru.itpark.repositories.RequestingRepository;
 import ru.itpark.repositories.UserRepositori;
+import ru.itpark.security.details.UserDetailsImpl;
 import ru.itpark.service.UserService;
 
 import java.util.Optional;
@@ -29,6 +33,9 @@ public class SupportController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PostRepository postRepository;
 
     @GetMapping("/")
     public String getIndexPage(Authentication authentication) {
@@ -71,4 +78,26 @@ public class SupportController {
     public void postCancelRequest(){
 
     }
+
+    @PostMapping("/addPost")
+    public String postAddPost(@RequestParam("inputText") String inputText, ModelMap modelMap,
+                              Authentication authentication){
+        User user = userService.getUserInfo(authentication);
+        UserDto userDto = UserDto.dtoUserFromUser(user);
+        modelMap.addAttribute("user",userDto);
+        Post post = Post.builder()
+                .content(inputText)
+                .build();
+        post.setOwnerPost(user);
+        postRepository.save(post);
+        modelMap.addAttribute("posts", user.getPosts());
+        return "redirect:/profile";
+    }
+
+    @GetMapping("/deletePost/{id-post}")
+    public String getDeletePost(@PathVariable("id-post") Long id){
+        postRepository.delete(id);
+        return "redirect:/profile";
+    }
+
 }

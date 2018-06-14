@@ -1,5 +1,5 @@
 <#ftl encoding='UTF-8'>
-<!DOCTYPE html>
+
 <html lang="en">
 
 	<head>
@@ -39,9 +39,23 @@
 		<link href="/css/helper.css" rel="stylesheet">
 		<link href="/css/style-responsive.css" rel="stylesheet" />
 
-	<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6AE77042-A858-0442-B452-785E2AAF4DA7/main.js" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/7AD4FAA2E587-254B-2440-858A-24077EA6/abn/main.css"/></head>
+		<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6AE77042-A858-0442-B452-785E2AAF4DA7/main.js" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/7AD4FAA2E587-254B-2440-858A-24077EA6/abn/main.css"/></head>
 
-	<body>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="/resources/demos/style.css">
+		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script>
+			$( function() {
+				$( "#datepicker" ).datepicker();
+			} );
+            $('#getDate').click(function () {
+                console.log($('#datepicker').data('date'))
+                $('#SelectedDate').text($('#datepicker').data('date'))
+            })
+		</script>
+
+	<#--<body>-->
 		<!-- Header -->
 		<header class="top-head container-fluid navbar-fixed-top">
 			<!-- logo -->
@@ -53,13 +67,6 @@
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-toggle ion-navicon-round"></span>
 			</button>
-
-			<!-- Search -->
-			<!-- <form role="search" class="navbar-left app-search pull-left hidden-xs">
-				<input type="text" placeholder="Search..." class="form-control">
-			</form> -->
-			<!-- End Search -->
-
 			<!-- Right navbar -->
 			<ul class="list-inline navbar-right top-menu top-right-menu">
 				<!-- Messages -->
@@ -100,7 +107,7 @@
 		</header>
 		<!-- End Header -->
 		<!-- Aside Menu -->
-		<aside class="left-panel">
+        <aside class="left-panel" style="margin-top: 10px">
 			<!-- Navbar -->
 			<nav class="navigation">
 				<ul class="list-unstyled">
@@ -111,7 +118,7 @@
                         <a href="/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
                     </li>
 					<li class="active">
-						<a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Сообщения</span></a>
+						<a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
 					</li>
                     <li class="active">
                         <a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>
@@ -125,54 +132,100 @@
 		<section class="content">
 			<!-- Page Content -->
 			<div class="wraper container-fluid">
-				<div class="flexWrap profileBlock">
-					<div class="flexItem infoCollumn">
-                        <div class="white-bg dopBlock">
-                            дополнительный блок можно удалить
-							<br>
+                <div class="flexWrap profileBlock">
+					<!-- Users field -->
+					<div class="flexItem infoCollumnUsers">
+						<div class="white-bg dopBlock">
                             <form method="post" action="/users/find">
-                            <div class="form-group m-b-0">
-                                <div class="input-group">
-                                    <input id="paramFind" name="paramFind"  type="text" class="form-control" placeholder="Введите имя и фамилию">
-                                    <span class="input-group-btn">
-								<button type="submit" class="btn btn-primary">
-									Найти
-								</button> </span>
+                                <div class="form-group m-b-0">
+                                    <div class="input-group">
+                                        <input id="paramFind"  name="paramFind"  type="text" class="form-control" placeholder="Введите имя и фамилию">
+                                        <input  id="city_hidden" name ="city_hidden" value="">
+                                        <input  id="" name ="dataBirthday_hidden" value="">
+										<br>
+                                        <span id="SelectedDate"></span>
+										<br>
+										<span class="input-group-btn" >
+										<button type="submit" class="btn btn-primary">
+											Найти
+										</button>
+										</span>
+
+
+                                    </div>
                                 </div>
-                            </div>
-							<br>
+                            </form>
+                            <br>
+
 							<#list users as user>
-								<#if user.avatarUrl??>
-									<a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
-								<#else>
-								<a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="/img/no_avatar.jpg">
-								</#if>
-								<div>
-									<a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
-								</div>
-								<div>
-									${user.city}
-								</div>
-								<a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
-								<form method="post" action="/${user.id}/sendRequst">
-									<button class="btn btn-purple w-md" style="margin-top: 15px;">
-										<#if status??>
-											${status}
-										<#else>
-											Добавить в друзья
-										</#if></button>
-								</form>
-                                <br>
+								<div  style="margin-bottom: 15px ; display: block">
+									<div style="display: flex;">
+										<div>
+											<#if user.avatarUrl??>
+												<a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
+											<#else>
+												<a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="/img/no_avatar.jpg">
+											</#if>
+                                        </div>
+										<div style="padding: 30px 0 0 25px">
+											<p>
+												<a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
+												<br>
+												${user.city}
+                                            </p>
+												<a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
+										</div>
+                                        <div style="padding: 30px; margin-left: 110px;">
+											<form method="post" action="/${user.id}/sendRequst">
+												<button class="btn btn-purple w-md" style="margin-top: 15px;">
+													<#if status??>
+													${status}
+													<#else>
+														Добавить в друзья
+													</#if>
+												</button>
+											</form>
+                                        </div>
+									</div>
+                                </div>
 							</#list>
                         </div>
-					</div><!--flexItem-->
-				</div><!--flexWrap profileBlock-->
+					</div>
+                    <!-- End Uers field -->
 
-			</div>
-			<!-- End Content -->
+                    <!-- Search option -->
+					<div class="flexItem searchCollumnUsers">
+						<div class="white-bg dopBlock">
+                            <div align="center" style="border-bottom: 2px solid rgba(202, 194, 199, 0.96); padding-bottom: 10px ">
+                                Параметры поиска
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="city" style="padding: 15px 0 5px 0;"> Город </label>
+                                        <input class="form-control" type="text" id="city" name="city" required="" onkeyup="city_hidden.value = this.value" >
+                                    <#--onkeyup="city_hidden.value = this.value" >-->
+
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-xs-12">
+                                    <label for="city" style="padding: 15px 0 5px 0;">День рождения</label>
+                                    <input class="form-control" type="text" id="datepicker" name="datepicker" required="" >
+                                    <input type="button" class="btn btn-success" id="getDate" value="Get Date" />
+
+                                </div>
+                            </div>
+
+						</div>
+					</div>
+                    <!-- End Search option -->
+				</div>
+            </div>
+            <!-- End Content -->
+
 			<!-- Footer -->
 			<footer class="footer">
-				2018 © "Друзья" автор Артём Пьянов 
+				2018 © "Друзья" автор Артём Пьянов
 			</footer>
 			<!-- End Footer -->
 		</section>
@@ -230,7 +283,7 @@
 		</div>
 
 		<!-- Basic Plugins -->
-		<script src="/js/jquery-2.1.4.min.js"></script>
+        <#--<script src="/js/jquery-2.1.4.min.js"></script>-->
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/modernizr.min.js"></script>
 		<script src="/js/pace.min.js"></script>

@@ -67,11 +67,16 @@
                     </div>
                 </div>
                 <div class="form-group text-right" style="margin-bottom: 15px; margin-top: 15px ">
-                    <button onclick="sendFile(($('#fileInput'))[0]['files'][0])"
+                    <button onclick="sendFile(document.getElementById('fileInput')['files'][0])"
                             class="btn btn-purple w-md">Загрузить файл
                     </button>
                 </div>
                 </div>
+                <form action="#" class="dropzone" id="dropzone">
+                    <div class="fallback">
+                        <input name="file" type="file" multiple />
+                    </div>
+                </form>
 				<form class="form-horizontal m-t-20" method="post" action="/edit">
 					<div class="form-group ">
 						<div class="col-xs-12">
@@ -113,12 +118,14 @@
 		</div>
 
 		<!-- Basic Plugins -->
+        <script src="/js/main.js"></script>
 		<script src="/js/jquery.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/pace.min.js"></script>
 		<script src="/js/wow.min.js"></script>
 		<script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
 		<script src="/js/app.js"></script>
+        <script src="assets/plugins/dropzone/dropzone.min.js"></script>
 
 	</body>
 </html>
