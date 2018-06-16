@@ -9,7 +9,7 @@ function sendFile(file) {
     contentType: false,
     processData: false,
     success: function (data) {
-    $("#avatar").html("<img class=\"img-circle\" width='100' height='100' src='/files/" +
+    $("#avatar").html("<img class=\"img-circle text-center m-t-15\" width='100' height='100' src='/files/" +
     data + "'/>");
 
     },
@@ -17,7 +17,7 @@ function sendFile(file) {
     alert(data)
     }
     });
-}
+};
 
 
 
@@ -154,11 +154,12 @@ $(function() {
     }
 });
 
-function insertEditPost(identity){
-    var id = identity;
-    document.getElementById(hidden).innerHTML()
+function insertEditPost(id){
+    var text=document.getElementById(id);
 
-}
+    document.getElementById('text_hidden').value=text.innerHTML;
+    document.getElementById('id_hidden').value=id.toString();
+};
 
 
 

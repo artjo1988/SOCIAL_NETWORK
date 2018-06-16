@@ -1,6 +1,6 @@
 <#ftl encoding='UTF-8'>
-
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 	<head>
 		<meta charset="utf-8">
@@ -49,13 +49,14 @@
 			$( function() {
 				$( "#datepicker" ).datepicker();
 			} );
-            $('#getDate').click(function () {
-                console.log($('#datepicker').data('date'))
-                $('#SelectedDate').text($('#datepicker').data('date'))
-            })
+//            $('#getDate').click(function () {
+//                console.log($('#datepicker').data('date'))
+//                $('#SelectedDate').text($('#datepicker').data('date'))
+//            })
 		</script>
 
-	<#--<body>-->
+
+	<body>
 		<!-- Header -->
 		<header class="top-head container-fluid navbar-fixed-top">
 			<!-- logo -->
@@ -81,24 +82,20 @@
                 <!-- End Notification -->
 				<!-- User Menu Dropdown -->
 				<li class="dropdown text-center">
-				<#if user.avatarUrl??>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="${user.avatarUrl}" class="img-circle profile-img thumb-sm"> <span class="username">${user.firstName} ${user.lastName}</span> <span class="caret"></span> </a>
-				<#else>
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="/img/no_avatar.jpg" class="img-circle profile-img thumb-sm"> <span class="username">${user.firstName} ${user.lastName}</span> <span class="caret"></span> </a>
-				</#if>
 					<ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
-						<li>
-							<a href="/profile"><i class="ion-person"></i>Моя страница</a>
+                        <li>
+                            <a href="/profile"><i class="ion-person"></i>Моя страница</a>
                         </li>
                         <li>
-                            <a href="/changePassword"><i class="ion-person"></i>Изменить пароль</a>
+                            <a href="/changePassword"><i class="ion-key"></i>Изменить пароль</a>
                         </li>
                         <li>
-                            <a href="/changeEmail"><i class="ion-person"></i>Изменить Email</a>
+                            <a href="/changeEmail"><i class="ion-email"></i>Изменить Email</a>
                         </li>
-						<li>
-							<a href="/logout"><i class="fa fa-sign-out"></i> Выйти</a>
-						</li>
+                        <li>
+                            <a href="/logout"><i class="fa fa-sign-out"></i>Выйти</a>
+                        </li>
 					</ul>
 				</li>
 				<!-- End User Menu Dropdown -->
@@ -141,7 +138,7 @@
                                     <div class="input-group">
                                         <input id="paramFind"  name="paramFind"  type="text" class="form-control" placeholder="Введите имя и фамилию">
                                         <input  id="city_hidden" name ="city_hidden" value="">
-                                        <input  id="" name ="dataBirthday_hidden" value="">
+                                        <input  id="dataBirthday_hidden" name ="dataBirthday_hidden" value="">
 										<br>
                                         <span id="SelectedDate"></span>
 										<br>
@@ -157,38 +154,36 @@
                             </form>
                             <br>
 
-							<#list users as user>
-								<div  style="margin-bottom: 15px ; display: block">
-									<div style="display: flex;">
-										<div>
-											<#if user.avatarUrl??>
-												<a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
-											<#else>
-												<a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="/img/no_avatar.jpg">
-											</#if>
+                            <#if users??>
+                                <#list users as user>
+                                    <div  style="margin-bottom: 15px ; display: block">
+                                        <div style="display: flex;">
+                                            <div>
+                                                <a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
+                                            </div>
+                                            <div style="padding: 30px 0 0 25px">
+                                                <p>
+                                                    <a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
+                                                    <br>
+                                                    ${user.city}
+                                                </p>
+                                                    <a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
+                                            </div>
+                                            <div style="padding: 30px; margin-left: 110px;">
+                                                <form method="post" action="/${user.id}/sendRequst">
+                                                    <button class="btn btn-purple w-md" style="margin-top: 15px;">
+                                                        <#if status??>
+                                                        ${status}
+                                                        <#else>
+                                                            Добавить в друзья
+                                                        </#if>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
-										<div style="padding: 30px 0 0 25px">
-											<p>
-												<a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
-												<br>
-												${user.city}
-                                            </p>
-												<a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
-										</div>
-                                        <div style="padding: 30px; margin-left: 110px;">
-											<form method="post" action="/${user.id}/sendRequst">
-												<button class="btn btn-purple w-md" style="margin-top: 15px;">
-													<#if status??>
-													${status}
-													<#else>
-														Добавить в друзья
-													</#if>
-												</button>
-											</form>
-                                        </div>
-									</div>
-                                </div>
-							</#list>
+                                    </div>
+                                </#list>
+                            </#if>
                         </div>
 					</div>
                     <!-- End Uers field -->
@@ -211,7 +206,7 @@
                                 <div class="col-xs-12">
                                     <label for="city" style="padding: 15px 0 5px 0;">День рождения</label>
                                     <input class="form-control" type="text" id="datepicker" name="datepicker" required="" >
-                                    <input type="button" class="btn btn-success" id="getDate" value="Get Date" />
+                                    <#--<input type="button" class="btn btn-success" id="getDate" value="Get Date" />-->
 
                                 </div>
                             </div>
@@ -230,57 +225,157 @@
 			<!-- End Footer -->
 		</section>
 
-		<div class="demo-options" style="padding-top: 150px">
-			<div class="demo-options-icon">
-				<i class="fa fa-cog"></i>
-			</div>
-			<div class="demo-heading">
-				Настройки
-			</div>
-			<div class="demo-body">
-				<label class="control-label">Фиксация верхней панели</label>
-				<div class="control-label">
-					<div class="toggle toggle-default active fixedTop"></div>
-				</div>
-			</div>
-			<div class="demo-body">
-				<div class="option-title">
-					Цвет верхней панели
-				</div>
-				<ul id="demo-header-color" class="demo-color-list">
-					<li>
-						<span class="themecolor default"></span>
-					</li>
-					<li>
-						<span class="themecolor dark"></span>
-					</li>
-					<li>
-						<span class="themecolor red"></span>
-					</li>
-					<li>
-						<span class="themecolor green"></span>
-					</li>
-					<li>
-						<span class="themecolor yellow"></span>
-					</li>
-					<li>
-						<span class="themecolor pink"></span>
-					</li>
-					<li>
-						<span class="themecolor purple"></span>
-					</li>
-					<li>
-						<span class="themecolor acqua"></span>
-					</li>
-					<li>
-						<span class="themecolor grey"></span>
-					</li>
-					<li>
-						<span class="themecolor white"></span>
-					</li>
-				</ul>
-			</div>
-		</div>
+    <div class="demo-options" >
+        <div class="demo-options-icon">
+            <i class="fa fa-cog"></i>
+        </div>
+        <div class="demo-heading">
+            Настройки
+        </div>
+        <div class="demo-body">
+            <label class="control-label">Фиксация верхней панели</label>
+            <div class="control-label">
+                <div class="toggle toggle-default active fixedTop"></div>
+            </div>
+        </div>
+        <div class="demo-body">
+            <div class="option-title">
+                Цвет верхней панели
+            </div>
+            <ul id="demo-header-color" class="demo-color-list">
+                <li>
+                    <span class="themecolor default"></span>
+                </li>
+                <li>
+                    <span class="themecolor dark"></span>
+                </li>
+                <li>
+                    <span class="themecolor red"></span>
+                </li>
+                <li>
+                    <span class="themecolor green"></span>
+                </li>
+                <li>
+                    <span class="themecolor yellow"></span>
+                </li>
+                <li>
+                    <span class="themecolor pink"></span>
+                </li>
+                <li>
+                    <span class="themecolor purple"></span>
+                </li>
+                <li>
+                    <span class="themecolor acqua"></span>
+                </li>
+                <li>
+                    <span class="themecolor grey"></span>
+                </li>
+                <li>
+                    <span class="themecolor white"></span>
+                </li>
+            </ul>
+        </div>
+    </div><div class="demo-options" style="padding-top: 150px">
+        <div class="demo-options-icon">
+            <i class="fa fa-cog"></i>
+        </div>
+        <div class="demo-heading">
+            Настройки
+        </div>
+        <div class="demo-body">
+            <label class="control-label">Фиксация верхней панели</label>
+            <div class="control-label">
+                <div class="toggle toggle-default active fixedTop"></div>
+            </div>
+        </div>
+        <div class="demo-body">
+            <div class="option-title">
+                Цвет верхней панели
+            </div>
+            <ul id="demo-header-color" class="demo-color-list">
+                <li>
+                    <span class="themecolor default"></span>
+                </li>
+                <li>
+                    <span class="themecolor dark"></span>
+                </li>
+                <li>
+                    <span class="themecolor red"></span>
+                </li>
+                <li>
+                    <span class="themecolor green"></span>
+                </li>
+                <li>
+                    <span class="themecolor yellow"></span>
+                </li>
+                <li>
+                    <span class="themecolor pink"></span>
+                </li>
+                <li>
+                    <span class="themecolor purple"></span>
+                </li>
+                <li>
+                    <span class="themecolor acqua"></span>
+                </li>
+                <li>
+                    <span class="themecolor grey"></span>
+                </li>
+                <li>
+                    <span class="themecolor white"></span>
+                </li>
+            </ul>
+        </div>
+    </div><div class="demo-options" style="padding-top: 150px">
+        <div class="demo-options-icon">
+            <i class="fa fa-cog"></i>
+        </div>
+        <div class="demo-heading">
+            Настройки
+        </div>
+        <div class="demo-body">
+            <label class="control-label">Фиксация верхней панели</label>
+            <div class="control-label">
+                <div class="toggle toggle-default active fixedTop"></div>
+            </div>
+        </div>
+        <div class="demo-body">
+            <div class="option-title">
+                Цвет верхней панели
+            </div>
+            <ul id="demo-header-color" class="demo-color-list">
+                <li>
+                    <span class="themecolor default"></span>
+                </li>
+                <li>
+                    <span class="themecolor dark"></span>
+                </li>
+                <li>
+                    <span class="themecolor red"></span>
+                </li>
+                <li>
+                    <span class="themecolor green"></span>
+                </li>
+                <li>
+                    <span class="themecolor yellow"></span>
+                </li>
+                <li>
+                    <span class="themecolor pink"></span>
+                </li>
+                <li>
+                    <span class="themecolor purple"></span>
+                </li>
+                <li>
+                    <span class="themecolor acqua"></span>
+                </li>
+                <li>
+                    <span class="themecolor grey"></span>
+                </li>
+                <li>
+                    <span class="themecolor white"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 		<!-- Basic Plugins -->
         <#--<script src="/js/jquery-2.1.4.min.js"></script>-->

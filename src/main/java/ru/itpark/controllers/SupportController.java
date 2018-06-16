@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.itpark.dto.UserDto;
-import ru.itpark.models.Post;
-import ru.itpark.models.Requesting;
-import ru.itpark.models.RoleRequesting;
-import ru.itpark.models.User;
+import ru.itpark.models.*;
 import ru.itpark.repositories.PostRepository;
 import ru.itpark.repositories.RequestingRepository;
 import ru.itpark.repositories.UserRepositori;
 import ru.itpark.security.details.UserDetailsImpl;
+import ru.itpark.service.PostService;
 import ru.itpark.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -36,6 +36,9 @@ public class SupportController {
 
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private PostService postService;
 
     @GetMapping("/")
     public String getIndexPage(Authentication authentication) {
@@ -81,7 +84,7 @@ public class SupportController {
 
     @PostMapping("/addPost")
     public String postAddPost(@RequestParam("inputText") String inputText, ModelMap modelMap,
-                              Authentication authentication){
+                              Authentication authentication, HttpServletRequest request){
         User user = userService.getUserInfo(authentication);
         UserDto userDto = UserDto.dtoUserFromUser(user);
         modelMap.addAttribute("user",userDto);
@@ -91,11 +94,45 @@ public class SupportController {
         post.setOwnerPost(user);
         postRepository.save(post);
         modelMap.addAttribute("posts", user.getPosts());
+        String url = request.getRequestURI();
         return "redirect:/profile";
     }
 
     @GetMapping("/deletePost/{id-post}")
     public String getDeletePost(@PathVariable("id-post") Long id){
+        postRepository.delete(id);
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/users/{id-candidate}/addPost")
+    public String postCandidateAddPost(@PathVariable("id-candidate") Long idCandidate,@RequestParam("inputText") String inputText,
+                              ModelMap modelMap, Authentication authentication, HttpServletRequest request){
+        User userPerson = userService.getUserInfo(authentication);
+        UserDto personDto = UserDto.dtoUserFromUser(userPerson);
+        modelMap.addAttribute("user", personDto);
+        User userCandidate = userService.getUserById(idCandidate);
+        UserDto candidateDto = UserDto.dtoUserFromUser(userCandidate);
+        modelMap.addAttribute("candidate", candidateDto);
+        List<Post> reverseList = postService.reverseList(candidateDto.getPosts());
+        modelMap.addAttribute("posts", reverseList);
+        SupportInfo info = SupportInfo.builder()
+                .friends(candidateDto.getFriends().size())
+                .subscribers(candidateDto.getInputRequestings().size())
+                .posts(candidateDto.getPosts().size())
+                .chats(candidateDto.getChats().size())
+                .build();
+        modelMap.addAttribute("info", info);
+        Post post = Post.builder()
+                .content(inputText)
+                .build();
+        post.setOwnerPost(userPerson);
+        postRepository.save(post);
+        modelMap.addAttribute("posts", personDto.getPosts());
+        return "redirect:/users/"+ idCandidate;
+    }
+
+    @GetMapping("/users/{id-candidate}/deletePost/{id-post}")
+    public String getCandidateDeletePost(@PathVariable("id-post") Long id){
         postRepository.delete(id);
         return "redirect:/profile";
     }

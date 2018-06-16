@@ -17,7 +17,7 @@ public class UserDto {
     private String login;
     private String firstName;
     private String lastName;
-//    private LocalDate data_birthday;
+    private String data_birthday;
     private String city;
     private String avatarUrl;
     private List<User> friends;
@@ -30,13 +30,14 @@ public class UserDto {
     public static UserDto dtoUserFromUser(User user){
         String avatarUrlUser = null;
         if(user.getAvatarFileInfo() != null) avatarUrlUser = "/files/" + user.getAvatarFileInfo().getStorageName();
+        else avatarUrlUser = "/img/no_avatar.jpg";
 
         return UserDto.builder()
                 .id(user.getId())
                 .login(user.getLogin())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
-//                .data_birthday(user.getDataBirthday())
+                .data_birthday(user.getDataBirthday())
                 .city(user.getCity())
                 .avatarUrl(avatarUrlUser)
                 .friends(user.getFriends())

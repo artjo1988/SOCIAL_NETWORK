@@ -79,6 +79,7 @@ public class ProfileController {
     @PostMapping("/changeEmail")
     public String getChangeEmail(@ModelAttribute EmailForm emailForm, Authentication authentication,
                                  ModelMap modelMap){
+        if(emailForm == null) return "redirect:/changeEmail";
         if(profileService.correctEmail(emailForm, authentication)) {
             User user = userService.getUserInfo(authentication);
             profileService.changeEmail(emailForm, authentication);
@@ -123,7 +124,7 @@ public class ProfileController {
     }
 
     @PostMapping("/recoverPassword")
-    public String postReecoverPassword(@ModelAttribute PasswordForm passwordForm, @RequestParam(name = "eMail_hidden") String eMail,
+    public String postRecoverPassword(@ModelAttribute PasswordForm passwordForm, @RequestParam(name = "eMail_hidden") String eMail,
                                         ModelMap modelMap){
         String newPassword = passwordForm.getNewPassword();
         String reNewPassword = passwordForm.getReNewPassword();

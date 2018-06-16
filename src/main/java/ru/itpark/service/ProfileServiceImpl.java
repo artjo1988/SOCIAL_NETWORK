@@ -56,7 +56,7 @@ public class ProfileServiceImpl implements ProfileService {
         String newPassword = passwordForm.getNewPassword();
         String reNewPassword = passwordForm.getReNewPassword();
         if(passwordEncoder.matches(oldPassword, hashPassword)
-                && newPassword.equals(reNewPassword)) return true;
+                && newPassword.equals(reNewPassword) && !(oldPassword.equals(reNewPassword))) return true;
         return false;
     }
 
@@ -64,10 +64,10 @@ public class ProfileServiceImpl implements ProfileService {
     public boolean correctEmail(EmailForm emailForm, Authentication authentication) {
         User user = userService.getUserInfo(authentication);
         String eMail = user.getEMail();
-        String oldPassword = emailForm.getOldEmail();
-        String newPassword = emailForm.getNewEmail();
-        String reNewPassword = emailForm.getReNewEmail();
-        if(eMail.equals(oldPassword) && newPassword.equals(reNewPassword)) return true;
+        String oldEmail = emailForm.getOldEmail();
+        String newEmail = emailForm.getNewEmail();
+        String reNewEmail = emailForm.getReNewEmail();
+        if(eMail.equals(oldEmail) && newEmail.equals(reNewEmail) && !(oldEmail.equals(reNewEmail))) return true;
         return false;
     }
 

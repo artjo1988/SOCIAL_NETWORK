@@ -48,11 +48,7 @@
 					<h3 class="text-center m-t-10"> Редактирование профиля </h3>
 				</div>
                 <div id="avatar" style="margin-left: 110px;">
-				<#if user.avatarUrl??>
                     <img class="img-circle text-center m-t-15" width='100' height='100'  src="${user.avatarUrl}">
-				<#else>
-                    <img class="img-circle text-center m-t-15" width='100' height='100' src="/img/no_avatar.jpg">
-				</#if>
                 </div>
                 <div style="padding-top: 50px">
 				<div class="alert alert-info alert-dismissable" style="margin-top: -35px">
@@ -72,11 +68,6 @@
                     </button>
                 </div>
                 </div>
-                <form action="#" class="dropzone" id="dropzone">
-                    <div class="fallback">
-                        <input name="file" type="file" multiple />
-                    </div>
-                </form>
 				<form class="form-horizontal m-t-20" method="post" action="/edit">
 					<div class="form-group ">
 						<div class="col-xs-12">

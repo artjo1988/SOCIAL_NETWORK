@@ -2,6 +2,8 @@ package ru.itpark.fileStorageUtil;
 
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,8 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 @Component
-@Data
+@Getter
+@Setter
 public class FileStorageUtil {
 
     @Value("${storage.path}")

@@ -80,24 +80,20 @@
                 <!-- End Notification -->
 				<!-- User Menu Dropdown -->
 				<li class="dropdown text-center">
-				<#if user.avatarUrl??>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="${user.avatarUrl}" class="img-circle profile-img thumb-sm"> <span class="username">${user.firstName} ${user.lastName}</span> <span class="caret"></span> </a>
-				<#else>
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="/img/no_avatar.jpg" class="img-circle profile-img thumb-sm"> <span class="username">${user.firstName} ${user.lastName}</span> <span class="caret"></span> </a>
-				</#if>
 					<ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
-						<li>
-							<a href="/profile"><i class="ion-person"></i>Моя страница</a>
+                        <li>
+                            <a href="/profile"><i class="ion-person"></i>Моя страница</a>
                         </li>
                         <li>
-                            <a href="/changePassword"><i class="ion-person"></i>Изменить пароль</a>
+                            <a href="/changePassword"><i class="ion-key"></i>Изменить пароль</a>
                         </li>
                         <li>
-                            <a href="/changeEmail"><i class="ion-person"></i>Изменить Email</a>
+                            <a href="/changeEmail"><i class="ion-email"></i>Изменить Email</a>
                         </li>
-						<li>
-							<a href="/logout"><i class="fa fa-sign-out"></i> Выйти</a>
-						</li>
+                        <li>
+                            <a href="/logout"><i class="fa fa-sign-out"></i>Выйти</a>
+                        </li>
 					</ul>
 				</li>
 				<!-- End User Menu Dropdown -->
@@ -117,7 +113,7 @@
                         <a href="/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
                     </li>
 					<li class="active">
-						<a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Сообщения</span></a>
+						<a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
 					</li>
                     <li class="active">
                         <a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>
@@ -174,7 +170,7 @@
 			<!-- End Footer -->
 		</section>
 
-		<div class="demo-options" style="padding-top: 150px">
+		<div class="demo-options" >
 			<div class="demo-options-icon">
 				<i class="fa fa-cog"></i>
 			</div>

@@ -20,11 +20,6 @@ public class StorageController {
     @Autowired
     private FileStorageService fileStorageService;
 
-    @GetMapping("/storage")
-    public String getStoragePage(){
-        return "storage";
-    }
-
     @PostMapping("/files")
     public ResponseEntity<String> hundlerFileDownload(@RequestParam("file") MultipartFile multipartFile, Authentication authentication){
         String filePath = fileStorageService.saveFile(multipartFile, authentication);

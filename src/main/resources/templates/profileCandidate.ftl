@@ -54,35 +54,30 @@
         <span class="icon-toggle ion-navicon-round"></span>
     </button>
 
-    <!-- Search -->
-    <!-- <form role="search" class="navbar-left app-search pull-left hidden-xs">
-        <input type="text" placeholder="Search..." class="form-control">
-    </form> -->
-    <!-- End Search -->
-
     <!-- Right navbar -->
     <ul class="list-inline navbar-right top-menu top-right-menu">
         <!-- Messages -->
         <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="fa fa-envelope-o "></i> <span class="badge badge-sm up bg-purple count">4</span> </a>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count"></span> </a>
         </li>
         <!-- End messages -->
+        <!-- Notification -->
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+        </li>
+        <!-- End Notification -->
         <!-- User Menu Dropdown -->
         <li class="dropdown text-center">
-		<#if user.avatarUrl??>
             <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="${user.avatarUrl}" class="img-circle profile-img thumb-sm"> <span class="username">${user.firstName} ${user.lastName}</span> <span class="caret"></span> </a>
-		<#else>
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img alt="" src="/img/no_avatar.jpg" class="img-circle profile-img thumb-sm"> <span class="username">${user.firstName} ${user.lastName}</span> <span class="caret"></span> </a>
-		</#if>
             <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
                 <li>
                     <a href="/profile"><i class="ion-person"></i>Моя страница</a>
                 </li>
                 <li>
-                    <a href="/changePassword"><i class="ion-person"></i>Изменить пароль</a>
+                    <a href="/changePassword"><i class="ion-key"></i>Изменить пароль</a>
                 </li>
                 <li>
-                    <a href="/changeEmail"><i class="ion-person"></i>Изменить Email</a>
+                    <a href="/changeEmail"><i class="ion-email"></i>Изменить Email</a>
                 </li>
                 <li>
                     <a href="/logout"><i class="fa fa-sign-out"></i> Выйти</a>
@@ -125,24 +120,21 @@
                 <!-- Avatar -->
                 <div class="avatar tile-stats white-bg">
                     <div class="chat-send">
-					<#if candidate.avatarUrl??>
-                        <img src= "${candidate.avatarUrl}" style="width: 210px; height: 230px:">
-					<#else>
-                        <img src="/img/no_avatar.jpg"  style="width: 210px; height: 230px:">
-					</#if>
-                        <form method="post" action="/${candidate.id}/sendRequst">
-                            <button class="btn btn-purple w-md" style="margin-top: 15px;">
-							<#if info.status??>
-                                ${info.status}
-							<#else>
+                        <img src= "${candidate.avatarUrl}" width="210" height="230" style="width: 210px; height: 250px:">
+                        <form method="get" action="/edit">
+                            <button  class="btn btn-purple w-md" style="margin-top: 15px;">
                                 Добавить в друзья
-							</#if>
                             </button>
                         </form>
                     </div>
                 </div>
-                <div class="white-bg dopBlock">
-                    дополнительный блок можно удалить
+                <div class="dopBlock tile-stats white-bg" style="display: block;">
+                    <div style="display: flex">
+
+                    </div>
+                    <div style="display: flex">
+
+                    </div>
                 </div>
                 <!-- end Avatar -->
             </div><!--flexItem-->
@@ -160,7 +152,7 @@
                         <div>
                             <ul>
                                 <li class="forLi">-------</li>
-                                <li class="forLi">${candidate.city}</li>
+                                <li class="forLi">${user.city}</li>
                             </ul>
                         </div>
                     </div>
@@ -172,11 +164,60 @@
                     </div>
                 </div>
                 <!-- end User information -->
-                <div class="white-bg dopBlock">
-                    дополнительный блок можно удалить
+            <div class="dopBlock tile-stats white-bg">
+                <form method="post" action="/addPost">
+                    <div class="form-group m-b-15">
+                    <#--<div class="input-group">-->
+                        <div class="col-lg-12" style="margin-left: -15px; height: 125px; width: 104%">
+                            <input  id="id_hidden" name ="id_hidden" value="">
+                            <input  id="text_hidden" name ="id_hidden" value="">
+                            <textarea style="border-color: #c6c6c6" class="form-control " id="inputText" name="inputText" aria-required="true" cols="61" rows = "5" maxlength = "765" autocomplete="on" wrap="hard" required></textarea>
+                        </div>
+                        <div class="input-group-btn" >
+                            <button type="submit" class="btn btn-primary" style="float: right">
+                                Отправить
+                            </button>
+                        </div>
+                    <#--</div>-->
+                    </div>
+                </form>
+            <#if posts??>
+                <#list posts as post>
+                    <div class="dopBlockPosts" style="background: #ebf0ec" display: block" >
+                    <div style="display: flex; margin-bottom: 10px;">
+                        <div style="margin-right: 15px">
+                            <img src= "${candidate.avatarUrl}" class="img-circle text-center " width='65' height='65'>
+                        </div>
+                        <div style="display: block; margin-right: 54%">
+                            <div style="margin: 6px 0 3px 0;">
+                                <strong>${candidate.firstName} ${candidate.lastName}</strong>
+                            </div>
+                            <div>
+                                <em>время</em>
+                            </div>
+
+                        </div>
+                        <div class="dropdown text-center" style="margin-top: 6px;">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span>действие</span> <span class="caret"></span> </a>
+                            <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -40px; margin-left: -55px ">
+                                <li>
+                                    <a href="#" onclick="insertEditPost(${post.id});"><i class="ion-edit"></i>Редактировать</a>
+                                </li>
+                                <li>
+                                    <a href="/deletePost/${post.id}"><i class="ion-close"></i>Удалить</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="${post.id}" style="padding-bottom: 6px">
+                    ${post.content}
+                    </div>
                 </div>
-            </div><!--flexItem-->
-        </div><!--flexWrap profileBlock-->
+                </#list>
+            </#if>
+            </div>
+        </div><!--flexItem-->
+    </div><!--flexWrap profileBlock-->
     </div>
     <!-- End Content -->
     <!-- Footer -->
@@ -186,7 +227,7 @@
     <!-- End Footer -->
 </section>
 
-<div class="demo-options" style="padding-top: 150px">
+<div class="demo-options">
     <div class="demo-options-icon">
         <i class="fa fa-cog"></i>
     </div>

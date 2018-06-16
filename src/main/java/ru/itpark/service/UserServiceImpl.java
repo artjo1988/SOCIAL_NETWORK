@@ -6,9 +6,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.itpark.forms.UserForm;
+import ru.itpark.models.FileInfo;
 import ru.itpark.models.Role;
 import ru.itpark.models.State;
 import ru.itpark.models.User;
+import ru.itpark.repositories.FileInfoRepository;
 import ru.itpark.repositories.UserRepositori;
 import ru.itpark.security.details.UserDetailsImpl;
 import java.util.List;
@@ -23,10 +25,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private FileInfoRepository fileInfoRepository;
+
     @Override
     public void registerNewUser(UserForm userForm) {
         String hashPassword = passwordEncoder.encode(userForm.getPassword());
-        userRepositori.save(User.builder()
+        User newUser = User.builder()
                 .login(userForm.getLogin())
                 .hashPassword(hashPassword)
                 .firstName(userForm.getFirstName())
@@ -36,8 +41,8 @@ public class UserServiceImpl implements UserService {
                 .eMail(userForm.getEMail())
                 .state(State.ACTIVE)
                 .role(Role.USER)
-                .build()
-        );
+                .build();
+        userRepositori.save(newUser);
     }
 
     @Override

@@ -46,6 +46,9 @@
     	<#if error??>
 		<div class="alert alert-danger" role="alert">Логин или пароль введены неверно</div>
 		</#if>
+        <div class="logo hidden-xs">
+            <a href="/" class="logo-expanded"> <img src="/img/icon.png" alt="logo"> <span class="nav-text" style="color: #3b5998 "> Друзья</span> </a>
+        </div>
         <div class="wrapper-page animated fadeInDown">
             <div class="panel panel-color panel-primary">
                 <div class="panel-heading"> 

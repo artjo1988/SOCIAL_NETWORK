@@ -1,6 +1,7 @@
 package ru.itpark.controllers;
 
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Parameter;
 import org.hibernate.boot.jaxb.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,8 +26,10 @@ import ru.itpark.service.PostServiceImpl;
 import ru.itpark.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 
 @Controller
@@ -56,8 +59,19 @@ public class UserController {
         return "redirect:/logout";
     }
 
+    @GetMapping("/login")
+    public String getLoginPage(HttpServletRequest request, ModelMap modelMap, Authentication authentication) {
+        if(authentication != null){
+            return"redirect:/profile";
+        }
+        if (request.getParameterMap().containsKey("error")) {
+            modelMap.addAttribute("error", true);
+        }
+        return "login";
+    }
+
     @GetMapping("/profile")
-    public String getProfilePage(ModelMap modelMap, Authentication authentication){
+    public String getProfilePage(ModelMap modelMap, Authentication authentication, HttpServletRequest request){
         if(authentication == null){
             return "redirect:/login";
         }
@@ -73,18 +87,53 @@ public class UserController {
                 .chats(userDto.getChats().size())
                 .build();
         modelMap.addAttribute("info", info);
+        List<User> friends = new ArrayList<>();
+        friends.add(userRepositori.findOne(3L));
+        friends.add(userRepositori.findOne(4L));
+        friends.add(userRepositori.findOne(7L));
+        friends.add(userRepositori.findOne(14L));
+        friends.add(userRepositori.findOne(2L));
+        friends.add(userRepositori.findOne(15L));
+        friends.add(userRepositori.findOne(16L));
+        int countFriends = friends.size();
+        Random random = new Random();
+        if(countFriends > 6){
+            List<Integer> countList = new ArrayList<>();
+            int count = 0;
+            for (int i = 0; i < 6;){
+                count = random.nextInt(countFriends);
+                if (i >= 1){
+                    while(countList.contains(count)){
+                        count = random.nextInt(countFriends);
+                    }
+                    countList.add(count);
+                    modelMap.addAttribute("user" + (++i), UserDto.dtoUserFromUser(friends.get(count)));
+                }
+                else{
+                    modelMap.addAttribute("user" + (++i), UserDto.dtoUserFromUser(friends.get(count)));
+                    countList.add(count);
+                }
+            }
+        }
+        else if ( countFriends < 6 && countFriends != 0){
+            List<Integer> countList = new ArrayList<>();
+            int count = 0;
+            for (int i = 0; i < countFriends;){
+                count = random.nextInt(countFriends);
+                if (i >= 1){
+                    while(countList.contains(count)){
+                        count = random.nextInt(countFriends);
+                    }
+                    countList.add(count);
+                    modelMap.addAttribute("user" + (++i), UserDto.dtoUserFromUser(friends.get(count)));
+                }
+                else{
+                    modelMap.addAttribute("user" + (++i), UserDto.dtoUserFromUser(friends.get(count)));
+                    countList.add(count);
+                }
+            }
+        }
         return "profile";
-    }
-
-    @GetMapping("/login")
-    public String getLoginPage(HttpServletRequest request, ModelMap modelMap, Authentication authentication) {
-        if(authentication != null){
-            return"redirect:/profile";
-        }
-        if (request.getParameterMap().containsKey("error")) {
-            modelMap.addAttribute("error", true);
-        }
-        return "login";
     }
 
     @GetMapping("/edit")
@@ -115,23 +164,60 @@ public class UserController {
         UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(details.getUser().getId()));
         modelMap.addAttribute("user",userDto);
         List<User> users = userRepositori.findAllByIdIsNot(userDto.getId());
-        modelMap.addAttribute("users", users);
+        List<UserDto> usersDto = new ArrayList<>();
+        for (User user: users){
+            usersDto.add(UserDto.dtoUserFromUser(user));
+        }
+        modelMap.addAttribute("users", usersDto);
+        modelMap.addAttribute("user",userDto);
         return "users";
     }
 
     @PostMapping("/users/find")
-    public String postUsersFind(HttpServletRequest request, ModelMap modelMap,
+    public String postUsersFind(@RequestParam ("paramFind") String paramFind,
+                                @RequestParam ("city_hidden") String paramCity,
+                                @RequestParam ("dataBirthday_hidden") String paramDataBirthday,
+                                ModelMap modelMap,
                                 Authentication authentication){
-        String paramFind = request.getParameter("paramFind");
-        String paramCity = request.getParameter("city_hidden");
-        String paramdataBirthday = request.getParameter("dataBirthday_hidden");
+//        String paramFind = request.getParameter("paramFind");
+//        String paramCity = request.getParameter("city_hidden");
+//        String paramDataBirthday = request.getParameter("dataBirthday_hidden");
         System.out.println(paramCity);
+        System.out.println(paramFind);
         UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
         UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(details.getUser().getId()));
         List<User> users = userRepositori.findAllByIdIsNot(userDto.getId());
+        List<UserDto> usersDto = new ArrayList<>();
+        List<User> tempUsersDto = userRepositori.findAllByIdIsNot(userDto.getId());
+
         if (paramFind == null){
+            for (User user: users){
+                if(paramCity != "" ){
+                    System.out.println("1");
+                    if(user.getCity().contains(paramCity)){
+                        usersDto.add(UserDto.dtoUserFromUser(user));
+                    }
+                }
+                else if(paramDataBirthday != null && paramCity == null){
+//                    if(user.getDataBirthday().isEqual()){
+//                        usersDto.add(UserDto.dtoUserFromUser(user));
+//                    }
+                    System.out.println("2");
+                }
+                else if(paramCity != null && paramDataBirthday != null){
+//                    if(user.getDataBirthday().isEqual() && (user.getCity().contains(paramCity) || paramCity.contains(user.getCity()))){
+//                        usersDto.add(UserDto.dtoUserFromUser(user));
+//
+//                    }
+                    System.out.println("3");
+                }
+                else{
+                    usersDto.add(UserDto.dtoUserFromUser(user));
+                    System.out.println("4");
+                }
+            }
             modelMap.addAttribute("user",userDto);
-            modelMap.addAttribute("users", users);
+            modelMap.addAttribute("users", usersDto);
             return "users";
         }
         else {
@@ -147,7 +233,10 @@ public class UserController {
                 listFindOne.addAll(listFindTwo);
                 if (listFindOne.contains(userService.getUserInfo(authentication)))
                     listFindOne.remove(userService.getUserInfo(authentication));
-                modelMap.addAttribute("users", listFindOne);
+                for (User user: listFindOne){
+                    usersDto.add(UserDto.dtoUserFromUser(user));
+                }
+                modelMap.addAttribute("users", usersDto);
                 modelMap.addAttribute("user", userDto);
                 return "users";
             }
@@ -161,7 +250,10 @@ public class UserController {
                 listFindOne.addAll(listFindTwo);
                 if (listFindOne.contains(userService.getUserInfo(authentication)))
                     listFindOne.remove(userService.getUserInfo(authentication));
-                modelMap.addAttribute("users", listFindOne);
+                for (User user: listFindOne){
+                    usersDto.add(UserDto.dtoUserFromUser(user));
+                }
+                modelMap.addAttribute("users", usersDto);
                 modelMap.addAttribute("user", userDto);
                 return "users";
             }
@@ -171,6 +263,7 @@ public class UserController {
     @GetMapping("/users/{id-candidate}")
     public String getCandidatePage(ModelMap modelMap, Authentication authentication,
                                 @PathVariable("id-candidate") Long idCandidate){
+        if(idCandidate == userService.getUserInfo(authentication).getId()) return "redirect:/profile";
         User userPerson = userService.getUserInfo(authentication);
         UserDto personDto = UserDto.dtoUserFromUser(userPerson);
         modelMap.addAttribute("user", personDto);
@@ -179,6 +272,13 @@ public class UserController {
         modelMap.addAttribute("candidate", candidateDto);
         List<Post> reverseList = postService.reverseList(candidateDto.getPosts());
         modelMap.addAttribute("posts", reverseList);
+        SupportInfo info = SupportInfo.builder()
+                .friends(candidateDto.getFriends().size())
+                .subscribers(candidateDto.getInputRequestings().size())
+                .posts(candidateDto.getPosts().size())
+                .chats(candidateDto.getChats().size())
+                .build();
+        modelMap.addAttribute("info", info);
 //        List<Requesting> requestings = userPerson.getOutputRequestings();
 //        Hibernate.initialize(userCandidate);
 //        if (requestings.contains(userCandidate))modelMap.addAttribute("status", "Вы подписаны");

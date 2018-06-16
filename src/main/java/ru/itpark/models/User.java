@@ -30,8 +30,8 @@ public class User {
     @Column(name = "lastName")
     private String lastName;
 
-    //    @Column(name = "data_birthday")
-//    private LocalDate dataBirthday;
+        @Column(name = "data_birthday")
+    private String dataBirthday;
 
     @Column(name = "city")
     private String city;
