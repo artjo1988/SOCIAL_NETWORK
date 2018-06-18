@@ -63,7 +63,11 @@
         <!-- End messages -->
         <!-- Notification -->
         <li class="dropdown">
+        <#if newRequestings??>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+        <#else>
             <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+        </#if>
         </li>
         <!-- End Notification -->
         <!-- User Menu Dropdown -->
@@ -98,10 +102,10 @@
                 <a href="/profile"><i class="ion-home"></i> <span class="nav-label">Моя стрвница</span></a>
             </li>
             <li class="active">
-                <a href="/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
+                <a href="/profile/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
             </li>
             <li class="active">
-                <a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
+                <a href="/profile/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
             </li>
             <li class="active">
                 <a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>
@@ -116,30 +120,111 @@
     <!-- Page Content -->
     <div class="wraper container-fluid">
         <div class="flexWrap profileBlock">
+
+
+            <!-- Левое информационное поле-->
             <div class="flexItem avatarCollumn">
-                <!-- Avatar -->
-                <div class="avatar tile-stats white-bg">
-                    <div class="chat-send">
-                        <img src= "${candidate.avatarUrl}" width="210" height="230" style="width: 210px; height: 250px:">
-                        <form method="get" action="/edit">
-                            <button  class="btn btn-purple w-md" style="margin-top: 15px;">
-                                Добавить в друзья
-                            </button>
-                        </form>
+
+
+                <!-- Аватарка-->
+                <div class="avatarUsers tile-stats white-bg">
+                    <img src= "${candidate.avatarUrl}" width="210" height="230" style="width: 210px; height: 250px:">
+                    <a href="/users/${candidate.id}/message" class="btn btn-purple w-md" style="margin-top: 7px; margin-right: 10px">Написать сообщение <span style="margin-left: 7px" class="ion-chatbubbles"></span></a>
+                    <a href="/users/${candidate.id}/sendRequest" class="btn btn-purple w-md" style="margin-top: 7px;">
+                        <#if status??>
+                        ${status}
+                        <#else>
+                            Добавить в друзья
+                        </#if>
+                    </a>
+                </div>
+                <!-- Аватарка конец-->
+
+
+                <!-- Колонка друзья-->
+                <div class="dopBlock tile-stats white-bg">
+
+                    <div style="border-bottom: 2px solid rgba(202, 194, 199, 0.96); padding: 0px 0px 10px 0px; margin-top: -5px;  ">
+                        Друзья
+                    </div>
+
+                    <div style="margin-top: 10px; margin-bottom: 25px" >
+                    <#if user1??>
+                        <div  align="center" style="float: left;">
+                            <div style="padding: 10px 11px 0px 11px;">
+                                <a href="/users/${user1.id}"><img src= "${user1.avatarUrl}" class="img-circle text-center " width='50' height='50'></a>
+                            </div>
+                            <div>
+                                <a href="/users/${user1.id}">${user1.firstName}</a>
+                            </div>
+                        </div>
+                    </#if>
+                    <#if user2??>
+                        <div align="center" style="float: left;">
+                            <div style="padding: 10px 11px 0px 11px;">
+                                <a href="/users/${user2.id}"><img src= "${user2.avatarUrl}" class="img-circle text-center " width='50' height='50'></a>
+                            </div>
+                            <div align="center">
+                                <a href="/users/${user2.id}">${user2.firstName}</a>
+                            </div>
+                        </div>
+                    </#if>
+                    <#if user3??>
+                        <div align="center" style="float: left;">
+                            <div style="padding: 10px 11px 0px 11px;" >
+                                <a href="/users/${user3.id}"><img src= "${user3.avatarUrl}" class="img-circle text-center " width='50' height='50'></a>
+                            </div>
+                            <div align="center">
+                                <a href="/users/${user3.id}">${user3.firstName}</a>
+                            </div>
+                        </div>
+                    </#if>
+                    </div>
+
+                    <div style="margin-top: 25px; margin-bottom: 25px">
+                    <#if user4??>
+                        <div align="center" style="float: left;">
+                            <div style="padding: 10px 11px 0px 11px;">
+                                <a href="/users/${user4.id}"><img src= "${user4.avatarUrl}" class="img-circle text-center " width='50' height='50'></a>
+                            </div>
+                            <div align="center">
+                                <a href="/users/${user4.id}">${user4.firstName}</a>
+                            </div>
+                        </div>
+                    </#if>
+                    <#if user5??>
+                        <div align="center" style="float: left;">
+                            <div style="padding: 10px 11px 0px 11px;">
+                                <a href="/users/${user5.id}"><img src= "${user5.avatarUrl}" class="img-circle text-center " width='50' height='50'></a>
+                            </div>
+                            <div align="center">
+                                <a href="/users/${user5.id}">${user5.firstName}</a>
+                            </div>
+                        </div>
+                    </#if>
+                    <#if user6??>
+                        <div align="center" style="float: left;">
+                            <div style="padding: 10px 11px 0px 11px;">
+                                <a href="/users/${user6.id}"><img src= "${user6.avatarUrl}" class="img-circle text-center " width='50' height='50'></a>
+                            </div>
+                            <div align="center">
+                                <a href="/users/${user6.id}">${user6.firstName}</a>
+                            </div>
+                        </div>
+                    </#if>
                     </div>
                 </div>
-                <div class="dopBlock tile-stats white-bg" style="display: block;">
-                    <div style="display: flex">
+                <!-- Колонка друзья конец-->
 
-                    </div>
-                    <div style="display: flex">
 
-                    </div>
-                </div>
-                <!-- end Avatar -->
-            </div><!--flexItem-->
+            </div>
+            <!-- Левое информационное поле конец-->
+
+            <!-- Правое информационное поле-->
             <div class="flexItem infoCollumn">
-                <!-- User information -->
+
+
+                <!-- Информация о пользователе-->
                 <div class="user-information tile-stats white-bg">
                     <div class=fontForName >${candidate.firstName} ${candidate.lastName}</div>
                     <div class="flexWrap profileInfo">
@@ -152,7 +237,7 @@
                         <div>
                             <ul>
                                 <li class="forLi">-------</li>
-                                <li class="forLi">${user.city}</li>
+                                <li class="forLi">${candidate.city}</li>
                             </ul>
                         </div>
                     </div>
@@ -163,14 +248,16 @@
                         <div class="flexItem"><a href="#"><span>${info.chats}</span>диалогов</a></div>
                     </div>
                 </div>
-                <!-- end User information -->
+                <!-- Информация о пользователе конеw -->
+
+
+                <!--Посты-->
             <div class="dopBlock tile-stats white-bg">
-                <form method="post" action="/addPost">
+                <form method="post" action="/users/${candidate.id}/addPost">
                     <div class="form-group m-b-15">
                     <#--<div class="input-group">-->
                         <div class="col-lg-12" style="margin-left: -15px; height: 125px; width: 104%">
-                            <input  id="id_hidden" name ="id_hidden" value="">
-                            <input  id="text_hidden" name ="id_hidden" value="">
+                            <input  type="hidden" id="idPost_hidden" name ="idPost_hidden" value="">
                             <textarea style="border-color: #c6c6c6" class="form-control " id="inputText" name="inputText" aria-required="true" cols="61" rows = "5" maxlength = "765" autocomplete="on" wrap="hard" required></textarea>
                         </div>
                         <div class="input-group-btn" >
@@ -183,14 +270,14 @@
                 </form>
             <#if posts??>
                 <#list posts as post>
-                    <div class="dopBlockPosts" style="background: #ebf0ec" display: block" >
+                    <div class="dopBlockPosts tile-stats white-bg" style="background: #ebf0ec" display: block" >
                     <div style="display: flex; margin-bottom: 10px;">
                         <div style="margin-right: 15px">
-                            <img src= "${candidate.avatarUrl}" class="img-circle text-center " width='65' height='65'>
+                            <a href="/users/${post.ownerPostDto.id}"><img src= "${post.ownerPostDto.avatarUrl}" class="img-circle text-center " width='65' height='65'></a>
                         </div>
                         <div style="display: block; margin-right: 54%">
                             <div style="margin: 6px 0 3px 0;">
-                                <strong>${candidate.firstName} ${candidate.lastName}</strong>
+                                <a href="/users/${post.ownerPostDto.id}"><strong>${post.ownerPostDto.firstName} ${post.ownerPostDto.lastName}</strong></a>
                             </div>
                             <div>
                                 <em>время</em>
@@ -198,15 +285,17 @@
 
                         </div>
                         <div class="dropdown text-center" style="margin-top: 6px;">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span>действие</span> <span class="caret"></span> </a>
-                            <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -40px; margin-left: -55px ">
-                                <li>
-                                    <a href="#" onclick="insertEditPost(${post.id});"><i class="ion-edit"></i>Редактировать</a>
-                                </li>
-                                <li>
-                                    <a href="/deletePost/${post.id}"><i class="ion-close"></i>Удалить</a>
-                                </li>
-                            </ul>
+                            <#if user.id == post.ownerPostDto.id>
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span>действие</span> <span class="caret"></span> </a>
+                                <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -40px; margin-left: -90px;">
+                                    <li>
+                                        <a href="#" onclick="insertEditPost(${post.id});"><i class="ion-edit"></i>Редактировать</a>
+                                    </li>
+                                    <li>
+                                        <a href="/users/${candidate.id}/deletePost/${post.id}"><i class="ion-close"></i>Удалить</a>
+                                    </li>
+                                </ul>
+                            </#if>
                         </div>
                     </div>
                     <div id="${post.id}" style="padding-bottom: 6px">
@@ -216,8 +305,15 @@
                 </#list>
             </#if>
             </div>
-        </div><!--flexItem-->
-    </div><!--flexWrap profileBlock-->
+                <!--Посты конец-->
+
+
+            </div>
+            <!-- Правое информационное конец-->
+
+
+        </div>
+        <!--flexWrap profileBlock-->
     </div>
     <!-- End Content -->
     <!-- Footer -->
@@ -280,6 +376,7 @@
 </div>
 
 <!-- Basic Plugins -->
+<script src="/js/main.js"></script>
 <script src="/js/jquery-2.1.4.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/modernizr.min.js"></script>

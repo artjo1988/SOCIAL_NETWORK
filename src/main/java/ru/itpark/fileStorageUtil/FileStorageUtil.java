@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FilenameUtils;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import ru.itpark.models.FileInfo;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 @Getter
@@ -23,6 +24,8 @@ public class FileStorageUtil {
 
     @Value("${storage.path}")
     private String storagePath;
+
+    private final List<String> typesImages = Arrays.asList("image/jpeg", "image/png");
 
     @SneakyThrows
     public void saveToStorage(MultipartFile multipartFile, String storageFileName){
@@ -52,6 +55,13 @@ public class FileStorageUtil {
         String extension = FilenameUtils.getExtension(originalFileName);
         String newFileName = UUID.randomUUID().toString();
         return newFileName + "." + extension;
+    }
+
+    public void validImage(MultipartFile multipartFile){
+        if(!typesImages.contains(multipartFile.getContentType())){
+            throw new IllegalArgumentException("Bad format file");
+        }
+        return;
     }
 
 }

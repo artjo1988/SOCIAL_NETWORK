@@ -65,7 +65,11 @@
 		<!-- End messages -->
 		<!-- Notification -->
 		<li class="dropdown">
-			<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+		<#if newRequestings??>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+		<#else>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+		</#if>
 		</li>
 		<!-- End Notification -->
 		<!-- User Menu Dropdown -->
@@ -100,10 +104,10 @@
 				<a href="/profile"><i class="ion-home"></i> <span class="nav-label">Моя стрвница</span></a>
 			</li>
 			<li class="active">
-				<a href="/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
+				<a href="/profile/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
 			</li>
 			<li class="active">
-				<a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
+				<a href="/profile/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
 			</li>
 			<li class="active">
 				<a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>
@@ -219,7 +223,9 @@
 
             <!-- Правое информационное поле-->
 			<div class="flexItem infoCollumn">
-				<!-- User information -->
+
+
+                <!-- Информация о пользователе-->
 				<div class="user-information tile-stats white-bg">
 					<div class=fontForName >${user.firstName} ${user.lastName}</div>
 						<div class="flexWrap profileInfo">
@@ -243,17 +249,16 @@
 						<div class="flexItem"><a href="#"><span>${info.chats}</span>диалогов</a></div>
 					</div>
 				</div>
-				<!-- Информация о пользователе коне -->
+				<!-- Информация о пользователе конеw -->
 
 
-                <#--Посты-->
+                <!--Посты-->
 				<div class="dopBlock tile-stats white-bg">
 					<form method="post" action="/addPost">
 						<div class="form-group m-b-15">
 							<#--<div class="input-group">-->
 								<div class="col-lg-12" style="margin-left: -15px; height: 125px; width: 104%">
-									<input  type="hidden" id="id_hidden" name ="id_hidden" value="">
-									<input  type="hidden" id="text_hidden" name ="id_hidden" value="">
+									<input  type="hidden" id="idPost_hidden" name ="idPost_hidden" value="">
 									<textarea style="border-color: #c6c6c6" class="form-control " id="inputText" name="inputText" aria-required="true" cols="61" rows = "5" maxlength = "765" autocomplete="on" wrap="hard" required></textarea>
 								</div>
 								<div class="input-group-btn" >
@@ -269,11 +274,11 @@
 						<div class="dopBlockPosts tile-stats white-bg" style="background: #ebf0ec" display: block" >
 							<div style="display: flex; margin-bottom: 10px;">
 								<div style="margin-right: 15px">
-									<a></a><img src= "${user.avatarUrl}" class="img-circle text-center " width='65' height='65'>
+									<a href="/users/${post.ownerPostDto.id}"><img src= "${post.ownerPostDto.avatarUrl}" class="img-circle text-center " width='65' height='65'></a>
 								</div>
 								<div style="display: block; margin-right: 54%">
 									<div style="margin: 6px 0 3px 0;">
-										<strong>${user.firstName} ${user.lastName}</strong>
+										<a href="/users/${post.ownerPostDto.id}"><strong>${post.ownerPostDto.firstName} ${post.ownerPostDto.lastName}</strong></a>
 									</div>
 									<div>
 										<em>время</em>
@@ -281,11 +286,13 @@
 
 								</div>
 								<div class="dropdown text-center" style="margin-top: 6px;">
-									<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span>действие</span> <span class="caret"></span> </a>
-										<ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -40px; margin-left: -55px ">
+									<a data-toggle="dropdown" class="dropdown-toggle" href="#" > <span>действие</span> <span class="caret"></span> </a>
+										<ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -40px; margin-left: -90px;">
+											<#if user.id == post.ownerPostDto.id>
 											<li>
 												<a href="#" onclick="insertEditPost(${post.id});"><i class="ion-edit"></i>Редактировать</a>
 											</li>
+											</#if>
 											<li>
 												<a href="/deletePost/${post.id}"><i class="ion-close"></i>Удалить</a>
 											</li>
@@ -299,7 +306,7 @@
 						</#list>
 					</#if>
 				</div>
-				<#--Посты конец-->
+				<!--Посты конец-->
 
 
 			</div>

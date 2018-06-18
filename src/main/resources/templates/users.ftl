@@ -39,8 +39,6 @@
 		<link href="/css/helper.css" rel="stylesheet">
 		<link href="/css/style-responsive.css" rel="stylesheet" />
 
-		<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6AE77042-A858-0442-B452-785E2AAF4DA7/main.js" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/7AD4FAA2E587-254B-2440-858A-24077EA6/abn/main.css"/></head>
-
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<link rel="stylesheet" href="/resources/demos/style.css">
 		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -54,7 +52,6 @@
 //                $('#SelectedDate').text($('#datepicker').data('date'))
 //            })
 		</script>
-
 
 	<body>
 		<!-- Header -->
@@ -77,7 +74,11 @@
 				<!-- End messages -->
                 <!-- Notification -->
                 <li class="dropdown">
+                <#if newRequestings??>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+                <#else>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+                </#if>
                 </li>
                 <!-- End Notification -->
 				<!-- User Menu Dropdown -->
@@ -112,10 +113,10 @@
 						<a href="/profile"><i class="ion-home"></i> <span class="nav-label">Моя стрвница</span></a>
 					</li>
                     <li class="active">
-                        <a href="/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
+                        <a href="/profile/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
                     </li>
 					<li class="active">
-						<a href="/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
+						<a href="/profile/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
 					</li>
                     <li class="active">
                         <a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>
@@ -136,24 +137,21 @@
                             <form method="post" action="/users/find">
                                 <div class="form-group m-b-0">
                                     <div class="input-group">
-                                        <input id="paramFind"  name="paramFind"  type="text" class="form-control" placeholder="Введите имя и фамилию">
-                                        <input  id="city_hidden" name ="city_hidden" value="">
-                                        <input  id="dataBirthday_hidden" name ="dataBirthday_hidden" value="">
-										<br>
-                                        <span id="SelectedDate"></span>
-										<br>
+                                        <input style="border-color: #c6c6c6" id="paramFind"  name="paramFind"  type="text" class="form-control" placeholder="Введите имя и фамилию">
+                                        <input type="hidden" id="city_hidden" name ="city_hidden" value="">
+                                        <input type="hidden" id="dataBirthday_hidden" name ="dataBirthday_hidden" value="">
+										<#--<br>-->
+                                        <#--<span id="SelectedDate"></span>-->
+										<#--<br>-->
 										<span class="input-group-btn" >
 										<button type="submit" class="btn btn-primary">
 											Найти
 										</button>
 										</span>
-
-
                                     </div>
                                 </div>
                             </form>
                             <br>
-
                             <#if users??>
                                 <#list users as user>
                                     <div  style="margin-bottom: 15px ; display: block">
@@ -197,7 +195,7 @@
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <label for="city" style="padding: 15px 0 5px 0;"> Город </label>
-                                        <input class="form-control" type="text" id="city" name="city" required="" onkeyup="city_hidden.value = this.value" >
+                                        <input style="border-color: #c6c6c6" class="form-control" type="text" id="city" name="city" required="" onkeyup="city_hidden.value = this.value" >
                                     <#--onkeyup="city_hidden.value = this.value" >-->
 
                                 </div>
@@ -205,7 +203,7 @@
                             <div class="form-group ">
                                 <div class="col-xs-12">
                                     <label for="city" style="padding: 15px 0 5px 0;">День рождения</label>
-                                    <input class="form-control" type="text" id="datepicker" name="datepicker" required="" >
+                                    <input style="border-color: #c6c6c6" class="form-control" type="text" id="datepicker" name="datepicker" required="" >
                                     <#--<input type="button" class="btn btn-success" id="getDate" value="Get Date" />-->
 
                                 </div>
@@ -275,128 +273,28 @@
                 </li>
             </ul>
         </div>
-    </div><div class="demo-options" style="padding-top: 150px">
-        <div class="demo-options-icon">
-            <i class="fa fa-cog"></i>
-        </div>
-        <div class="demo-heading">
-            Настройки
-        </div>
-        <div class="demo-body">
-            <label class="control-label">Фиксация верхней панели</label>
-            <div class="control-label">
-                <div class="toggle toggle-default active fixedTop"></div>
-            </div>
-        </div>
-        <div class="demo-body">
-            <div class="option-title">
-                Цвет верхней панели
-            </div>
-            <ul id="demo-header-color" class="demo-color-list">
-                <li>
-                    <span class="themecolor default"></span>
-                </li>
-                <li>
-                    <span class="themecolor dark"></span>
-                </li>
-                <li>
-                    <span class="themecolor red"></span>
-                </li>
-                <li>
-                    <span class="themecolor green"></span>
-                </li>
-                <li>
-                    <span class="themecolor yellow"></span>
-                </li>
-                <li>
-                    <span class="themecolor pink"></span>
-                </li>
-                <li>
-                    <span class="themecolor purple"></span>
-                </li>
-                <li>
-                    <span class="themecolor acqua"></span>
-                </li>
-                <li>
-                    <span class="themecolor grey"></span>
-                </li>
-                <li>
-                    <span class="themecolor white"></span>
-                </li>
-            </ul>
-        </div>
-    </div><div class="demo-options" style="padding-top: 150px">
-        <div class="demo-options-icon">
-            <i class="fa fa-cog"></i>
-        </div>
-        <div class="demo-heading">
-            Настройки
-        </div>
-        <div class="demo-body">
-            <label class="control-label">Фиксация верхней панели</label>
-            <div class="control-label">
-                <div class="toggle toggle-default active fixedTop"></div>
-            </div>
-        </div>
-        <div class="demo-body">
-            <div class="option-title">
-                Цвет верхней панели
-            </div>
-            <ul id="demo-header-color" class="demo-color-list">
-                <li>
-                    <span class="themecolor default"></span>
-                </li>
-                <li>
-                    <span class="themecolor dark"></span>
-                </li>
-                <li>
-                    <span class="themecolor red"></span>
-                </li>
-                <li>
-                    <span class="themecolor green"></span>
-                </li>
-                <li>
-                    <span class="themecolor yellow"></span>
-                </li>
-                <li>
-                    <span class="themecolor pink"></span>
-                </li>
-                <li>
-                    <span class="themecolor purple"></span>
-                </li>
-                <li>
-                    <span class="themecolor acqua"></span>
-                </li>
-                <li>
-                    <span class="themecolor grey"></span>
-                </li>
-                <li>
-                    <span class="themecolor white"></span>
-                </li>
-            </ul>
-        </div>
     </div>
 
-		<!-- Basic Plugins -->
-        <#--<script src="/js/jquery-2.1.4.min.js"></script>-->
-		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/modernizr.min.js"></script>
-		<script src="/js/pace.min.js"></script>
-		<script src="/js/wow.min.js"></script>
-		<script src="/js/jquery.scrollTo.min.js"></script>
-		<script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
-		<script src="/plugins/chat/moment-2.2.1.js"></script>
-		<script src="/plugins/toggles/toggles.min.js"></script>
+    <!-- Basic Plugins -->
+    <#--<script src="/js/jquery-2.1.4.min.js"></script>-->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/modernizr.min.js"></script>
+    <script src="/js/pace.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="/plugins/chat/moment-2.2.1.js"></script>
+    <script src="/plugins/toggles/toggles.min.js"></script>
 
-		<!-- Sweet Alerts -->
-		<script src="/plugins/sweet-alert/sweet-alert.min.js"></script>
-		<script src="/plugins/sweet-alert/sweet-alert.init.js"></script>
+    <!-- Sweet Alerts -->
+    <script src="/plugins/sweet-alert/sweet-alert.min.js"></script>
+    <script src="/plugins/sweet-alert/sweet-alert.init.js"></script>
 
-		<!-- Site Script -->
-		<script src="/js/app.js"></script>
+    <!-- Site Script -->
+    <script src="/js/app.js"></script>
 
-		<!-- Demo Swicth Color -->
-		<script src="/js/demo_color.js"></script>
+    <!-- Demo Swicth Color -->
+    <script src="/js/demo_color.js"></script>
 
 	</body>
 </html>

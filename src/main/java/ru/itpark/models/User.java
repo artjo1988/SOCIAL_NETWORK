@@ -30,7 +30,7 @@ public class User {
     @Column(name = "lastName")
     private String lastName;
 
-        @Column(name = "data_birthday")
+    @Column(name = "data_birthday")
     private String dataBirthday;
 
     @Column(name = "city")
@@ -48,11 +48,11 @@ public class User {
     @OneToOne(mappedBy = "owner")
     private FileInfo avatarFileInfo;
 
-    @OneToMany(mappedBy = "person")
-    private List<Requesting> outputRequestings;
-
-    @OneToMany(mappedBy = "candidate")
+    @OneToMany(mappedBy = "inputUser")
     private List<Requesting> inputRequestings;
+
+    @OneToMany(mappedBy = "outputUser")
+    private List<Requesting> outputRequestings;
 
     @ManyToMany
     @JoinTable(name="tbl_friends",

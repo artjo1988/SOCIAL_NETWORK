@@ -21,12 +21,12 @@ public class Requesting {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person")
-    private User person;
+    @JoinColumn(name = "input_user")
+    private User inputUser;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "candidate")
-    private User candidate;
+    @JoinColumn(name = "output_user")
+    private User outputUser;
 
     @Enumerated(EnumType.STRING)
     private RoleRequesting roleRequesting;

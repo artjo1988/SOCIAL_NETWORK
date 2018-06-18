@@ -1,7 +1,5 @@
 package ru.itpark.service;
 
-
-
 import org.springframework.security.core.Authentication;
 import org.springframework.web.multipart.MultipartFile;
 

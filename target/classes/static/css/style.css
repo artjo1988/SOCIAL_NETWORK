@@ -24,7 +24,8 @@
 .infoCollumnUsers {flex-grow:1; margin-right: 25px;}
 .flexItem .user-information {margin:0; width:100%; float: none;}
 .avatarCollumn .dopBlock {padding: 15px; box-sizing: border-box; width: 250px;}
-.searchCollumnUsers .dopBlock {padding: 15px; box-sizing: border-box; height: 300px; width: 250px;}
+.searchCollumnUsers .dopBlock {padding: 15px; box-sizing: border-box; height: 250px; width: 250px;}
+.searchCollumnUsers .dopBlockFriends {padding: 8px; box-sizing: border-box; height: 100px; width: 250px;}
 .infoCollumn .dopBlock {padding: 25px; box-sizing: border-box; margin-top: 20px;}
 .infoCollumn .dopBlockPosts {padding: 15px 15px 7px 15px ; box-sizing: border-box; margin-top: 20px; width:100%}
 .infoCollumnUsers .dopBlock {padding: 25px; box-sizing: border-box;}
@@ -602,6 +603,13 @@ lesshat-selector {
 	clear: both;
 	padding: 20px;
 	height: 315px;
+	width: 250px;
+}
+
+.avatarUsers {
+	clear: both;
+	padding: 20px;
+	height: 350px;
 	width: 250px;
 }
 

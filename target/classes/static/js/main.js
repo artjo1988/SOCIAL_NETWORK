@@ -157,8 +157,8 @@ $(function() {
 function insertEditPost(id){
     var text=document.getElementById(id);
 
-    document.getElementById('text_hidden').value=text.innerHTML;
-    document.getElementById('id_hidden').value=id.toString();
+    document.getElementById('inputText').value=text.innerHTML;
+    document.getElementById('idPost_hidden').value=id.toString();
 };
 
 

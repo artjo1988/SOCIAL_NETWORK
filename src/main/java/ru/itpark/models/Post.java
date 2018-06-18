@@ -2,6 +2,7 @@ package ru.itpark.models;
 
 
 import lombok.*;
+import ru.itpark.dto.UserDto;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -28,4 +29,9 @@ public class Post {
     @JoinColumn(name = "owner_post")
     private User ownerPost;
 
+    @Column(name = "id_user_to")
+    private Long idUserTo;
+
+    @Transient
+    private UserDto ownerPostDto;
 }

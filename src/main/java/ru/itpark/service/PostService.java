@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PostService {
     List<Post> reverseList(List<Post> list);
+    List<Post> getPostsUserTo(Long id);
 }

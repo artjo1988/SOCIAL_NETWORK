@@ -20,10 +20,7 @@ import ru.itpark.models.SupportInfo;
 import ru.itpark.models.User;
 import ru.itpark.repositories.UserRepositori;
 import ru.itpark.security.details.UserDetailsImpl;
-import ru.itpark.service.EmailService;
-import ru.itpark.service.PostService;
-import ru.itpark.service.PostServiceImpl;
-import ru.itpark.service.UserService;
+import ru.itpark.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -32,6 +29,7 @@ import java.util.Optional;
 import java.util.Random;
 
 
+@Transactional
 @Controller
 public class UserController {
 
@@ -46,6 +44,9 @@ public class UserController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private RequestingService requestingService;
 
     @GetMapping("/register")
     public String getSignUpPage(ModelMap modelMap){
@@ -76,17 +77,14 @@ public class UserController {
             return "redirect:/login";
         }
         UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
-        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(details.getUser().getId()));
+        User user = details.getUser();
+        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(user.getId()));
         modelMap.addAttribute("user",userDto);
-        List<Post> reverseList = postService.reverseList(userDto.getPosts());
+        List<Post> reverseList = postService.reverseList(postService.getPostsUserTo(userDto.getId()));
+        for (Post post: reverseList){
+            post.setOwnerPostDto(UserDto.dtoUserFromUser(post.getOwnerPost()));
+        }
         modelMap.addAttribute("posts", reverseList);
-        SupportInfo info = SupportInfo.builder()
-                .friends(userDto.getFriends().size())
-                .subscribers(userDto.getInputRequestings().size())
-                .posts(userDto.getPosts().size())
-                .chats(userDto.getChats().size())
-                .build();
-        modelMap.addAttribute("info", info);
         List<User> friends = new ArrayList<>();
         friends.add(userRepositori.findOne(3L));
         friends.add(userRepositori.findOne(4L));
@@ -133,6 +131,15 @@ public class UserController {
                 }
             }
         }
+        SupportInfo info = SupportInfo.builder()
+                .friends(friends.size())
+                .subscribers(userDto.getInputRequestings().size())
+                .posts(reverseList.size())
+                .chats(userDto.getChats().size())
+                .build();
+        modelMap.addAttribute("info", info);
+        Integer newRequestings = requestingService.getNewRequesting(user);
+        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
         return "profile";
     }
 
@@ -150,26 +157,31 @@ public class UserController {
         return "redirect:/profile";
     }
 
-    @GetMapping("/friends")
+    @GetMapping("/profile/friends")
     public String getFriendsPage(ModelMap modelMap, Authentication authentication){
-        UserDto userDto = UserDto.dtoUserFromUser(userService.getUserInfo(authentication));
+        User user = userService.getUserInfo(authentication);
+        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(user.getId()));
         modelMap.addAttribute("user",userDto);
         modelMap.addAttribute("users", userDto.getFriends());
+        Integer newRequestings = requestingService.getNewRequesting(user);
+        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
         return "friends";
     }
 
     @GetMapping("/users")
     public String getUsersPage(ModelMap modelMap, Authentication authentication){
-        UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
-        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(details.getUser().getId()));
+        User user = userService.getUserInfo(authentication);
+        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(user.getId()));
         modelMap.addAttribute("user",userDto);
         List<User> users = userRepositori.findAllByIdIsNot(userDto.getId());
         List<UserDto> usersDto = new ArrayList<>();
-        for (User user: users){
-            usersDto.add(UserDto.dtoUserFromUser(user));
+        for (User userFor: users){
+            usersDto.add(UserDto.dtoUserFromUser(userFor));
         }
         modelMap.addAttribute("users", usersDto);
         modelMap.addAttribute("user",userDto);
+        Integer newRequestings = requestingService.getNewRequesting(user);
+        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
         return "users";
     }
 
@@ -182,37 +194,36 @@ public class UserController {
 //        String paramFind = request.getParameter("paramFind");
 //        String paramCity = request.getParameter("city_hidden");
 //        String paramDataBirthday = request.getParameter("dataBirthday_hidden");
-        System.out.println(paramCity);
-        System.out.println(paramFind);
-        UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
-        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(details.getUser().getId()));
+        User user = userService.getUserInfo(authentication);
+        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(user.getId()));
         List<User> users = userRepositori.findAllByIdIsNot(userDto.getId());
         List<UserDto> usersDto = new ArrayList<>();
-        List<User> tempUsersDto = userRepositori.findAllByIdIsNot(userDto.getId());
+        Integer newRequestings = requestingService.getNewRequesting(user);
+        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
 
         if (paramFind == null){
-            for (User user: users){
+            for (User userFor: users){
                 if(paramCity != "" ){
                     System.out.println("1");
-                    if(user.getCity().contains(paramCity)){
-                        usersDto.add(UserDto.dtoUserFromUser(user));
+                    if(userFor.getCity().contains(paramCity)){
+                        usersDto.add(UserDto.dtoUserFromUser(userFor));
                     }
                 }
                 else if(paramDataBirthday != null && paramCity == null){
-//                    if(user.getDataBirthday().isEqual()){
-//                        usersDto.add(UserDto.dtoUserFromUser(user));
+//                    if(userFor.getDataBirthday().isEqual()){
+//                        usersDto.add(UserDto.dtoUserFromUser(userFor));
 //                    }
                     System.out.println("2");
                 }
                 else if(paramCity != null && paramDataBirthday != null){
-//                    if(user.getDataBirthday().isEqual() && (user.getCity().contains(paramCity) || paramCity.contains(user.getCity()))){
-//                        usersDto.add(UserDto.dtoUserFromUser(user));
+//                    if(userFor.getDataBirthday().isEqual() && (userFor.getCity().contains(paramCity) || paramCity.contains(userFor.getCity()))){
+//                        usersDto.add(UserDto.dtoUserFromUser(userFor));
 //
 //                    }
                     System.out.println("3");
                 }
                 else{
-                    usersDto.add(UserDto.dtoUserFromUser(user));
+                    usersDto.add(UserDto.dtoUserFromUser(userFor));
                     System.out.println("4");
                 }
             }
@@ -227,14 +238,14 @@ public class UserController {
                 String paramFindTwo = arrStr[1];
                 List<User> listFindOne = userRepositori.findUsersByFirstNameContainsOrLastNameContains(paramFindOne, paramFindTwo);
                 List<User> listFindTwo = userRepositori.findUsersByFirstNameContainsOrLastNameContains(paramFindTwo, paramFindOne);
-                for (User user : listFindOne) {
-                    if (listFindTwo.contains(user)) listFindTwo.remove(user);
+                for (User userFor : listFindOne) {
+                    if (listFindTwo.contains(userFor)) listFindTwo.remove(userFor);
                 }
                 listFindOne.addAll(listFindTwo);
                 if (listFindOne.contains(userService.getUserInfo(authentication)))
                     listFindOne.remove(userService.getUserInfo(authentication));
-                for (User user: listFindOne){
-                    usersDto.add(UserDto.dtoUserFromUser(user));
+                for (User userFor: listFindOne){
+                    usersDto.add(UserDto.dtoUserFromUser(userFor));
                 }
                 modelMap.addAttribute("users", usersDto);
                 modelMap.addAttribute("user", userDto);
@@ -244,14 +255,14 @@ public class UserController {
                 String paramFindOne = arrStr[0];
                 List<User> listFindOne = userRepositori.findUsersByFirstNameContains(paramFindOne);
                 List<User> listFindTwo = userRepositori.findUsersByLastNameContains(paramFindOne);
-                for (User user : listFindOne) {
-                    if (listFindTwo.contains(user)) listFindTwo.remove(user);
+                for (User userFor : listFindOne) {
+                    if (listFindTwo.contains(userFor)) listFindTwo.remove(userFor);
                 }
                 listFindOne.addAll(listFindTwo);
                 if (listFindOne.contains(userService.getUserInfo(authentication)))
                     listFindOne.remove(userService.getUserInfo(authentication));
-                for (User user: listFindOne){
-                    usersDto.add(UserDto.dtoUserFromUser(user));
+                for (User userFor: listFindOne){
+                    usersDto.add(UserDto.dtoUserFromUser(userFor));
                 }
                 modelMap.addAttribute("users", usersDto);
                 modelMap.addAttribute("user", userDto);
@@ -264,24 +275,76 @@ public class UserController {
     public String getCandidatePage(ModelMap modelMap, Authentication authentication,
                                 @PathVariable("id-candidate") Long idCandidate){
         if(idCandidate == userService.getUserInfo(authentication).getId()) return "redirect:/profile";
-        User userPerson = userService.getUserInfo(authentication);
-        UserDto personDto = UserDto.dtoUserFromUser(userPerson);
-        modelMap.addAttribute("user", personDto);
+        User user = userService.getUserInfo(authentication);
+        UserDto userDto = UserDto.dtoUserFromUser(user);
+        modelMap.addAttribute("user", userDto);
         User userCandidate = userService.getUserById(idCandidate);
         UserDto candidateDto = UserDto.dtoUserFromUser(userCandidate);
         modelMap.addAttribute("candidate", candidateDto);
-        List<Post> reverseList = postService.reverseList(candidateDto.getPosts());
+        List<Post> reverseList = postService.reverseList(postService.getPostsUserTo(candidateDto.getId()));
+        for (Post post: reverseList){
+            post.setOwnerPostDto(UserDto.dtoUserFromUser(post.getOwnerPost()));
+        }
         modelMap.addAttribute("posts", reverseList);
+        if(requestingService.getStatus(user, userCandidate)) {
+            modelMap.addAttribute("status", "Вы подписаны");
+        }
+
+        List<User> friends = new ArrayList<>();
+        friends.add(userRepositori.findOne(3L));
+        friends.add(userRepositori.findOne(4L));
+        friends.add(userRepositori.findOne(7L));
+        friends.add(userRepositori.findOne(14L));
+        friends.add(userRepositori.findOne(2L));
+        friends.add(userRepositori.findOne(15L));
+        friends.add(userRepositori.findOne(16L));
+        int countFriends = friends.size();
+        Random random = new Random();
+        if(countFriends > 6){
+            List<Integer> countList = new ArrayList<>();
+            int count = 0;
+            for (int i = 0; i < 6;){
+                count = random.nextInt(countFriends);
+                if (i >= 1){
+                    while(countList.contains(count)){
+                        count = random.nextInt(countFriends);
+                    }
+                    countList.add(count);
+                    modelMap.addAttribute("user" + (++i), UserDto.dtoUserFromUser(friends.get(count)));
+                }
+                else{
+                    modelMap.addAttribute("user" + (++i), UserDto.dtoUserFromUser(friends.get(count)));
+                    countList.add(count);
+                }
+            }
+        }
+        else if ( countFriends < 6 && countFriends != 0){
+            List<Integer> countList = new ArrayList<>();
+            int count = 0;
+            for (int i = 0; i < countFriends;){
+                count = random.nextInt(countFriends);
+                if (i >= 1){
+                    while(countList.contains(count)){
+                        count = random.nextInt(countFriends);
+                    }
+                    countList.add(count);
+                    modelMap.addAttribute("user" + (++i), UserDto.dtoUserFromUser(friends.get(count)));
+                }
+                else{
+                    modelMap.addAttribute("user" + (++i), UserDto.dtoUserFromUser(friends.get(count)));
+                    countList.add(count);
+                }
+            }
+        }
         SupportInfo info = SupportInfo.builder()
-                .friends(candidateDto.getFriends().size())
+                .friends(friends.size())
                 .subscribers(candidateDto.getInputRequestings().size())
-                .posts(candidateDto.getPosts().size())
+                .posts(reverseList.size())
                 .chats(candidateDto.getChats().size())
                 .build();
         modelMap.addAttribute("info", info);
-//        List<Requesting> requestings = userPerson.getOutputRequestings();
-//        Hibernate.initialize(userCandidate);
-//        if (requestings.contains(userCandidate))modelMap.addAttribute("status", "Вы подписаны");
+        Integer newRequestings = requestingService.getNewRequesting(user);
+        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
         return "profileCandidate";
     }
 

@@ -60,41 +60,51 @@ public class SupportController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{id-candidate}/sendRequst")
-    public void postSendRequst(@PathVariable("id-candidate") Long id, Authentication authentication){
-        User person = userService.getUserInfo(authentication);
-        User candidate = userRepositori.findOneById(id).orElseThrow(IllegalArgumentException::new);
-        Requesting requesting = Requesting.builder()
-                .person(person)
-                .candidate(candidate)
+    @GetMapping("/users/{id-candidate}/sendRequest")
+    public String postSendRequst(@PathVariable("id-candidate") Long idCandidate, Authentication authentication){
+        User user = userService.getUserInfo(authentication);
+        User candidate = userRepositori.findOneById(idCandidate).orElseThrow(IllegalArgumentException::new);
+        Requesting requesting  = Requesting.builder()
+                .inputUser(candidate)
+                .outputUser(user)
                 .roleRequesting(RoleRequesting.NEW)
                 .build();
         requestingRepository.save(requesting);
+        return "redirect:/users/" + idCandidate;
     }
 
-    @PostMapping("/confirmRequest")
+    @PostMapping("users/{id-candidate}/confirmRequest")
     public void postConfirmRequst(){
 
     }
 
-    @PostMapping("/cancelRequest")
+    @PostMapping("users/{id-candidate}/cancelRequest")
     public void postCancelRequest(){
 
     }
 
+    @PostMapping("users/{id-candidate}/removeFromFriends")
+    public void RemoveFromFriends(){
+
+    }
+
     @PostMapping("/addPost")
-    public String postAddPost(@RequestParam("inputText") String inputText, ModelMap modelMap,
-                              Authentication authentication, HttpServletRequest request){
+    public String postAddPost(@RequestParam("inputText") String inputText, @RequestParam("idPost_hidden") Long idPost,
+                              Authentication authentication){
         User user = userService.getUserInfo(authentication);
-        UserDto userDto = UserDto.dtoUserFromUser(user);
-        modelMap.addAttribute("user",userDto);
-        Post post = Post.builder()
-                .content(inputText)
-                .build();
-        post.setOwnerPost(user);
-        postRepository.save(post);
-        modelMap.addAttribute("posts", user.getPosts());
-        String url = request.getRequestURI();
+        if(postRepository.findOneById(idPost).isPresent()) {
+            Post post = postRepository.findOne(idPost);
+            post.setContent(inputText);
+            postRepository.save(post);
+        }
+        else {
+            Post post = Post.builder()
+                    .content(inputText)
+                    .idUserTo(user.getId())
+                    .build();
+            post.setOwnerPost(user);
+            postRepository.save(post);
+        }
         return "redirect:/profile";
     }
 
@@ -105,36 +115,29 @@ public class SupportController {
     }
 
     @PostMapping("/users/{id-candidate}/addPost")
-    public String postCandidateAddPost(@PathVariable("id-candidate") Long idCandidate,@RequestParam("inputText") String inputText,
-                              ModelMap modelMap, Authentication authentication, HttpServletRequest request){
-        User userPerson = userService.getUserInfo(authentication);
-        UserDto personDto = UserDto.dtoUserFromUser(userPerson);
-        modelMap.addAttribute("user", personDto);
-        User userCandidate = userService.getUserById(idCandidate);
-        UserDto candidateDto = UserDto.dtoUserFromUser(userCandidate);
-        modelMap.addAttribute("candidate", candidateDto);
-        List<Post> reverseList = postService.reverseList(candidateDto.getPosts());
-        modelMap.addAttribute("posts", reverseList);
-        SupportInfo info = SupportInfo.builder()
-                .friends(candidateDto.getFriends().size())
-                .subscribers(candidateDto.getInputRequestings().size())
-                .posts(candidateDto.getPosts().size())
-                .chats(candidateDto.getChats().size())
-                .build();
-        modelMap.addAttribute("info", info);
-        Post post = Post.builder()
-                .content(inputText)
-                .build();
-        post.setOwnerPost(userPerson);
-        postRepository.save(post);
-        modelMap.addAttribute("posts", personDto.getPosts());
+    public String postCandidateAddPost(@PathVariable("id-candidate") Long idCandidate,@RequestParam("idPost_hidden") Long idPost,
+                                       @RequestParam("inputText") String inputText, Authentication authentication){
+        User user = userService.getUserInfo(authentication);
+        if(postRepository.findOneById(idPost).isPresent()){
+            Post post = postRepository.findOne(idPost);
+            post.setContent(inputText);
+            postRepository.save(post);
+        }
+        else {
+            Post post = Post.builder()
+                    .content(inputText)
+                    .idUserTo(idCandidate)
+                    .build();
+            post.setOwnerPost(user);
+            postRepository.save(post);
+        }
         return "redirect:/users/"+ idCandidate;
     }
 
     @GetMapping("/users/{id-candidate}/deletePost/{id-post}")
-    public String getCandidateDeletePost(@PathVariable("id-post") Long id){
-        postRepository.delete(id);
-        return "redirect:/profile";
+    public String getCandidateDeletePost(@PathVariable("id-candidate") Long idCandidate,@PathVariable("id-post") Long idPost){
+        postRepository.delete(idPost);
+        return "redirect:/users/"+ idCandidate;
     }
 
 }
