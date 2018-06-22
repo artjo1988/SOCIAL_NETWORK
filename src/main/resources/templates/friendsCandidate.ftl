@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" href="/img/icon.png">
 
-    <title>Друзья</title>
+    <title>Друзья друга</title>
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -138,7 +138,7 @@
             <!-- Users field -->
             <div class="flexItem infoCollumnUsers">
                 <div class="white-bg dopBlock">
-                    <form method="post" action="/profile/friends/find" id="form">
+                    <form method="post" action="/users/${candidate.id}/friends/find" id="form">
                         <div class="form-group m-b-0">
                             <div class="input-group">
                                 <input style="border-color: #c6c6c6" id="paramFind"  name="paramFind"  type="text" class="form-control" placeholder="Введите имя и фамилию">
@@ -183,46 +183,29 @@
 
             <!-- Search option -->
             <div class="flexItem searchCollumnUsers">
-
-                <div class="white-bg dopBlockFriends" style="margin-bottom: 30px">
-                    <div style="display: block; flex-direction: column;">
-                        <div style="margin: 10px;">
-                        <a href="/profile/friends" class="btn btn-purple w-md">
-                           Мои друзья
-                        </a>
+                <div class="white-bg dopBlock">
+                    <div align="center" style="border-bottom: 2px solid rgba(202, 194, 199, 0.96); padding-bottom: 10px ">
+                        Параметры поиска
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label for="paramCity" style="padding: 15px 0 5px 0;"> Город </label>
+                            <select class="js-example-basic-single form-control" id="paramCity" name="paramCity" form="form" >
+                                <option selected="selected" value="">---</option>
+                            <#list cities as city>
+                                <option value="${city.city}">${city.city}</option>
+                            </#list>
+                            </select><span></span>
                         </div>
-                        <div style="padding: 10px;">
-                        <a href="/profile/requests/input" class="btn btn-purple w-md">
-                            Заявки в друзья
-                        </a>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <label for="paramDataBirthday" style="padding: 15px 0 5px 0;">День рождения</label>
+                            <input style="border-color: #c6c6c6" class="form-control" type="date" id="paramDataBirthday" name="paramDataBirthday"  form="form" >
                         </div>
                     </div>
                 </div>
-
-                <div class="flexItem searchCollumnUsers">
-                    <div class="white-bg dopBlock">
-                        <div align="center" style="border-bottom: 2px solid rgba(202, 194, 199, 0.96); padding-bottom: 10px ">
-                            Параметры поиска
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <label for="paramCity" style="padding: 15px 0 5px 0;"> Город </label>
-                                <select class="js-example-basic-single form-control" id="paramCity" name="paramCity" form="form" >
-                                    <option selected="selected" value="">---</option>
-                                <#list cities as city>
-                                    <option value="${city.city}">${city.city}</option>
-                                </#list>
-                                </select><span></span>
-                            </div>
-                        </div>
-                        <div class="form-group ">
-                            <div class="col-xs-12">
-                                <label for="paramDataBirthday" style="padding: 15px 0 5px 0;">День рождения</label>
-                                <input style="border-color: #c6c6c6" class="form-control" type="date" id="paramDataBirthday" name="paramDataBirthday"  form="form" >
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
             <!-- End Search option -->
         </div>
     </div>

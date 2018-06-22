@@ -14,7 +14,7 @@ public class UserForm {
     private String password;
     private String firstName;
     private String lastName;
-//    private LocalDate data_birthday;
+    private String dataBirthday;
     private String city;
     private String eMail;
 }

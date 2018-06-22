@@ -5,6 +5,7 @@ import org.hibernate.annotations.Parameter;
 import org.hibernate.boot.jaxb.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.method.P;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -14,15 +15,14 @@ import org.springframework.web.bind.annotation.*;
 import ru.itpark.dto.UserDto;
 import ru.itpark.forms.PasswordForm;
 import ru.itpark.forms.UserForm;
-import ru.itpark.models.Post;
-import ru.itpark.models.Requesting;
-import ru.itpark.models.SupportInfo;
-import ru.itpark.models.User;
+import ru.itpark.models.*;
+import ru.itpark.repositories.CityRepository;
 import ru.itpark.repositories.UserRepositori;
 import ru.itpark.security.details.UserDetailsImpl;
 import ru.itpark.service.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,8 +48,13 @@ public class UserController {
     @Autowired
     private RequestingService requestingService;
 
+    @Autowired
+    private CityRepository cityRepository;
+
     @GetMapping("/register")
     public String getSignUpPage(ModelMap modelMap){
+        List<City> cities = cityRepository.findAll();
+        modelMap.addAttribute("cities", cities);
         return "register";
     }
 
@@ -76,9 +81,8 @@ public class UserController {
         if(authentication == null){
             return "redirect:/login";
         }
-        UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
-        User user = details.getUser();
-        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(user.getId()));
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
+        UserDto userDto = UserDto.dtoUserFromUser(user);
         modelMap.addAttribute("user",userDto);
         List<Post> reverseList = postService.reverseList(postService.getPostsUserTo(userDto.getId()));
         for (Post post: reverseList){
@@ -86,13 +90,8 @@ public class UserController {
         }
         modelMap.addAttribute("posts", reverseList);
         List<User> friends = new ArrayList<>();
-        friends.add(userRepositori.findOne(3L));
-        friends.add(userRepositori.findOne(4L));
-        friends.add(userRepositori.findOne(7L));
-        friends.add(userRepositori.findOne(14L));
-        friends.add(userRepositori.findOne(2L));
-        friends.add(userRepositori.findOne(15L));
-        friends.add(userRepositori.findOne(16L));
+        friends.addAll(userDto.getFriends());
+        friends.addAll(userDto.getFriendOf());
         int countFriends = friends.size();
         Random random = new Random();
         if(countFriends > 6){
@@ -131,23 +130,29 @@ public class UserController {
                 }
             }
         }
+        else if(countFriends == 0){
+            modelMap.addAttribute("noFriends", new Mess("Пока нет друзей"));
+        }
         SupportInfo info = SupportInfo.builder()
                 .friends(friends.size())
-                .subscribers(userDto.getInputRequestings().size())
+                .subscribers(0)
                 .posts(reverseList.size())
                 .chats(userDto.getChats().size())
                 .build();
+        if(requestingService.getInputRequests(user).isPresent()) info.setSubscribers(requestingService.getInputRequests(user).get().size());
         modelMap.addAttribute("info", info);
-        Integer newRequestings = requestingService.getNewRequesting(user);
+        Integer newRequestings = requestingService.getNewRequestsCount(user);
         if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
         return "profile";
     }
 
     @GetMapping("/edit")
     public String getSignUpPage(ModelMap modelMap, Authentication authentication){
-        UserDetailsImpl details = (UserDetailsImpl)authentication.getPrincipal();
-        UserDto userDto = UserDto.dtoUserFromUser(details.getUser());
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
+        UserDto userDto = UserDto.dtoUserFromUser(user);
         modelMap.addAttribute("user",userDto);
+        List<City> cities = cityRepository.findAll();
+        modelMap.addAttribute("cities", cities);
         return "edit";
     }
 
@@ -159,19 +164,337 @@ public class UserController {
 
     @GetMapping("/profile/friends")
     public String getFriendsPage(ModelMap modelMap, Authentication authentication){
-        User user = userService.getUserInfo(authentication);
-        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(user.getId()));
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
+        UserDto userDto = UserDto.dtoUserFromUser(user);
         modelMap.addAttribute("user",userDto);
-        modelMap.addAttribute("users", userDto.getFriends());
-        Integer newRequestings = requestingService.getNewRequesting(user);
+        List<User> friends = new ArrayList<>();
+        friends.addAll(userDto.getFriends());
+        friends.addAll(userDto.getFriendOf());
+        if(friends.size() != 0){
+            List<UserDto> usersDto = new ArrayList<>();
+            for (User userFor: friends){
+                usersDto.add(UserDto.dtoUserFromUser(userFor));
+            }
+            modelMap.addAttribute("users", usersDto);
+        }
+        Integer newRequestings = requestingService.getNewRequestsCount(user);
         if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        List<City> cities = cityRepository.findAll();
+        modelMap.addAttribute("cities", cities);
         return "friends";
+    }
+
+    @PostMapping("/profile/friends/find")
+    public String getFriendsFind(@RequestParam ("paramFind") String paramFind,
+                                 @RequestParam ("paramCity") String paramCity,
+                                 @RequestParam ("paramDataBirthday") String paramDataBirthday,
+                                 ModelMap modelMap,
+                                 Authentication authentication){
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
+        UserDto userDto = UserDto.dtoUserFromUser(user);
+        modelMap.addAttribute("user",userDto);
+        Integer newRequestings = requestingService.getNewRequestsCount(user);
+        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        List<City> cities = cityRepository.findAll();
+        modelMap.addAttribute("cities", cities);
+        List<User> friends = new ArrayList<>();
+        friends.addAll(userDto.getFriends());
+        friends.addAll(userDto.getFriendOf());
+        if(friends.size() != 0){
+            if (paramFind == ""){
+                List<UserDto> usersDto = new ArrayList<>();
+                for (User friend : friends){
+                    if(paramCity != "" && paramDataBirthday == ""){
+                        if(friend.getCity().contains(paramCity) || paramCity.contains(friend.getCity()) || friend.getCity().equals(paramCity) ){
+                            usersDto.add(UserDto.dtoUserFromUser(friend));
+                        }
+                    }
+                    else if(paramDataBirthday != "" && paramCity == ""){
+                        if(friend.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday))){
+                            usersDto.add(UserDto.dtoUserFromUser(friend));
+                        }
+                    }
+                    else if(paramCity != "" && paramDataBirthday != ""){
+                        if(friend.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday)) && (friend.getCity().contains(paramCity) || paramCity.contains(friend.getCity()))){
+                            usersDto.add(UserDto.dtoUserFromUser(friend));
+                        }
+                    }
+                    else if(paramCity == "" && paramDataBirthday == ""){
+                        usersDto.add(UserDto.dtoUserFromUser(friend));
+                    }
+                }
+                if(usersDto.size() != 0)modelMap.addAttribute("users", usersDto);
+                return "friends";
+            }
+
+            else {
+                String[] arrStr = paramFind.split("\\s+");
+                if(arrStr.length==2) {
+                    String paramFindOne = arrStr[0];
+                    String paramFindTwo = arrStr[1];
+
+                    List<UserDto> usersDto= new ArrayList<>();
+                    for(User friend : friends){
+                        if(friend.getFirstName().contains(paramFindOne) || friend.getLastName().contains(paramFindTwo)
+                                || friend.getLastName().contains(paramFindOne) || friend.getFirstName().contains(paramFindTwo)
+                                || paramFindOne.contains(friend.getFirstName()) || paramFindOne.contains(friend.getLastName())
+                                || paramFindTwo.contains(friend.getFirstName()) || paramFindTwo.contains(friend.getLastName()))
+                        {
+                            usersDto.add(UserDto.dtoUserFromUser(friend));
+                        }
+                    }
+
+                    List<UserDto> usersDtoTemp = new ArrayList<>();
+                    for(UserDto userDtoFor : usersDto){
+                        if(paramCity != "" && paramDataBirthday == ""){
+                            if(userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()) || userDtoFor.getCity().equals(paramCity) ){
+                                usersDto.add(userDtoFor);
+                            }
+                        }
+                        else if(paramDataBirthday != "" && paramCity == ""){
+                            if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday))){
+                                usersDtoTemp.add(userDtoFor);
+                            }
+                        }
+                        else if(paramCity != "" && paramDataBirthday != ""){
+                            if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday)) && (userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()))){
+                                usersDtoTemp.add(userDtoFor);
+                            }
+                        }
+                        else if(paramCity == "" && paramDataBirthday == ""){
+                            usersDtoTemp.add(userDtoFor);
+                        }
+                    }
+                    if(usersDtoTemp.size() != 0)modelMap.addAttribute("users", usersDtoTemp);
+                    return "friends";
+                }
+
+                else if(arrStr.length == 0){
+                    List<UserDto> usersDto= new ArrayList<>();
+                    for(User friend: friends){
+                        usersDto.add(UserDto.dtoUserFromUser(friend));
+                    }
+                    modelMap.addAttribute("user",userDto);
+                    modelMap.addAttribute("users", usersDto);
+                    return "friends";
+                }
+
+                else{
+                    String paramFindOne = arrStr[0];
+
+                    List<UserDto> usersDto= new ArrayList<>();
+
+                    for(User friend : friends){
+                        if(friend.getFirstName().contains(paramFindOne) || friend.getLastName().contains(paramFindOne)
+                                || paramFindOne.contains(friend.getFirstName()) || paramFindOne.contains(friend.getLastName()))
+                        {
+                            usersDto.add(UserDto.dtoUserFromUser(friend));
+                        }
+                    }
+
+                    List<UserDto> usersDtoTemp = new ArrayList<>();
+                    for(UserDto userDtoFor : usersDto){
+                        if(paramCity != "" && paramDataBirthday == ""){
+                            if(userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()) || userDtoFor.getCity().equals(paramCity) ){
+                                usersDtoTemp.add(userDtoFor);
+                            }
+                        }
+                        else if(paramDataBirthday != "" && paramCity == ""){
+                            if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday))){
+                                usersDtoTemp.add(userDtoFor);
+                            }
+                        }
+                        else if(paramCity != "" && paramDataBirthday != ""){
+                            if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday)) && (userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()))){
+                                usersDtoTemp.add(userDtoFor);
+                            }
+                        }
+                        else if(paramCity == "" && paramDataBirthday == ""){
+                            usersDtoTemp.add(userDtoFor);
+                        }
+                    }
+                    if(usersDtoTemp.size() != 0)modelMap.addAttribute("users", usersDtoTemp);
+                    modelMap.addAttribute("user", userDto);
+                    return "friends";
+                }
+            }
+        }
+        return "friends";
+    }
+
+
+    @GetMapping("/users/{id-candidate}/friends")
+    public String getCandidateFriendsPage(ModelMap modelMap, Authentication authentication,
+                                          @PathVariable(name = "id-candidate") Long idCandidate){
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
+        UserDto userDto = UserDto.dtoUserFromUser(user);
+        modelMap.addAttribute("user",userDto);
+        User candidate = userRepositori.findOne(idCandidate);
+        UserDto candidateDto = UserDto.dtoUserFromUser(candidate);
+        modelMap.addAttribute("candidate", candidateDto);
+        List<User> friends = new ArrayList<>();
+        friends.addAll(candidateDto.getFriends());
+        friends.addAll(candidateDto.getFriendOf());
+        if(friends.size() != 0){
+            List<UserDto> usersDto = new ArrayList<>();
+            for (User userFor: friends){
+                usersDto.add(UserDto.dtoUserFromUser(userFor));
+            }
+            modelMap.addAttribute("users", usersDto);
+        }
+        Integer newRequestings = requestingService.getNewRequestsCount(user);
+        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        List<City> cities = cityRepository.findAll();
+        modelMap.addAttribute("cities", cities);
+        return "friendsCandidate";
+    }
+
+    @PostMapping("/users/{id-candidate}/friends/find")
+    public String getCandidateFriendsFind(@RequestParam ("paramFind") String paramFind,
+                                 @RequestParam ("paramCity") String paramCity,
+                                 @RequestParam ("paramDataBirthday") String paramDataBirthday,
+                                 @PathVariable("id-candidate") Long idCandidate,
+                                 ModelMap modelMap,
+                                 Authentication authentication){
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
+        UserDto userDto = UserDto.dtoUserFromUser(user);
+        modelMap.addAttribute("user",userDto);
+        Integer newRequestings = requestingService.getNewRequestsCount(user);
+        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        List<City> cities = cityRepository.findAll();
+        modelMap.addAttribute("cities", cities);
+        User candidate = userRepositori.findOne(idCandidate);
+        UserDto candidateDto = UserDto.dtoUserFromUser(candidate);
+        modelMap.addAttribute("candidate", candidateDto);
+        List<User> friends = new ArrayList<>();
+        friends.addAll(candidateDto.getFriends());
+        friends.addAll(candidateDto.getFriendOf());
+        if(friends.size() != 0){
+            if (paramFind == ""){
+                List<UserDto> usersDto = new ArrayList<>();
+                for (User friend : friends){
+                    if(paramCity != "" && paramDataBirthday == ""){
+                        if(friend.getCity().contains(paramCity) || paramCity.contains(friend.getCity()) || friend.getCity().equals(paramCity) ){
+                            usersDto.add(UserDto.dtoUserFromUser(friend));
+                        }
+                    }
+                    else if(paramDataBirthday != "" && paramCity == ""){
+                        if(friend.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday))){
+                            usersDto.add(UserDto.dtoUserFromUser(friend));
+                        }
+                    }
+                    else if(paramCity != "" && paramDataBirthday != ""){
+                        if(friend.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday)) && (friend.getCity().contains(paramCity) || paramCity.contains(friend.getCity()))){
+                            usersDto.add(UserDto.dtoUserFromUser(friend));
+                        }
+                    }
+                    else if(paramCity == "" && paramDataBirthday == ""){
+                        usersDto.add(UserDto.dtoUserFromUser(friend));
+                    }
+                }
+                if(usersDto.size() != 0)modelMap.addAttribute("users", usersDto);
+                return "friendsCandidate";
+            }
+
+            else {
+                String[] arrStr = paramFind.split("\\s+");
+                if(arrStr.length==2) {
+                    String paramFindOne = arrStr[0];
+                    String paramFindTwo = arrStr[1];
+
+                    List<UserDto> usersDto= new ArrayList<>();
+                    for(User friend : friends){
+                        if(friend.getFirstName().contains(paramFindOne) || friend.getLastName().contains(paramFindTwo)
+                                || friend.getLastName().contains(paramFindOne) || friend.getFirstName().contains(paramFindTwo)
+                                || paramFindOne.contains(friend.getFirstName()) || paramFindOne.contains(friend.getLastName())
+                                || paramFindTwo.contains(friend.getFirstName()) || paramFindTwo.contains(friend.getLastName()))
+                        {
+                            usersDto.add(UserDto.dtoUserFromUser(friend));
+                        }
+                    }
+
+                    List<UserDto> usersDtoTemp = new ArrayList<>();
+                    for(UserDto userDtoFor : usersDto){
+                        if(paramCity != "" && paramDataBirthday == ""){
+                            if(userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()) || userDtoFor.getCity().equals(paramCity) ){
+                                usersDto.add(userDtoFor);
+                            }
+                        }
+                        else if(paramDataBirthday != "" && paramCity == ""){
+                            if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday))){
+                                usersDtoTemp.add(userDtoFor);
+                            }
+                        }
+                        else if(paramCity != "" && paramDataBirthday != ""){
+                            if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday)) && (userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()))){
+                                usersDtoTemp.add(userDtoFor);
+                            }
+                        }
+                        else if(paramCity == "" && paramDataBirthday == ""){
+                            usersDtoTemp.add(userDtoFor);
+                        }
+                    }
+                    if(usersDtoTemp.size() != 0)modelMap.addAttribute("users", usersDtoTemp);
+                    return "friendsCandidate";
+                }
+
+                else if(arrStr.length == 0){
+                    List<UserDto> usersDto= new ArrayList<>();
+                    for(User friend: friends){
+                        usersDto.add(UserDto.dtoUserFromUser(friend));
+                    }
+                    modelMap.addAttribute("user",userDto);
+                    modelMap.addAttribute("users", usersDto);
+                    return "friendsCandidate";
+                }
+
+                else{
+                    String paramFindOne = arrStr[0];
+
+                    List<UserDto> usersDto= new ArrayList<>();
+
+                    for(User friend : friends){
+                        if(friend.getFirstName().contains(paramFindOne) || friend.getLastName().contains(paramFindOne)
+                                || paramFindOne.contains(friend.getFirstName()) || paramFindOne.contains(friend.getLastName()))
+                        {
+                            usersDto.add(UserDto.dtoUserFromUser(friend));
+                        }
+                    }
+
+                    List<UserDto> usersDtoTemp = new ArrayList<>();
+                    for(UserDto userDtoFor : usersDto){
+                        if(paramCity != "" && paramDataBirthday == ""){
+                            if(userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()) || userDtoFor.getCity().equals(paramCity) ){
+                                usersDtoTemp.add(userDtoFor);
+                            }
+                        }
+                        else if(paramDataBirthday != "" && paramCity == ""){
+                            if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday))){
+                                usersDtoTemp.add(userDtoFor);
+                            }
+                        }
+                        else if(paramCity != "" && paramDataBirthday != ""){
+                            if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday)) && (userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()))){
+                                usersDtoTemp.add(userDtoFor);
+                            }
+                        }
+                        else if(paramCity == "" && paramDataBirthday == ""){
+                            usersDtoTemp.add(userDtoFor);
+                        }
+                    }
+                    if(usersDtoTemp.size() != 0)modelMap.addAttribute("users", usersDtoTemp);
+                    modelMap.addAttribute("user", userDto);
+                    return "friendsCandidate";
+                }
+            }
+        }
+        return "friendsCandidate";
     }
 
     @GetMapping("/users")
     public String getUsersPage(ModelMap modelMap, Authentication authentication){
-        User user = userService.getUserInfo(authentication);
-        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(user.getId()));
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
+        UserDto userDto = UserDto.dtoUserFromUser(user);
         modelMap.addAttribute("user",userDto);
         List<User> users = userRepositori.findAllByIdIsNot(userDto.getId());
         List<UserDto> usersDto = new ArrayList<>();
@@ -180,58 +503,55 @@ public class UserController {
         }
         modelMap.addAttribute("users", usersDto);
         modelMap.addAttribute("user",userDto);
-        Integer newRequestings = requestingService.getNewRequesting(user);
+        Integer newRequestings = requestingService.getNewRequestsCount(user);
         if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        List<City> cities = cityRepository.findAll();
+        modelMap.addAttribute("cities", cities);
         return "users";
     }
 
     @PostMapping("/users/find")
     public String postUsersFind(@RequestParam ("paramFind") String paramFind,
-                                @RequestParam ("city_hidden") String paramCity,
-                                @RequestParam ("dataBirthday_hidden") String paramDataBirthday,
+                                @RequestParam ("paramCity") String paramCity,
+                                @RequestParam ("paramDataBirthday") String paramDataBirthday,
                                 ModelMap modelMap,
                                 Authentication authentication){
-//        String paramFind = request.getParameter("paramFind");
-//        String paramCity = request.getParameter("city_hidden");
-//        String paramDataBirthday = request.getParameter("dataBirthday_hidden");
-        User user = userService.getUserInfo(authentication);
-        UserDto userDto = UserDto.dtoUserFromUser(userRepositori.findOne(user.getId()));
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
+        UserDto userDto = UserDto.dtoUserFromUser(user);
         List<User> users = userRepositori.findAllByIdIsNot(userDto.getId());
         List<UserDto> usersDto = new ArrayList<>();
-        Integer newRequestings = requestingService.getNewRequesting(user);
+        Integer newRequestings = requestingService.getNewRequestsCount(user);
         if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        List<City> cities = cityRepository.findAll();
+        modelMap.addAttribute("cities", cities);
 
-        if (paramFind == null){
+        if (paramFind == ""){
             for (User userFor: users){
-                if(paramCity != "" ){
-                    System.out.println("1");
-                    if(userFor.getCity().contains(paramCity)){
+                if(paramCity != "" && paramDataBirthday == ""){
+                    if(userFor.getCity().contains(paramCity) || paramCity.contains(userFor.getCity()) || userFor.getCity().equals(paramCity) ){
                         usersDto.add(UserDto.dtoUserFromUser(userFor));
                     }
                 }
-                else if(paramDataBirthday != null && paramCity == null){
-//                    if(userFor.getDataBirthday().isEqual()){
-//                        usersDto.add(UserDto.dtoUserFromUser(userFor));
-//                    }
-                    System.out.println("2");
+                else if(paramDataBirthday != "" && paramCity == ""){
+                    if(userFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday))){
+                        usersDto.add(UserDto.dtoUserFromUser(userFor));
+                    }
                 }
-                else if(paramCity != null && paramDataBirthday != null){
-//                    if(userFor.getDataBirthday().isEqual() && (userFor.getCity().contains(paramCity) || paramCity.contains(userFor.getCity()))){
-//                        usersDto.add(UserDto.dtoUserFromUser(userFor));
-//
-//                    }
-                    System.out.println("3");
+                else if(paramCity != "" && paramDataBirthday != ""){
+                    if(userFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday)) && (userFor.getCity().contains(paramCity) || paramCity.contains(userFor.getCity()))){
+                        usersDto.add(UserDto.dtoUserFromUser(userFor));
+                    }
                 }
-                else{
+                else if(paramCity == "" && paramDataBirthday == ""){
                     usersDto.add(UserDto.dtoUserFromUser(userFor));
-                    System.out.println("4");
                 }
             }
             modelMap.addAttribute("user",userDto);
-            modelMap.addAttribute("users", usersDto);
+            if(usersDto.size() != 0)modelMap.addAttribute("users", usersDto);
             return "users";
         }
         else {
+
             String[] arrStr = paramFind.split("\\s+");
             if(arrStr.length==2) {
                 String paramFindOne = arrStr[0];
@@ -247,10 +567,42 @@ public class UserController {
                 for (User userFor: listFindOne){
                     usersDto.add(UserDto.dtoUserFromUser(userFor));
                 }
-                modelMap.addAttribute("users", usersDto);
+
+                List<UserDto> usersDtoTemp = new ArrayList<>();
+                for(UserDto userDtoFor : usersDto){
+                    if(paramCity != "" && paramDataBirthday == ""){
+                        if(userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()) || userDtoFor.getCity().equals(paramCity) ){
+                            usersDtoTemp.add(userDtoFor);
+                        }
+                    }
+                    else if(paramDataBirthday != "" && paramCity == ""){
+                        if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday))){
+                            usersDtoTemp.add(userDtoFor);
+                        }
+                    }
+                    else if(paramCity != "" && paramDataBirthday != ""){
+                        if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday)) && (userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()))){
+                            usersDtoTemp.add(userDtoFor);
+                        }
+                    }
+                    else if(paramCity == "" && paramDataBirthday == ""){
+                        usersDtoTemp.add(userDtoFor);
+                    }
+                }
+                if(usersDtoTemp.size() != 0)modelMap.addAttribute("users", usersDtoTemp);
                 modelMap.addAttribute("user", userDto);
                 return "users";
             }
+
+            else if(arrStr.length == 0){
+                for(User userFor: users){
+                    usersDto.add(UserDto.dtoUserFromUser(userFor));
+                }
+                modelMap.addAttribute("user",userDto);
+                modelMap.addAttribute("users", usersDto);
+                return "users";
+            }
+
             else{
                 String paramFindOne = arrStr[0];
                 List<User> listFindOne = userRepositori.findUsersByFirstNameContains(paramFindOne);
@@ -264,7 +616,29 @@ public class UserController {
                 for (User userFor: listFindOne){
                     usersDto.add(UserDto.dtoUserFromUser(userFor));
                 }
-                modelMap.addAttribute("users", usersDto);
+
+                List<UserDto> usersDtoTemp = new ArrayList<>();
+                for(UserDto userDtoFor : usersDto){
+                    if(paramCity != "" && paramDataBirthday == ""){
+                        if(userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()) || userDtoFor.getCity().equals(paramCity) ){
+                            usersDtoTemp.add(userDtoFor);
+                        }
+                    }
+                    else if(paramDataBirthday != "" && paramCity == ""){
+                        if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday))){
+                            usersDtoTemp.add(userDtoFor);
+                        }
+                    }
+                    else if(paramCity != "" && paramDataBirthday != ""){
+                        if(userDtoFor.getDataBirthday().isEqual(LocalDate.parse(paramDataBirthday)) && (userDtoFor.getCity().contains(paramCity) || paramCity.contains(userDtoFor.getCity()))){
+                            usersDtoTemp.add(userDtoFor);
+                        }
+                    }
+                    else if(paramCity == "" && paramDataBirthday == ""){
+                        usersDtoTemp.add(userDtoFor);
+                    }
+                }
+                if(usersDtoTemp.size() != 0)modelMap.addAttribute("users", usersDtoTemp);
                 modelMap.addAttribute("user", userDto);
                 return "users";
             }
@@ -275,7 +649,7 @@ public class UserController {
     public String getCandidatePage(ModelMap modelMap, Authentication authentication,
                                 @PathVariable("id-candidate") Long idCandidate){
         if(idCandidate == userService.getUserInfo(authentication).getId()) return "redirect:/profile";
-        User user = userService.getUserInfo(authentication);
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
         UserDto userDto = UserDto.dtoUserFromUser(user);
         modelMap.addAttribute("user", userDto);
         User userCandidate = userService.getUserById(idCandidate);
@@ -286,18 +660,13 @@ public class UserController {
             post.setOwnerPostDto(UserDto.dtoUserFromUser(post.getOwnerPost()));
         }
         modelMap.addAttribute("posts", reverseList);
-        if(requestingService.getStatus(user, userCandidate)) {
-            modelMap.addAttribute("status", "Вы подписаны");
-        }
+//        if(requestingService.getStatus(user, userCandidate)) {
+//            modelMap.addAttribute("status", "Вы подписаны");
+//        }
 
         List<User> friends = new ArrayList<>();
-        friends.add(userRepositori.findOne(3L));
-        friends.add(userRepositori.findOne(4L));
-        friends.add(userRepositori.findOne(7L));
-        friends.add(userRepositori.findOne(14L));
-        friends.add(userRepositori.findOne(2L));
-        friends.add(userRepositori.findOne(15L));
-        friends.add(userRepositori.findOne(16L));
+        friends.addAll(candidateDto.getFriends());
+        friends.addAll(candidateDto.getFriendOf());
         int countFriends = friends.size();
         Random random = new Random();
         if(countFriends > 6){
@@ -336,14 +705,18 @@ public class UserController {
                 }
             }
         }
+        else if(countFriends == 0){
+            modelMap.addAttribute("noFriends", new Mess("Пока нет друзей"));
+        }
         SupportInfo info = SupportInfo.builder()
                 .friends(friends.size())
-                .subscribers(candidateDto.getInputRequestings().size())
+                .subscribers(0)
                 .posts(reverseList.size())
                 .chats(candidateDto.getChats().size())
                 .build();
+        if(requestingService.getInputRequests(userCandidate).isPresent()) info.setSubscribers(requestingService.getInputRequests(userCandidate).get().size());
         modelMap.addAttribute("info", info);
-        Integer newRequestings = requestingService.getNewRequesting(user);
+        Integer newRequestings = requestingService.getNewRequestsCount(user);
         if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
         return "profileCandidate";
     }

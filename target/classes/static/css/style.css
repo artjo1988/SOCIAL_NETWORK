@@ -25,7 +25,7 @@
 .flexItem .user-information {margin:0; width:100%; float: none;}
 .avatarCollumn .dopBlock {padding: 15px; box-sizing: border-box; width: 250px;}
 .searchCollumnUsers .dopBlock {padding: 15px; box-sizing: border-box; height: 250px; width: 250px;}
-.searchCollumnUsers .dopBlockFriends {padding: 8px; box-sizing: border-box; height: 100px; width: 250px;}
+.searchCollumnUsers .dopBlockFriends {padding: 8px; box-sizing: border-box; height: 125px; width: 250px;}
 .infoCollumn .dopBlock {padding: 25px; box-sizing: border-box; margin-top: 20px;}
 .infoCollumn .dopBlockPosts {padding: 15px 15px 7px 15px ; box-sizing: border-box; margin-top: 20px; width:100%}
 .infoCollumnUsers .dopBlock {padding: 25px; box-sizing: border-box;}
@@ -1204,6 +1204,17 @@ ul.p-social-link li a {
 	width: 380px;
 	margin: 140px auto;
 }
+
+.wrapper-pageEdit {
+	width: 380px;
+	margin: 40px auto;
+}
+
+.wrapper-pageReg {
+	width: 380px;
+	margin: 80px auto;
+}
+
 .user-thumb img {
 	margin: 0 auto;
 }

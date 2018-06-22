@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,7 +17,7 @@ import ru.itpark.repositories.UserRepositori;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "ru.itpark")
-@EntityScan(basePackages = "ru.itpark.models")
+@EntityScan(basePackages = "ru.itpark.models", basePackageClasses = Jsr310JpaConverters.class)
 @EnableJpaRepositories(basePackages = "ru.itpark.repositories")
 @PropertySource("classpath:application.properties")
 public class Application {

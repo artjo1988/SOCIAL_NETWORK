@@ -21,9 +21,9 @@ public interface UserRepositori extends JpaRepository<User, Long>{
     List<User> findUsersByLastNameContains(String firstName);
     List<User> findAllByIdIsNot(Long id);
 
-    @Modifying
-    @Query(nativeQuery = true, value = "UPDATE user_sn SET login = ?1, first_name =?2, " +
-            "last_name = ?3, city = ?4 WHERE id = ?5")
-    void updateUserByIdFromForm(String login, String firstNmae, String Last, String city, Long id);
+//    @Modifying
+//    @Query(nativeQuery = true, value = "UPDATE user_sn SET login = ?1, first_name =?2, " +
+//            "last_name = ?3, city = ?4 WHERE id = ?5")
+//    void updateUserByIdFromForm(String login, String firstNmae, String Last, String city, Long id);
 
 }

@@ -5,14 +5,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
-       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Admina Bootstrap Admin. This is the demo of Admina. You need to purchase a license for legal use!">
     <meta name="author" content="DownTown Themes">
 
     <link rel="shortcut icon" href="/img/icon.png">
 
-    <title>Друзья</title>
+    <title>Входящие заявки</title>
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -45,17 +45,6 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <!-- SELECT 2-->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-    <!-- /SELECT2 -->
-
-    <script>
-        $(document).ready(function() {
-            $(".js-example-basic-single").select2();
-        });
-    </script>
 
 <body>
 <!-- Header -->
@@ -138,45 +127,41 @@
             <!-- Users field -->
             <div class="flexItem infoCollumnUsers">
                 <div class="white-bg dopBlock">
-                    <form method="post" action="/profile/friends/find" id="form">
-                        <div class="form-group m-b-0">
-                            <div class="input-group">
-                                <input style="border-color: #c6c6c6" id="paramFind"  name="paramFind"  type="text" class="form-control" placeholder="Введите имя и фамилию">
-                                <span class="input-group-btn" >
-                                <button type="submit" class="btn btn-primary">
-                                    Найти
-                                </button>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                    <br>
-                    <#if users??>
-                        <#list users as user>
-                            <div  style="margin-bottom: 15px ; display: block">
-                                <div style="display: flex;">
-                                    <div>
-                                        <a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
-                                    </div>
-                                    <div style="padding: 30px 0 0 25px">
-                                        <p>
-                                            <a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
-                                            <br>
-                                        ${user.city}
-                                        </p>
-                                        <a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
-                                    </div>
-                                    <div style="padding: 30px; margin-left: 110px;">
-                                        <a href="/${user.id}/removeFromFriends" class="btn btn-purple w-md">
-                                            Убрать из друзей
-                                        </a>
-                                    </div>
+                    <div style="border-bottom: 2px solid rgba(202, 194, 199, 0.96); margin: -5px 0 10px 0; padding: 0 0 8px 0 ">
+                        <a href="/profile/requests/input" style="margin-right: 10%">Входящие заявки<span class="ion-android-arrow-down-left" style="margin-left: 7px;"></span></a>
+                        <a href="/profile/requests/output" style="margin-right: 10%">Исходящие заявки<span class="ion-android-arrow-up-right" style="margin-left: 7px;"></span></a>
+                        <a href="/profile/requests/new" style="margin-right: 10%">Новые заявки<span class="ion-android-add" style="margin-left: 7px;"></span></a>
+                    </div>
+                <#if users??>
+                    <#list users as user>
+                        <div  style="margin-bottom: 15px ; display: block">
+                            <div style="display: flex;">
+                                <div>
+                                    <a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
+                                </div>
+                                <div style="padding: 30px 0 0 25px">
+                                    <p>
+                                        <a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
+                                        <br>
+                                    ${user.city}
+                                    </p>
+                                    <a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
+                                </div>
+                                <div style="padding: 5px 0 0 30px; margin-left: 110px;">
+                                    <a href="/${user.id}/confirmRequest" class="btn btn-purple w-md" style="margin: 10px">
+                                        Добавить в друзья
+                                    </a>
+                                    <a href="/${user.id}/cancelRequest" class="btn btn-purple w-md" style="margin: 10px">
+                                        Отменить
+                                    </a>
                                 </div>
                             </div>
-                        </#list>
-                    <#else>
-                        <div style="padding-top: 5px">  У Вас пока нет друзей</div>
-                    </#if>
+                        </div>
+                    </#list>
+                <#else>
+                <span>  У Вас пока нет новых заявок</span>
+                </#if>
+
                 </div>
             </div>
             <!-- End Uers field -->
@@ -199,30 +184,7 @@
                     </div>
                 </div>
 
-                <div class="flexItem searchCollumnUsers">
-                    <div class="white-bg dopBlock">
-                        <div align="center" style="border-bottom: 2px solid rgba(202, 194, 199, 0.96); padding-bottom: 10px ">
-                            Параметры поиска
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <label for="paramCity" style="padding: 15px 0 5px 0;"> Город </label>
-                                <select class="js-example-basic-single form-control" id="paramCity" name="paramCity" form="form" >
-                                    <option selected="selected" value="">---</option>
-                                <#list cities as city>
-                                    <option value="${city.city}">${city.city}</option>
-                                </#list>
-                                </select><span></span>
-                            </div>
-                        </div>
-                        <div class="form-group ">
-                            <div class="col-xs-12">
-                                <label for="paramDataBirthday" style="padding: 15px 0 5px 0;">День рождения</label>
-                                <input style="border-color: #c6c6c6" class="form-control" type="date" id="paramDataBirthday" name="paramDataBirthday"  form="form" >
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
             <!-- End Search option -->
         </div>
     </div>

@@ -5,10 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Admina Bootstrap Admin. This is the demo of Admina. You need to purchase a license for legal use!">
     <meta name="author" content="DownTown Themes">
+
+    <link rel="shortcut icon" href="/img/icon.png">
 
     <title>${candidate.firstName} ${candidate.lastName}</title>
 
@@ -39,8 +41,6 @@
     <link href="/css/helper.css" rel="stylesheet">
     <link href="/css/style-responsive.css" rel="stylesheet" />
 
-    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6AE77042-A858-0442-B452-785E2AAF4DA7/main.js" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/7AD4FAA2E587-254B-2440-858A-24077EA6/abn/main.css"/></head>
-
 <body>
 <!-- Header -->
 <header class="top-head container-fluid navbar-fixed-top">
@@ -64,7 +64,7 @@
         <!-- Notification -->
         <li class="dropdown">
         <#if newRequestings??>
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
         <#else>
             <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
         </#if>
@@ -129,8 +129,8 @@
                 <!-- Аватарка-->
                 <div class="avatarUsers tile-stats white-bg">
                     <img src= "${candidate.avatarUrl}" width="210" height="230" style="width: 210px; height: 250px:">
-                    <a href="/users/${candidate.id}/message" class="btn btn-purple w-md" style="margin-top: 7px; margin-right: 10px">Написать сообщение <span style="margin-left: 7px" class="ion-chatbubbles"></span></a>
-                    <a href="/users/${candidate.id}/sendRequest" class="btn btn-purple w-md" style="margin-top: 7px;">
+                    <a href="/${candidate.id}/message" class="btn btn-purple w-md" style="margin-top: 7px; margin-right: 10px">Написать сообщение <span style="margin-left: 7px" class="ion-chatbubbles"></span></a>
+                    <a href="/${candidate.id}/sendRequest" class="btn btn-purple w-md" style="margin-top: 7px;">
                         <#if status??>
                         ${status}
                         <#else>
@@ -145,10 +145,15 @@
                 <div class="dopBlock tile-stats white-bg">
 
                     <div style="border-bottom: 2px solid rgba(202, 194, 199, 0.96); padding: 0px 0px 10px 0px; margin-top: -5px;  ">
-                        Друзья
+                        <a href="/users/${candidate.id}/friends"><span style=" margin-right: 3%">Друзья</span><span>(${info.friends})</span> </a>
                     </div>
 
                     <div style="margin-top: 10px; margin-bottom: 25px" >
+                    <#if noFriends??>
+                        <div>
+                        ${noFriends.message}
+                        </div>
+                    </#if>
                     <#if user1??>
                         <div  align="center" style="float: left;">
                             <div style="padding: 10px 11px 0px 11px;">
@@ -236,7 +241,7 @@
                         </div>
                         <div>
                             <ul>
-                                <li class="forLi">-------</li>
+                                <li class="forLi">${candidate.dataBirthdayConvert}</li>
                                 <li class="forLi">${candidate.city}</li>
                             </ul>
                         </div>
@@ -275,19 +280,19 @@
                         <div style="margin-right: 15px">
                             <a href="/users/${post.ownerPostDto.id}"><img src= "${post.ownerPostDto.avatarUrl}" class="img-circle text-center " width='65' height='65'></a>
                         </div>
-                        <div style="display: block; margin-right: 54%">
+                        <div style="display: block; margin-right: 45%">
                             <div style="margin: 6px 0 3px 0;">
                                 <a href="/users/${post.ownerPostDto.id}"><strong>${post.ownerPostDto.firstName} ${post.ownerPostDto.lastName}</strong></a>
                             </div>
                             <div>
-                                <em>время</em>
+                                <em>${post.timeString}</em>
                             </div>
 
                         </div>
                         <div class="dropdown text-center" style="margin-top: 6px;">
                             <#if user.id == post.ownerPostDto.id>
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span>действие</span> <span class="caret"></span> </a>
-                                <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -40px; margin-left: -90px;">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span> действие </span><span class="caret"></span> </a>
+                                <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -40px; margin-left: -80px;">
                                     <li>
                                         <a href="#" onclick="insertEditPost(${post.id});"><i class="ion-edit"></i>Редактировать</a>
                                     </li>

@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<meta name="description" content="Admina Bootstrap Admin. This is the demo of Admina. You need to purchase a license for legal use!">
 		<meta name="author" content="DownTown Themes">
@@ -39,10 +39,27 @@
 		<link href="/css/helper.css" rel="stylesheet">
 		<link href="/css/style-responsive.css" rel="stylesheet" />
 
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+        <!-- SELECT 2-->
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+        <!-- /SELECT2 -->
+
+        <script>
+            $(document).ready(function() {
+                $(".js-example-basic-single").select2();
+            });
+        </script>
+
 	</head>
 
 	<body>
-		<div class="wrapper-page animated fadeInDown">
+
+		<div class="logo hidden-xs">
+			<a href="/" class="logo-expanded"> <img src="/img/icon.png" alt="logo"> <span class="nav-text" style="color: #3b5998 "> Друзья</span> </a>
+		</div>
+		<div class="wrapper-pageEdit animated fadeInDown">
 			<div class="panel panel-color panel-primary">
 				<div class="panel-heading">
 					<h3 class="text-center m-t-10"> Редактирование профиля </h3>
@@ -90,13 +107,25 @@
 							</label>
 						</div>
 					</div>
-					<div class="form-group ">
-						<div class="col-xs-12">
-							<label for="city">
-								<input class="form-control " type="text" id="city" name="city"  value=${user.city} required="" placeholder="Город">
-							</label>
-						</div>
-					</div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <label for="city">
+                                <select class="js-example-basic-single form-control" id="city" name="city" tabindex=7 equired="">
+                                    <option selected="selected" value="${user.city}">${user.city}</option>
+								<#list cities as city>
+                                    <option value="${city.city}">${city.city}</option>
+								</#list>
+                                </select><span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <label for="dataBirthday">
+                                <input class="form-control " type="date" id="dataBirthday" name="dataBirthday" required="" tabindex=8 placeholder="Дата рождения" value="${user.dataBirthday}"><span></span>
+                            </label>
+                        </div>
+                    </div>
 					<div class="form-group text-right">
 						<div class="col-xs-12">
 							<button class="btn btn-purple w-md" type="submit">
@@ -110,7 +139,6 @@
 
 		<!-- Basic Plugins -->
         <script src="/js/main.js"></script>
-		<script src="/js/jquery.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/pace.min.js"></script>
 		<script src="/js/wow.min.js"></script>

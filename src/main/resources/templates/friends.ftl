@@ -5,10 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Admina Bootstrap Admin. This is the demo of Admina. You need to purchase a license for legal use!">
     <meta name="author" content="DownTown Themes">
+
+    <link rel="shortcut icon" href="/img/icon.png">
 
     <title>Друзья</title>
 
@@ -43,14 +45,16 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- SELECT 2-->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+    <!-- /SELECT2 -->
+
     <script>
-        $( function() {
-            $( "#datepicker" ).datepicker();
-        } );
-        //            $('#getDate').click(function () {
-        //                console.log($('#datepicker').data('date'))
-        //                $('#SelectedDate').text($('#datepicker').data('date'))
-        //            })
+        $(document).ready(function() {
+            $(".js-example-basic-single").select2();
+        });
     </script>
 
 <body>
@@ -75,7 +79,7 @@
         <!-- Notification -->
         <li class="dropdown">
         <#if newRequestings??>
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
         <#else>
             <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
         </#if>
@@ -134,15 +138,10 @@
             <!-- Users field -->
             <div class="flexItem infoCollumnUsers">
                 <div class="white-bg dopBlock">
-                    <form method="post" action="/users/find">
+                    <form method="post" action="/profile/friends/find" id="form">
                         <div class="form-group m-b-0">
                             <div class="input-group">
                                 <input style="border-color: #c6c6c6" id="paramFind"  name="paramFind"  type="text" class="form-control" placeholder="Введите имя и фамилию">
-                                <input type="hidden"  id="city_hidden" name ="city_hidden" value="">
-                                <input type="hidden" id="dataBirthday_hidden" name ="dataBirthday_hidden" value="">
-                                <#--<br>-->
-                                <#--<span id="SelectedDate"></span>-->
-                                <#--<br>-->
                                 <span class="input-group-btn" >
                                 <button type="submit" class="btn btn-primary">
                                     Найти
@@ -152,32 +151,32 @@
                         </div>
                     </form>
                     <br>
-                <#if users??>
-                    <#list users as user>
-                        <div  style="margin-bottom: 15px ; display: block">
-                            <div style="display: flex;">
-                                <div>
-                                    <a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
-                                </div>
-                                <div style="padding: 30px 0 0 25px">
-                                    <p>
-                                        <a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
-                                        <br>
-                                    ${user.city}
-                                    </p>
-                                    <a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
-                                </div>
-                                <div style="padding: 30px; margin-left: 110px;">
-                                    <form method="post" action="гыукы/${user.id}/removeFromFriends">
-                                        <button class="btn btn-purple w-md" style="margin-top: 15px;">
+                    <#if users??>
+                        <#list users as user>
+                            <div  style="margin-bottom: 15px ; display: block">
+                                <div style="display: flex;">
+                                    <div>
+                                        <a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
+                                    </div>
+                                    <div style="padding: 30px 0 0 25px">
+                                        <p>
+                                            <a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
+                                            <br>
+                                        ${user.city}
+                                        </p>
+                                        <a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
+                                    </div>
+                                    <div style="padding: 30px; margin-left: 110px;">
+                                        <a href="/${user.id}/removeFromFriends" class="btn btn-purple w-md">
                                             Убрать из друзей
-                                        </button>
-                                    </form>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </#list>
-                </#if>
+                        </#list>
+                    <#else>
+                        <div style="padding-top: 5px">  У Вас пока нет друзей</div>
+                    </#if>
                 </div>
             </div>
             <!-- End Uers field -->
@@ -188,40 +187,42 @@
                 <div class="white-bg dopBlockFriends" style="margin-bottom: 30px">
                     <div style="display: block; flex-direction: column;">
                         <div style="margin: 10px;">
-                        <a href="/profile/friends">
-                            <strong>Мои друзья</strong>
+                        <a href="/profile/friends" class="btn btn-purple w-md">
+                           Мои друзья
                         </a>
                         </div>
                         <div style="padding: 10px;">
-                        <a href="/profile/requests">
-                            <strong>Заявки в друзья
+                        <a href="/profile/requests/input" class="btn btn-purple w-md">
+                            Заявки в друзья
                         </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="white-bg dopBlock">
-                    <div align="center" style="border-bottom: 2px solid rgba(202, 194, 199, 0.96); padding-bottom: 10px ">
-                        Параметры поиска
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <label for="city" style="padding: 15px 0 5px 0;"> Город </label>
-                            <input style="border-color: #c6c6c6" class="form-control" type="text" id="city" name="city" required="" onkeyup="city_hidden.value = this.value" >
-                        <#--onkeyup="city_hidden.value = this.value" >-->
-
+                <div class="flexItem searchCollumnUsers">
+                    <div class="white-bg dopBlock">
+                        <div align="center" style="border-bottom: 2px solid rgba(202, 194, 199, 0.96); padding-bottom: 10px ">
+                            Параметры поиска
                         </div>
-                    </div>
-                    <div class="form-group ">
-                        <div class="col-xs-12">
-                            <label for="city" style="padding: 15px 0 5px 0;">День рождения</label>
-                            <input style="border-color: #c6c6c6" class="form-control" type="text" id="datepicker" name="datepicker" required="" >
-                        <#--<input type="button" class="btn btn-success" id="getDate" value="Get Date" />-->
-
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <label for="paramCity" style="padding: 15px 0 5px 0;"> Город </label>
+                                <select class="js-example-basic-single form-control" id="paramCity" name="paramCity" form="form" >
+                                    <option selected="selected" value="">---</option>
+                                <#list cities as city>
+                                    <option value="${city.city}">${city.city}</option>
+                                </#list>
+                                </select><span></span>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <label for="paramDataBirthday" style="padding: 15px 0 5px 0;">День рождения</label>
+                                <input style="border-color: #c6c6c6" class="form-control" type="date" id="paramDataBirthday" name="paramDataBirthday"  form="form" >
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             <!-- End Search option -->
         </div>
     </div>

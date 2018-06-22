@@ -13,6 +13,8 @@ import ru.itpark.models.User;
 import ru.itpark.repositories.FileInfoRepository;
 import ru.itpark.repositories.UserRepositori;
 import ru.itpark.security.details.UserDetailsImpl;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Transactional
@@ -36,7 +38,7 @@ public class UserServiceImpl implements UserService {
                 .hashPassword(hashPassword)
                 .firstName(userForm.getFirstName())
                 .lastName(userForm.getLastName())
-//                .dataBirthday(userForm.getData_birthday())
+                .dataBirthday(LocalDate.parse(userForm.getDataBirthday()))
                 .city(userForm.getCity())
                 .eMail(userForm.getEMail())
                 .state(State.ACTIVE)
@@ -52,13 +54,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void changeData(UserForm userForm, Authentication authentication) {
-        User user = getUserInfo(authentication);
-        Long id = user.getId();
-        String login = userForm.getLogin();
-        String firstName = userForm.getFirstName();
-        String lastName = userForm.getLastName();
-        String city = userForm.getCity();
-        userRepositori.updateUserByIdFromForm(login, firstName, lastName, city, id);
+        User user = userRepositori.findOne(getUserInfo(authentication).getId());
+        user.setLogin(userForm.getLogin());
+        user.setFirstName(userForm.getFirstName());
+        user.setLastName(userForm.getLastName());
+        user.setCity(userForm.getCity());
+        user.setDataBirthday(LocalDate.parse(userForm.getDataBirthday()));
+        userRepositori.save(user);
     }
 
     @Override

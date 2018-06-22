@@ -5,10 +5,12 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<meta name="description" content="Admina Bootstrap Admin. This is the demo of Admina. You need to purchase a license for legal use!">
 		<meta name="author" content="DownTown Themes">
+
+        <link rel="shortcut icon" href="/img/icon.png">
 
 		<title>Поиск</title>
 
@@ -31,7 +33,6 @@
 
 		<!-- sweet alerts -->
 		<link href="/plugins/sweet-alert/sweet-alert.min.css" rel="stylesheet">
-
 		<link href="/plugins/toggles/toggles.css" rel="stylesheet" />
 
 		<!-- Custom styles -->
@@ -39,19 +40,18 @@
 		<link href="/css/helper.css" rel="stylesheet">
 		<link href="/css/style-responsive.css" rel="stylesheet" />
 
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<link rel="stylesheet" href="/resources/demos/style.css">
-		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script>
-			$( function() {
-				$( "#datepicker" ).datepicker();
-			} );
-//            $('#getDate').click(function () {
-//                console.log($('#datepicker').data('date'))
-//                $('#SelectedDate').text($('#datepicker').data('date'))
-//            })
-		</script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+        <!-- SELECT 2-->
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+        <!-- /SELECT2 -->
+
+        <script>
+            $(document).ready(function() {
+                $(".js-example-basic-single").select2();
+            });
+        </script>
 
 	<body>
 		<!-- Header -->
@@ -75,7 +75,7 @@
                 <!-- Notification -->
                 <li class="dropdown">
                 <#if newRequestings??>
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
                 <#else>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
                 </#if>
@@ -134,15 +134,10 @@
 					<!-- Users field -->
 					<div class="flexItem infoCollumnUsers">
 						<div class="white-bg dopBlock">
-                            <form method="post" action="/users/find">
+                            <form method="post" action="/users/find" id="form">
                                 <div class="form-group m-b-0">
                                     <div class="input-group">
                                         <input style="border-color: #c6c6c6" id="paramFind"  name="paramFind"  type="text" class="form-control" placeholder="Введите имя и фамилию">
-                                        <input type="hidden" id="city_hidden" name ="city_hidden" value="">
-                                        <input type="hidden" id="dataBirthday_hidden" name ="dataBirthday_hidden" value="">
-										<#--<br>-->
-                                        <#--<span id="SelectedDate"></span>-->
-										<#--<br>-->
 										<span class="input-group-btn" >
 										<button type="submit" class="btn btn-primary">
 											Найти
@@ -168,19 +163,19 @@
                                                     <a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
                                             </div>
                                             <div style="padding: 30px; margin-left: 110px;">
-                                                <form method="post" action="/${user.id}/sendRequst">
-                                                    <button class="btn btn-purple w-md" style="margin-top: 15px;">
-                                                        <#if status??>
-                                                        ${status}
-                                                        <#else>
-                                                            Добавить в друзья
-                                                        </#if>
-                                                    </button>
-                                                </form>
+                                                <a href="/${user.id}/sendRequest" class="btn btn-purple w-md" style="margin-top: 7px;">
+                                                    <#if status??>
+                                                    ${status}
+                                                    <#else>
+                                                        Добавить в друзья
+                                                    </#if>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </#list>
+                            <#else>
+                                <div style="padding-top: 5px">Ваш запрос не дал результатов</div>
                             </#if>
                         </div>
 					</div>
@@ -188,28 +183,28 @@
 
                     <!-- Search option -->
 					<div class="flexItem searchCollumnUsers">
-						<div class="white-bg dopBlock">
+                        <div class="white-bg dopBlock">
                             <div align="center" style="border-bottom: 2px solid rgba(202, 194, 199, 0.96); padding-bottom: 10px ">
                                 Параметры поиска
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <label for="city" style="padding: 15px 0 5px 0;"> Город </label>
-                                        <input style="border-color: #c6c6c6" class="form-control" type="text" id="city" name="city" required="" onkeyup="city_hidden.value = this.value" >
-                                    <#--onkeyup="city_hidden.value = this.value" >-->
-
+                                    <label for="paramCity" style="padding: 15px 0 5px 0;"> Город </label>
+                                    <select class="js-example-basic-single form-control" id="paramCity" name="paramCity" form="form" >
+                                        <option selected="selected" value="">---</option>
+                                    <#list cities as city>
+                                        <option value="${city.city}">${city.city}</option>
+                                    </#list>
+                                    </select><span></span>
                                 </div>
                             </div>
                             <div class="form-group ">
                                 <div class="col-xs-12">
-                                    <label for="city" style="padding: 15px 0 5px 0;">День рождения</label>
-                                    <input style="border-color: #c6c6c6" class="form-control" type="text" id="datepicker" name="datepicker" required="" >
-                                    <#--<input type="button" class="btn btn-success" id="getDate" value="Get Date" />-->
-
+                                    <label for="paramDataBirthday" style="padding: 15px 0 5px 0;">День рождения</label>
+                                    <input style="border-color: #c6c6c6" class="form-control" type="date" id="paramDataBirthday" name="paramDataBirthday"  form="form" >
                                 </div>
                             </div>
-
-						</div>
+                        </div>
 					</div>
                     <!-- End Search option -->
 				</div>
@@ -277,24 +272,25 @@
 
     <!-- Basic Plugins -->
     <#--<script src="/js/jquery-2.1.4.min.js"></script>-->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/modernizr.min.js"></script>
-    <script src="/js/pace.min.js"></script>
-    <script src="/js/wow.min.js"></script>
-    <script src="/js/jquery.scrollTo.min.js"></script>
-    <script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/plugins/chat/moment-2.2.1.js"></script>
-    <script src="/plugins/toggles/toggles.min.js"></script>
+        <script src="/js/main.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/modernizr.min.js"></script>
+        <script src="/js/pace.min.js"></script>
+        <script src="/js/wow.min.js"></script>
+        <script src="/js/jquery.scrollTo.min.js"></script>
+        <script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
+        <script src="/plugins/chat/moment-2.2.1.js"></script>
+        <script src="/plugins/toggles/toggles.min.js"></script>
 
-    <!-- Sweet Alerts -->
-    <script src="/plugins/sweet-alert/sweet-alert.min.js"></script>
-    <script src="/plugins/sweet-alert/sweet-alert.init.js"></script>
+        <!-- Sweet Alerts -->
+        <script src="/plugins/sweet-alert/sweet-alert.min.js"></script>
+        <script src="/plugins/sweet-alert/sweet-alert.init.js"></script>
 
-    <!-- Site Script -->
-    <script src="/js/app.js"></script>
+        <!-- Site Script -->
+        <script src="/js/app.js"></script>
 
-    <!-- Demo Swicth Color -->
-    <script src="/js/demo_color.js"></script>
+        <!-- Demo Swicth Color -->
+        <script src="/js/demo_color.js"></script>
 
 	</body>
 </html>

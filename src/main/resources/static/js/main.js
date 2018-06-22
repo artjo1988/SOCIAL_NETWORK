@@ -21,7 +21,7 @@ function sendFile(file) {
 
 
 
-$(function() {
+function chekRegister() {
     var login,
         eMail,
         password,
@@ -36,7 +36,7 @@ $(function() {
         var expLogin = /^[a-zA-Z0-9_]+$/g;
         var resLogin = login.search(expLogin);
         if(resLogin == -1){
-            $("#login").next().hide().text(" Неверный логин").css("color","red").fadeIn(400);
+            $("#login").next().hide().text("  Неверный логин").css("color","red").fadeIn(400);
             $("#login").removeClass().addClass("inputRed");
             loginStat = 0;
             buttonOnAndOff();
@@ -44,21 +44,23 @@ $(function() {
             $.ajax({
                 url: "/checkLogin",
                 type: "POST",
-                data: "?login=" + login,
+                data: {"login" : login},
                 cache: false,
                 success: function(response){
-                    if(response == true){
-                        $("#login").next().hide().text(" Логин занят").css("color","red").fadeIn(400);
+                    if(response["message"] == "true"){
+                        $("#login").next().hide().text("  Логин занят").css("color","red").fadeIn(400);
                         $("#login").removeClass().addClass("inputRed");
+                        loginStat = 0;
+                        buttonOnAndOff();
                     }else{
                         $("#login").removeClass().addClass("inputGreen");
                         $("#login").next().text("");
+                        loginStat = 1;
+                        buttonOnAndOff();
                     }
 
                 }
             });
-            loginStat = 1;
-            buttonOnAndOff();
         }
     });
     $("#login").keyup(function(){
@@ -72,7 +74,7 @@ $(function() {
         var expEmail = /[-0-9a-z_]+@[-0-9a-z_]+\.[a-z]{2,6}/i;
         var resEmail = eMail.search(expEmail);
         if(resEmail == -1){
-            $("#eMail").next().hide().text(" Неверный Email").css("color","red").fadeIn(400);
+            $("#eMail").next().hide().text("  Неверный Email").css("color","red").fadeIn(400);
             $("#eMail").removeClass().addClass("inputRed");
             emailStat = 0;
             buttonOnAndOff();
@@ -80,21 +82,24 @@ $(function() {
             $.ajax({
                 url: "/checkEmail",
                 type: "POST",
-                data: "?eMail=" + eMail,
+                data: "eMail=" + eMail,
                 cache: false,
                 success: function(response){
-                    if(response == true){
-                        $("#eMail").next().hide().text("Email занят").css("color","red").fadeIn(400);
+                    if(response["message"] == "true"){
+                        $("#eMail").next().hide().text("  Email занят").css("color","red").fadeIn(400);
                         $("#eMail").removeClass().addClass("inputRed");
+                        eMailStat = 0;
+                        buttonOnAndOff();
                     }else{
                         $("#eMail").removeClass().addClass("inputGreen");
                         $("#eMail").next().text("");
+                        eMailStat = 1;
+                        buttonOnAndOff();
                     }
 
                 }
             });
-            eMailStat = 1;
-            buttonOnAndOff();
+
         }
     });
     $("#eMail").keyup(function(){
@@ -152,12 +157,11 @@ $(function() {
             $("#submit").attr("disabled","disabled");
         }
     }
-});
+};
 
 function insertEditPost(id){
     var text=document.getElementById(id);
-
-    document.getElementById('inputText').value=text.innerHTML;
+    document.getElementById('inputText').value=text.innerText;
     document.getElementById('idPost_hidden').value=id.toString();
 };
 
