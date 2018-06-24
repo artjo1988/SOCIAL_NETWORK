@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" href="/img/icon.png">
 
-    <title>Друзья друга</title>
+    <title>Друзья пользователя</title>
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -79,9 +79,9 @@
         <!-- Notification -->
         <li class="dropdown">
         <#if newRequestings??>
-            <a data-toggle="dropdown" class="dropdown-toggle" href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+            <a href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
         <#else>
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+            <a href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
         </#if>
         </li>
         <!-- End Notification -->
@@ -97,6 +97,9 @@
                 </li>
                 <li>
                     <a href="/changeEmail"><i class="ion-email"></i>Изменить Email</a>
+                </li>
+                <li>
+                    <a data-toggle="modal" href="#exampleModalCenter"><i class="ion-close"></i>Удалить страницу</a>
                 </li>
                 <li>
                     <a href="/logout"><i class="fa fa-sign-out"></i>Выйти</a>
@@ -138,6 +141,7 @@
             <!-- Users field -->
             <div class="flexItem infoCollumnUsers">
                 <div class="white-bg dopBlock">
+                    <a href="/users/${candidate.id}"><div class=fontForName style="border-bottom: 2px solid rgba(202, 194, 199, 0.96); margin-bottom: 20px">${candidate.firstName} ${candidate.lastName} <span style="font-size: 20px;">(список друзей)</span></div></a>
                     <form method="post" action="/users/${candidate.id}/friends/find" id="form">
                         <div class="form-group m-b-0">
                             <div class="input-group">
@@ -167,15 +171,61 @@
                                         <a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
                                     </div>
                                     <div style="padding: 30px; margin-left: 110px;">
-                                        <a href="/${user.id}/removeFromFriends" class="btn btn-purple w-md">
-                                            Убрать из друзей
-                                        </a>
+                                        <#if  user.condition ??>
+                                            <#if  user.condition == "true">
+                                            <a href="#" class="btn btn-purple w-md">
+                                                Убрать из друзей
+                                            </a>
+                                            </#if>
+                                        </#if>
+                                        <#if user.status??>
+                                            <#if user.status == "Вы подписаны">
+                                                <span class="btn btn-purple w-md" style="margin-top: 7px;">
+                                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span style="color: white"> ${user.status} </span><span class="caret" style="color: white"></span></a>
+                                                    <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -20px; margin-left: -20px;">
+                                                        <li>
+                                                            <a href="/${user.id}/unsubscribe?url=/users/${user.id}/friends">Отписаться</a>
+                                                        </li>
+                                                    </ul>
+                                                </span>
+                                            <#elseif user.status == "У Вас в друзьях">
+                                                <span class="btn btn-purple w-md" style="margin-top: 7px;">
+                                                    <a  data-toggle="dropdown" class="dropdown-toggle" href="#" class="btn btn-purple w-md" style="margin-top: 7px;"><span style="color: white"> ${user.status} </span><span class="caret" style="color: white"></span></a>
+                                                    <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -20px; margin-left: -20px;">
+                                                        <li>
+                                                            <a href="/${user.id}/removeFromFriends?url=/users/${user.id}/friends">Убрать из друзей</a>
+                                                        </li>
+                                                    </ul>
+                                                </span>
+                                            <#elseif user.status == "На Вас подписан">
+                                                <span class="btn btn-purple w-md" style="margin-top: 7px;">
+                                                    <a  data-toggle="dropdown" class="dropdown-toggle" href="#" class="btn btn-purple w-md" style="margin-top: 7px;"><span style="color: white">${user.status} </span><span class="caret" style="color: white"></span></a>
+                                                    <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -20px; margin-left: -20px;">
+                                                        <li>
+                                                            <#if user.role == "ADMIN">
+                                                                <a href="#">Добавить в друзья</a>
+                                                            <#else>
+                                                                <a href="/${user.id}/confirmRequest?url=/users/${user.id}/friends" >Добавить в друзя</a>
+                                                            </#if>
+                                                        </li>
+                                                    </ul>
+                                                </span>
+                                            <#elseif user.status == "Добавить в друзья">
+                                                <span class="btn btn-purple w-md" style="margin-top: 7px;">
+                                                    <#if user.role == "ADMIN">
+                                                        <a href="#" style="color: white">Добавить в друзья</a>
+                                                    <#else>
+                                                        <a  href="/${user.id}/sendRequest?url=/users/${user.id}/friends" ><span style="color: white"> ${user.status} </span></a>
+                                                    </#if>
+                                                </span>
+                                            </#if>
+                                        </#if>
                                     </div>
                                 </div>
                             </div>
                         </#list>
                     <#else>
-                        <div style="padding-top: 5px">  У Вас пока нет друзей</div>
+                        <div style="padding-top: 5px">${message.message}</div>
                     </#if>
                 </div>
             </div>
@@ -267,6 +317,27 @@
                 <span class="themecolor white"></span>
             </li>
         </ul>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="exampleModalLongTitle" style="font-size: 28px">Удаление страницы</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Вы действительно хотите удалить свою страницу?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <a href="/deleted" class="btn btn-primary">Удалить</a>
+            </div>
+        </div>
     </div>
 </div>
 

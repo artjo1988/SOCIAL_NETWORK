@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" href="/img/icon.png">
 
-    <title>Входящие заявки</title>
+    <title>Новые заявки</title>
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -68,9 +68,9 @@
         <!-- Notification -->
         <li class="dropdown">
         <#if newRequestings??>
-            <a data-toggle="dropdown" class="dropdown-toggle" href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+            <a href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
         <#else>
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+            <a href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
         </#if>
         </li>
         <!-- End Notification -->
@@ -86,6 +86,9 @@
                 </li>
                 <li>
                     <a href="/changeEmail"><i class="ion-email"></i>Изменить Email</a>
+                </li>
+                <li>
+                    <a data-toggle="modal" href="#exampleModalCenter"><i class="ion-close"></i>Удалить страницу</a>
                 </li>
                 <li>
                     <a href="/logout"><i class="fa fa-sign-out"></i>Выйти</a>
@@ -139,7 +142,7 @@
                                 <div>
                                     <a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
                                 </div>
-                                <div style="padding: 30px 0 0 25px">
+                                <div style="padding: 20px 0 0 25px">
                                     <p>
                                         <a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
                                         <br>
@@ -147,11 +150,13 @@
                                     </p>
                                     <a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
                                 </div>
-                                <div style="padding: 5px 0 0 30px; margin-left: 110px;">
-                                    <a href="/${user.id}/confirmRequest" class="btn btn-purple w-md" style="margin: 10px">
-                                        Добавить в друзья
-                                    </a>
-                                    <a href="/${user.id}/cancelRequest" class="btn btn-purple w-md" style="margin: 10px">
+                                <div style="padding: 20px 0 0 30px; margin-left: 110px;">
+                                    <#if user.role == "ADMIN">
+                                        <a href="#" >Добавить в друзя</a>
+                                    <#else>
+                                        <a href="/${user.id}/confirmRequest?url=/profile/requests/new" class="btn btn-purple w-md">Добавить в друзья</a>
+                                    </#if>
+                                    <a href="/${user.id}/cancelRequest?url=/profile/requests/new" class="btn btn-purple w-md" style="margin: 10px">
                                         Отменить
                                     </a>
                                 </div>
@@ -246,6 +251,27 @@
                 <span class="themecolor white"></span>
             </li>
         </ul>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="exampleModalLongTitle" style="font-size: 28px">Удаление страницы</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Вы действительно хотите удалить свою страницу?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <a href="/deleted" class="btn btn-primary">Удалить</a>
+            </div>
+        </div>
     </div>
 </div>
 

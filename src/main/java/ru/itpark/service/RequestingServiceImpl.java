@@ -21,14 +21,20 @@ public class RequestingServiceImpl implements RequestingService {
     @Autowired
     private RequestingRepository requestingRepository;
 
-//    @Override
-//    public Boolean getStatus(User outputUser, User inputUser) {
-//        Optional<Requesting> requesting = requestingRepository.findByOutputUserAndInputUser(outputUser, inputUser);
-//        if(requesting.isPresent()){
-//            return true;
-//        }
-//        return false;
-//    }
+    @Override
+    public String getStatus(User user, User candidate) {
+        Optional<Requesting> requestOptional = findRequest(user, candidate);
+        if(requestOptional.isPresent()){
+            Requesting request = requestOptional.get();
+            if((request.getRoleRequesting().equals(RoleRequesting.NEW) || request.getRoleRequesting().equals(RoleRequesting.CANCEL))) {
+                if(request.getInputUser().getId() == candidate.getId())return "Вы подписаны";
+                else if((request.getInputUser().getId() == user.getId())) return "На Вас подписан";
+            }
+            else if (request.getRoleRequesting().equals(RoleRequesting.TAKE)) return "У Вас в друзьях";
+
+        }
+        return "Добавить в друзья";
+    }
 
     @Override
     public Integer getNewRequestsCount(User user) {
@@ -151,6 +157,12 @@ public class RequestingServiceImpl implements RequestingService {
 
     @Override
     public Optional<Requesting> getOutputRequest(User user, User candidate) {
-        return requestingRepository.findOneByInputUserAndOutputUserAndRoleRequestingOrRoleRequesting(candidate, user, RoleRequesting.NEW, RoleRequesting.CANCEL);
+        if(requestingRepository.findOneByInputUserAndOutputUserAndRoleRequesting(candidate, user, RoleRequesting.NEW).isPresent()) {
+            return requestingRepository.findOneByInputUserAndOutputUserAndRoleRequesting(candidate, user, RoleRequesting.NEW);
+        }
+        if(requestingRepository.findOneByInputUserAndOutputUserAndRoleRequesting(candidate, user, RoleRequesting.CANCEL).isPresent()) {
+            return requestingRepository.findOneByInputUserAndOutputUserAndRoleRequesting(candidate, user, RoleRequesting.CANCEL);
+        }
+        return Optional.empty();
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RequestingService {
-//    Boolean getStatus(User outputUser, User inputUser);
+    String getStatus(User outputUser, User inputUser);
     Integer getNewRequestsCount(User user);
     Optional <List<Requesting>> getInputRequests(User user);
     Optional <List<Requesting>> getOutputRequests(User user);

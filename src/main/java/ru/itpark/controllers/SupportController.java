@@ -72,25 +72,26 @@ public class SupportController {
 
     @GetMapping("/{id-candidate}/sendRequest")
     public String postSendRequst(@PathVariable("id-candidate") Long idCandidate, Authentication authentication, HttpServletRequest httpServletRequest){
+        String url = httpServletRequest.getParameter("url");
         User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
         User candidate = userRepositori.findOneById(idCandidate).orElseThrow(IllegalArgumentException::new);
         //Замена местами user и candidate
-        if(requestingService.getNewRequest(candidate, user).isPresent()) return "redirect:/profile/friends";
+        if(requestingService.getNewRequest(candidate, user).isPresent())  return "redirect:" + url;
         if (requestingService.findRequest(user, candidate).isPresent()){
             Requesting request = requestingService.findRequest(user, candidate).get();
             if (request.getRoleRequesting().equals(RoleRequesting.UNSUBSCRIBE)) {
                 request.setRoleRequesting(RoleRequesting.CANCEL);
                 requestingRepository.save(request);
-                return "redirect:/profile/friends";
+                return "redirect:" + url;
             }
             else if(request.getRoleRequesting().equals(RoleRequesting.CANCEL)){
-                return "redirect:/profile/friends";
+                return "redirect:" + url;
             }
             else if(request.getRoleRequesting().equals(RoleRequesting.TAKE)){
-                return "redirect:/profile/friends";
+                return "redirect:" + url;
             }
             else if(request.getRoleRequesting().equals(RoleRequesting.NEW)){
-                return "redirect:/profile/friends";
+                return "redirect:" + url;
             }
         }
         Requesting requesting  = Requesting.builder()
@@ -99,15 +100,15 @@ public class SupportController {
                 .roleRequesting(RoleRequesting.NEW)
                 .build();
         requestingRepository.save(requesting);
-        return "redirect:/profile/friends";
+        return "redirect:" + url;
     }
 
     @GetMapping("/{id-candidate}/confirmRequest")
     public String postConfirmRequst(@PathVariable(name = "id-candidate") Long idCandidate, Authentication authentication, HttpServletRequest httpServletRequest){
-        System.out.println(httpServletRequest.getRequestURL());
+        String url = httpServletRequest.getParameter("url");
         User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
         User candidate = userRepositori.findOneById(idCandidate).orElseThrow(IllegalArgumentException::new);
-        if(requestingService.getConfirmedRequest(user, candidate).isPresent()) return "redirect:/profile/friends";
+        if(requestingService.getConfirmedRequest(user, candidate).isPresent())  return "redirect:" + url;
         if(requestingService.findRequest(user, candidate).isPresent()) {
             Requesting request = requestingService.findRequest(user, candidate).get();
             if (request.getRoleRequesting().equals(RoleRequesting.CANCEL)) {
@@ -115,12 +116,12 @@ public class SupportController {
                 requestingRepository.save(request);
                 user.getFriends().add(candidate);
                 userRepositori.save(user);
-                return "redirect:/profile/friends";
+                return "redirect:" + url;
             }
             else if(request.getRoleRequesting().equals(RoleRequesting.UNSUBSCRIBE)){
                 request.setRoleRequesting(RoleRequesting.CANCEL);
                 requestingRepository.save(request);
-                return "redirect:/profile/friends";
+                return "redirect:" + url;
             }
         }
         Requesting request = requestingService.getNewRequest(user, candidate).orElseThrow(IllegalArgumentException::new);
@@ -128,24 +129,24 @@ public class SupportController {
         requestingRepository.save(request);
         user.getFriends().add(candidate);
         userRepositori.save(user);
-        StringBuffer url = httpServletRequest.getRequestURL();
-        return "redirect:/profile/friends";
+        return "redirect:" + url;
     }
 
     @GetMapping("/{id-candidate}/cancelRequest")
     public String postCancelRequest(@PathVariable(name = "id-candidate") Long idCandidate, Authentication authentication, HttpServletRequest httpServletRequest){
+        String url = httpServletRequest.getParameter("url");
         User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
         User candidate = userRepositori.findOneById(idCandidate).orElseThrow(IllegalArgumentException::new);
+        if(requestingService.getCancelRequest(user, candidate).isPresent()) return "redirect:" + url;
         Requesting request = requestingService.getNewRequest(user, candidate).orElseThrow(IllegalArgumentException::new);
         request.setRoleRequesting(RoleRequesting.CANCEL);
         requestingRepository.save(request);
-        String url = httpServletRequest.getRequestURI();
-        return "redirect:/profile/friends";
+        return "redirect:" + url;
     }
 
     @GetMapping("/{id-candidate}/removeFromFriends")
     public String postRemoveFromFriends(@PathVariable(name = "id-candidate") Long idCandidate, Authentication authentication, HttpServletRequest httpServletRequest){
-        System.out.println(httpServletRequest.getRequestURL());
+        String url = httpServletRequest.getParameter("url");
         User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
         User candidate = userRepositori.findOneById(idCandidate).orElseThrow(IllegalArgumentException::new);
         if(requestingService.getConfirmedRequest(user, candidate).isPresent()) {
@@ -154,7 +155,7 @@ public class SupportController {
             requestingRepository.save(request);
             user.getFriends().remove(candidate);
             userRepositori.save(user);
-            return "redirect:/profile/friends";
+            return "redirect:" + url;
         }
         else if (requestingService.getConfirmedRequest(candidate, user).isPresent()){
             Requesting request = (requestingService.getConfirmedRequest(candidate, user)).get();
@@ -165,15 +166,17 @@ public class SupportController {
             candidate.getFriends().remove(user);
             userRepositori.save(candidate);
         }
-        return "redirect:/profile/friends";
+        return "redirect:" + url;
     }
 
     @GetMapping("/{id-candidate}/unsubscribe")
     public String postUnsubscribe(@PathVariable(name = "id-candidate") Long idCandidate, Authentication authentication, HttpServletRequest httpServletRequest){
+        String url = httpServletRequest.getParameter("url");
         User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
         User candidate = userRepositori.findOneById(idCandidate).orElseThrow(IllegalArgumentException::new);
         //user и candidate поменены местами
-        if(requestingService.getSubscribeRequest(candidate, user).isPresent()) return "redirect:/profile/friends";
+        if(requestingService.getSubscribeRequest(candidate, user).isPresent()|| requestingService.getSubscribeRequest(user, candidate).isPresent()
+                || !requestingService.findRequest(user, candidate).isPresent()) return "redirect:" + url;
         Requesting request = requestingService.getOutputRequest(user, candidate).orElseThrow(IllegalArgumentException::new);
         if(request.getRoleRequesting().equals(RoleRequesting.NEW)){
             requestingRepository.delete(request);
@@ -182,7 +185,7 @@ public class SupportController {
             request.setRoleRequesting(RoleRequesting.UNSUBSCRIBE);
             requestingRepository.save(request);
         }
-        return "redirect:/profile/friends";
+        return "redirect:" + url;
     }
 
     @PostMapping("/addPost")
@@ -284,5 +287,56 @@ public class SupportController {
         if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
         return "requestsNew";
     }
+
+    @GetMapping("/users/{id-candidate}/requests/input")
+    public String getCandidateRequestInput(Authentication authentication, @PathVariable("id-candidate") Long idCandidate,
+                                           ModelMap modelMap){
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
+        UserDto userDto = UserDto.dtoUserFromUser(user);
+        User candidate = userRepositori.findOneById(idCandidate).orElseThrow(IllegalArgumentException::new);
+        UserDto candidateDto = userDto.dtoUserFromUser(candidate);
+        modelMap.addAttribute("user", userDto);
+        modelMap.addAttribute("candidate", candidateDto);
+        List<UserDto> usersDto = requestingService.getInputUsersDtoFromRequests(candidate);
+        if(usersDto.size() != 0){
+            for(UserDto usr : usersDto){
+                if(usr.getId() != userDto.getId()){
+                    usr.setStatus(requestingService.getStatus(user, userRepositori.findOne(usr.getId())));
+                }
+                if(usr.getId() == userDto.getId()){
+                    usr.setCondition("true");
+                }
+            }
+            modelMap.addAttribute("users", usersDto);
+        }
+        else modelMap.addAttribute("message", new Mess("Пока нет подписчиков"));
+        modelMap.addAttribute("users", usersDto);
+        Integer newRequestings = requestingService.getNewRequestsCount(candidate);
+        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        return "requestsInputCandidate";
+    }
+
+    @PostMapping("/getStatus")
+    public ResponseEntity<Object> postGetStatus(@RequestParam("idUser") Long idUser, @RequestParam("") Long idCandidate){
+        String message = requestingService.getStatus(userRepositori.findOne(idUser), userRepositori.findOne(idCandidate));
+        return ResponseEntity.ok(new Mess(message));
+    }
+
+    @GetMapping("/del")
+    public String  getDeleted(Authentication authentication){
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
+        user.setRole(Role.ADMIN);
+        userRepositori.save(user);
+        return "redirect:/profile";
+    }
+
+    @GetMapping("/recover")
+    public String getRecover(Authentication authentication){
+        User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
+        user.setRole(Role.USER);
+        userRepositori.save(user);
+        return "redirect:/profile";
+    }
+
 
 }

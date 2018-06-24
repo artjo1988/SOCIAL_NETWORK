@@ -1,7 +1,5 @@
 <#ftl encoding='UTF-8'>
 <!DOCTYPE html>
-<#import 'spring.ftl' as spring>
-<@spring.bind "user"/>
 <html lang="en">
 
 	<head>
@@ -68,9 +66,9 @@
 			<!-- Notification -->
 			<li class="dropdown">
 			<#if newRequestings??>
-				<a data-toggle="dropdown" class="dropdown-toggle" href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+				<a href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
 			<#else>
-				<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+				<a href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
 			</#if>
 			</li>
 			<!-- End Notification -->
@@ -87,6 +85,9 @@
 					<li>
 						<a href="/changeEmail"><i class="ion-email"></i>Изменить Email</a>
 					</li>
+                    <li>
+                        <a data-toggle="modal" href="#exampleModalCenter"><i class="ion-close"></i>Удалить страницу</a>
+                    </li>
 					<li>
 						<a href="/logout"><i class="fa fa-sign-out"></i>Выйти</a>
 					</li>
@@ -121,6 +122,7 @@
 	<!-- End Aside -->
 	<!--Main Content -->
 	<section class="content">
+
 		<!-- Page Content -->
 		<div class="wraper container-fluid">
 			<div class="flexWrap profileBlock">
@@ -250,9 +252,9 @@
 								</div>
 							</div>
 						<div class="flexWrap profileNums">
-							<div class="flexItem"><a href="#"><span>${info.friends}</span>друзей</a></div>
-							<div class="flexItem"><a href="#"><span>${info.subscribers}</span>подписчиков</a></div>
-							<div class="flexItem"><a href="#"><span>${info.posts}</span>постов</a></div>
+							<div class="flexItem"><a href="/profile/friends"><span>${info.friends}</span>друзей</a></div>
+							<div class="flexItem"><a href="/profile/requests/input"><span>${info.subscribers}</span>подписчиков</a></div>
+							<div class="flexItem"><a href="#post"><span>${info.posts}</span>постов</a></div>
 							<div class="flexItem"><a href="#"><span>${info.chats}</span>диалогов</a></div>
 						</div>
 					</div>
@@ -276,6 +278,7 @@
 								<#--</div>-->
 							</div>
 						</form>
+						<span type="hidden" id="post"></span>
 						<#if posts??>
 							<#list posts as post>
 							<div class="dopBlockPosts tile-stats white-bg" style="background: #ebf0ec" display: block" >
@@ -382,6 +385,27 @@
 			</ul>
 		</div>
 	</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="form" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title" id="exampleModalLongTitle" style="font-size: 28px">Удаление страницы</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Вы действительно хотите удалить свою страницу?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                    <a href="/del" class="btn btn-primary">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 	<!-- Basic Plugins -->
 	<script src="/js/main.js"></script>

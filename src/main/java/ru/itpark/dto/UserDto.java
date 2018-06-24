@@ -29,6 +29,9 @@ public class UserDto {
     private List<Requesting> inputRequestings;
     private List<Post> posts;
     private List<Chat> chats;
+    private String status;
+    private String role;
+    private String condition;
 
     private static String converterDate(String date){
         String [] arrStr = date.split("-");
@@ -59,6 +62,7 @@ public class UserDto {
         String avatarUrlUser = null;
         if(user.getAvatarFileInfo() != null) avatarUrlUser = "/files/" + user.getAvatarFileInfo().getStorageName();
         else avatarUrlUser = "/img/no_avatar.jpg";
+        if(user.getRole().equals(Role.ADMIN)) avatarUrlUser = "/img/deleted.jpg";
 
         return UserDto.builder()
                 .id(user.getId())
@@ -75,6 +79,9 @@ public class UserDto {
                 .inputRequestings(user.getInputRequestings())
                 .posts(user.getPosts())
                 .chats(user.getChats())
+                .status(null)
+                .role(user.getRole().name())
+                .condition(null)
                 .build();
     }
 }

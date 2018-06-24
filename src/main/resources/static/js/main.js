@@ -165,5 +165,24 @@ function insertEditPost(id){
     document.getElementById('idPost_hidden').value=id.toString();
 };
 
+function getStatus(idUser, idCandidate){
+    var idUs = document.getElementById(idUser)
+    var idCand = document.getElementById(idCandidate)
+    .ajax({
+        type: "POST",
+        url: "/getStatus",
+        data:{
+            "idUser" : idUs,
+            "idCandidate" : idCand
+        },
+        contentType: false,
+        processData: false,
+        cache: false,
+        success: function(response){
+           document.getElementById(idCandidate).value = response["message"].innerHTML;
+        }
+    })
+};
+
 
 

@@ -84,6 +84,7 @@ public class UserController {
         User user = userRepositori.findOne(userService.getUserInfo(authentication).getId());
         UserDto userDto = UserDto.dtoUserFromUser(user);
         modelMap.addAttribute("user",userDto);
+        if (user.getRole().equals(Role.ADMIN)) return "deleted";
         List<Post> reverseList = postService.reverseList(postService.getPostsUserTo(userDto.getId()));
         for (Post post: reverseList){
             post.setOwnerPostDto(UserDto.dtoUserFromUser(post.getOwnerPost()));
@@ -177,6 +178,7 @@ public class UserController {
             }
             modelMap.addAttribute("users", usersDto);
         }
+        else modelMap.addAttribute("message", new Mess("У вас пока нет друзей"));
         Integer newRequestings = requestingService.getNewRequestsCount(user);
         if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
         List<City> cities = cityRepository.findAll();
@@ -224,6 +226,7 @@ public class UserController {
                     }
                 }
                 if(usersDto.size() != 0)modelMap.addAttribute("users", usersDto);
+                else modelMap.addAttribute("message", new Mess("Ваш запрос не дал результатов"));
                 return "friends";
             }
 
@@ -266,6 +269,7 @@ public class UserController {
                         }
                     }
                     if(usersDtoTemp.size() != 0)modelMap.addAttribute("users", usersDtoTemp);
+                    else modelMap.addAttribute("message", new Mess("Ваш запрос не дал результатов"));
                     return "friends";
                 }
 
@@ -275,7 +279,8 @@ public class UserController {
                         usersDto.add(UserDto.dtoUserFromUser(friend));
                     }
                     modelMap.addAttribute("user",userDto);
-                    modelMap.addAttribute("users", usersDto);
+                    if(usersDto.size() != 0)modelMap.addAttribute("users", usersDto);
+                    else modelMap.addAttribute("message", new Mess("Ваш запрос не дал результатов"));
                     return "friends";
                 }
 
@@ -314,11 +319,13 @@ public class UserController {
                         }
                     }
                     if(usersDtoTemp.size() != 0)modelMap.addAttribute("users", usersDtoTemp);
+                    else modelMap.addAttribute("message", new Mess("Ваш запрос не дал результатов"));
                     modelMap.addAttribute("user", userDto);
                     return "friends";
                 }
             }
         }
+        else modelMap.addAttribute("message", new Mess("У вас пока нет друзей"));
         return "friends";
     }
 
@@ -338,10 +345,16 @@ public class UserController {
         if(friends.size() != 0){
             List<UserDto> usersDto = new ArrayList<>();
             for (User userFor: friends){
-                usersDto.add(UserDto.dtoUserFromUser(userFor));
+                UserDto userForDto = UserDto.dtoUserFromUser(userFor);
+                if(userForDto.getId() != userDto.getId()){
+                    userForDto.setStatus(requestingService.getStatus(user, userFor));
+                }
+                usersDto.add(userForDto);
+                if(userForDto.getId() == userDto.getId()) userForDto.setCondition("true");
             }
             modelMap.addAttribute("users", usersDto);
         }
+        else modelMap.addAttribute("message", new Mess("Пока нет друзей"));
         Integer newRequestings = requestingService.getNewRequestsCount(user);
         if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
         List<City> cities = cityRepository.findAll();
@@ -392,7 +405,18 @@ public class UserController {
                         usersDto.add(UserDto.dtoUserFromUser(friend));
                     }
                 }
-                if(usersDto.size() != 0)modelMap.addAttribute("users", usersDto);
+                if(usersDto.size() != 0){
+                    for(UserDto usr : usersDto){
+                        if(usr.getId() != userDto.getId()){
+                            usr.setStatus(requestingService.getStatus(user, userRepositori.findOne(usr.getId())));
+                        }
+                        if(usr.getId() == userDto.getId()){
+                            usr.setCondition("true");
+                        }
+                    }
+                    modelMap.addAttribute("users", usersDto);
+                }
+                else modelMap.addAttribute("message", new Mess("Ваш запрос не дал результатов"));
                 return "friendsCandidate";
             }
 
@@ -434,7 +458,18 @@ public class UserController {
                             usersDtoTemp.add(userDtoFor);
                         }
                     }
-                    if(usersDtoTemp.size() != 0)modelMap.addAttribute("users", usersDtoTemp);
+                    if(usersDtoTemp.size() != 0){
+                        for(UserDto usr : usersDtoTemp){
+                            if(usr.getId() != userDto.getId()){
+                                usr.setStatus(requestingService.getStatus(user, userRepositori.findOne(usr.getId())));
+                            }
+                            if(usr.getId() == userDto.getId()){
+                                usr.setCondition("true");
+                            }
+                        }
+                        modelMap.addAttribute("users", usersDtoTemp);
+                    }
+                    else modelMap.addAttribute("message", new Mess("Ваш запрос не дал результатов"));
                     return "friendsCandidate";
                 }
 
@@ -444,7 +479,18 @@ public class UserController {
                         usersDto.add(UserDto.dtoUserFromUser(friend));
                     }
                     modelMap.addAttribute("user",userDto);
-                    modelMap.addAttribute("users", usersDto);
+                    if(usersDto.size() != 0){
+                        for(UserDto usr : usersDto){
+                            if(usr.getId() != userDto.getId()){
+                                usr.setStatus(requestingService.getStatus(user, userRepositori.findOne(usr.getId())));
+                            }
+                            if(usr.getId() == userDto.getId()){
+                                usr.setCondition("true");
+                            }
+                        }
+                        modelMap.addAttribute("users", usersDto);
+                    }
+                    else modelMap.addAttribute("message", new Mess("Ваш запрос не дал результатов"));
                     return "friendsCandidate";
                 }
 
@@ -482,12 +528,25 @@ public class UserController {
                             usersDtoTemp.add(userDtoFor);
                         }
                     }
-                    if(usersDtoTemp.size() != 0)modelMap.addAttribute("users", usersDtoTemp);
+
+                    if(usersDtoTemp.size() != 0){
+                        for(UserDto usr : usersDtoTemp){
+                            if(usr.getId() != userDto.getId()){
+                                usr.setStatus(requestingService.getStatus(user, userRepositori.findOne(usr.getId())));
+                            }
+                            if(usr.getId() == userDto.getId()){
+                                usr.setCondition("true");
+                            }
+                        }
+                        modelMap.addAttribute("users", usersDtoTemp);
+                    }
+                    else modelMap.addAttribute("message", new Mess("Ваш запрос не дал результатов"));
                     modelMap.addAttribute("user", userDto);
                     return "friendsCandidate";
                 }
             }
         }
+        else modelMap.addAttribute("message", new Mess("Пока нет друзей"));
         return "friendsCandidate";
     }
 
@@ -499,7 +558,10 @@ public class UserController {
         List<User> users = userRepositori.findAllByIdIsNot(userDto.getId());
         List<UserDto> usersDto = new ArrayList<>();
         for (User userFor: users){
-            usersDto.add(UserDto.dtoUserFromUser(userFor));
+            String status = requestingService.getStatus(user, userFor);
+            UserDto userForDto = UserDto.dtoUserFromUser(userFor);
+            userForDto.setStatus(status);
+            usersDto.add(userForDto);
         }
         modelMap.addAttribute("users", usersDto);
         modelMap.addAttribute("user",userDto);
@@ -522,6 +584,7 @@ public class UserController {
         List<UserDto> usersDto = new ArrayList<>();
         Integer newRequestings = requestingService.getNewRequestsCount(user);
         if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+
         List<City> cities = cityRepository.findAll();
         modelMap.addAttribute("cities", cities);
 
@@ -660,10 +723,9 @@ public class UserController {
             post.setOwnerPostDto(UserDto.dtoUserFromUser(post.getOwnerPost()));
         }
         modelMap.addAttribute("posts", reverseList);
-//        if(requestingService.getStatus(user, userCandidate)) {
-//            modelMap.addAttribute("status", "Вы подписаны");
-//        }
-
+        String status = requestingService.getStatus(user, userCandidate);
+        modelMap.addAttribute("status", status);
+        if (userCandidate.getRole().equals(Role.ADMIN)) return "deletedCandidate";
         List<User> friends = new ArrayList<>();
         friends.addAll(candidateDto.getFriends());
         friends.addAll(candidateDto.getFriendOf());

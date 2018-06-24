@@ -38,7 +38,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return !user.getState().equals(State.DELETED);
+        return true;
     }
 
     @Override

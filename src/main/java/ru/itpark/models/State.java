@@ -1,5 +1,5 @@
 package ru.itpark.models;
 
 public enum State {
-    ACTIVE, BANNED, DELETED;
+    ACTIVE, BANNED, NULL, DELETED;
 }
