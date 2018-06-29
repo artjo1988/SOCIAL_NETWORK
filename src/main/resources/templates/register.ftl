@@ -62,7 +62,7 @@
 				<div class="panel-heading">
 					<h3 class="text-center m-t-10"> Регистрация </h3>
 				</div>
-				<form class="form-horizontal m-t-40" method="post" action="/register">
+				<form class="form-horizontal m-t-40" method="post" action="/register" id="form">
 					<div class="form-group ">
 						<div class="col-xs-12">
 							<label for="login">
@@ -119,7 +119,7 @@
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <label for="dataBirthday">
-                                <input class="form-control " type="date" id="dataBirthday" name="dataBirthdayy" required="" tabindex=8 placeholder="Дата рождения"><span></span>
+                                <input class="form-control " type="date" id="dataBirthday" name="dataBirthday" form="form" required="" tabindex=8 placeholder="Дата рождения"><span></span>
                             </label>
                         </div>
                     </div>

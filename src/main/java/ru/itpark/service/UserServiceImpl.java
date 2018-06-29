@@ -33,6 +33,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerNewUser(UserForm userForm) {
         String hashPassword = passwordEncoder.encode(userForm.getPassword());
+
         User newUser = User.builder()
                 .login(userForm.getLogin())
                 .hashPassword(hashPassword)

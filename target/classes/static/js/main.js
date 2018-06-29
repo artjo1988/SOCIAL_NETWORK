@@ -165,24 +165,143 @@ function insertEditPost(id){
     document.getElementById('idPost_hidden').value=id.toString();
 };
 
-function getStatus(idUser, idCandidate){
-    var idUs = document.getElementById(idUser)
-    var idCand = document.getElementById(idCandidate)
-    .ajax({
-        type: "POST",
-        url: "/getStatus",
-        data:{
-            "idUser" : idUs,
-            "idCandidate" : idCand
-        },
-        contentType: false,
-        processData: false,
-        cache: false,
-        success: function(response){
-           document.getElementById(idCandidate).value = response["message"].innerHTML;
+
+function getMessages() {
+    const idChat = getUrlVars()['id'];
+    $.ajax({
+        url: SERVER_API_URL + '/chats/' + idChat + '/messages/get',
+        type: 'GET',
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+            for (let i = 0; i < response.length; i++){
+                writeMessage(response[i].from, response[i].message)
+            }
+        }
+    });
+}
+
+function sendMessageBySocket(message, chatId) {
+    var json = {};
+    json["text"] = message.value;
+    $.ajax({
+        url: SERVER_API_URL + '/chats/' + chatId + '/messages/send',
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify(json),
+        complete: function () {
+            var input = document.getElementById("message");
+            input.value = "";
         }
     })
-};
+}
+
+/**
+ * функция вывода сообщения в текстовом поле chatMessagesList
+ * @param message - текст сообщения
+ */
+function writeMessage(from, message) {
+    var select = document.getElementById('chatMessagesList');
+    var messageOption = document.createElement('option');
+    messageOption.value = 0;
+    messageOption.innerHTML = from + " : " + message;
+    select.appendChild(messageOption);
+    // var messageOptionFrom = document.createElement('option');
+    // messageOptionFrom.value = 0;
+    // messageOptionFrom.innerHTML = from + " : ";
+    // select.appendChild(messageOptionFrom);
+    // var messageOptionMessage = document.createElement('option');
+    // messageOptionMessage.value = 0;
+    // messageOptionMessage.innerHTML = ("- - - - -> " + message);
+    // select.appendChild(messageOptionMessage);
+}
+/**
+ * функция получения параметров  url'a
+ * для того, что бы вытащить только один параметр нужно указать его в -[]
+ * например: getUrlVars()['id'];
+ * @returns массив всех параметров
+ */
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+
+const SERVER_API_URL = 'http://localhost';
+
+function doConnect() {
+    const chatId = getUrlVars()['id'];
+    var socket = new SockJS(SERVER_API_URL + '/chat');
+    var stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+        stompClient.subscribe(
+            '/topic/chats/' + chatId,
+            // что происходит, когда к нам приходит сообщение
+            function (messageOutput) {
+                writeMessage(JSON.parse(messageOutput.body).from, JSON.parse(messageOutput.body).message);
+            });
+    });
+}
+
+// function getStatus(idUser, idCandidate){
+//     var idUs = document.getElementById(idUser)
+//     var idCand = document.getElementById(idCandidate)
+//     .ajax({
+//         type: "POST",
+//         url: "/getStatus",
+//         data:{
+//             "idUser" : idUs,
+//             "idCandidate" : idCand
+//         },
+//         contentType: false,
+//         processData: false,
+//         cache: false,
+//         success: function(response){
+//            document.getElementById(idCandidate).value = response["message"].innerHTML;
+//         }
+//     })
+// };
+
+// function chekChatById(id) {
+//     $.ajax({
+//         type: 'GET',
+//         url: '/chat/' + id,
+//         contentType: false,
+//         processData: false,
+//         cache: false,
+//         success: function (response){
+//             $.ajax({
+//                 type: 'GET',
+//                 url: 'http://localhost:8081/chat.html',
+//                 contentType: false,
+//                 processData: false,
+//                 cache: false,
+//                 success:{
+//
+//                 },
+//                 error:{
+//                     400 : function () {
+//                         alert('Не получилось!')
+//                     }
+//                 }
+//             });
+//         },
+//         statusCode: {
+//             400 : function () {
+//                 alert('Не получилось!')
+//             }
+//         }
+//     });
+// };
+
+
+
+
+
 
 
 

@@ -62,16 +62,20 @@
     <ul class="list-inline navbar-right top-menu top-right-menu">
         <!-- Messages -->
         <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count"></span> </a>
+            <#if newMessages??>
+                <a href="/profile/messages"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count">${newMessages}</span> </a>
+            <#else>
+                <a href="#"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count"></span> </a>
+            </#if>
         </li>
         <!-- End messages -->
         <!-- Notification -->
         <li class="dropdown">
-        <#if newRequestings??>
-            <a href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
-        <#else>
-            <a href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
-        </#if>
+            <#if newRequestings??>
+                <a href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+            <#else>
+                <a href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+            </#if>
         </li>
         <!-- End Notification -->
         <!-- User Menu Dropdown -->
@@ -112,7 +116,7 @@
                 <a href="/profile/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
             </li>
             <li class="active">
-                <a href="/profile/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
+                <a href="/profile/messages"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
             </li>
             <li class="active">
                 <a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>

@@ -58,16 +58,20 @@
     <ul class="list-inline navbar-right top-menu top-right-menu">
         <!-- Messages -->
         <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count"></span> </a>
+            <#if newMessages??>
+                <a href="/profile/messages"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count">${newMessages}</span> </a>
+            <#else>
+                <a href="#"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count"></span> </a>
+            </#if>
         </li>
         <!-- End messages -->
         <!-- Notification -->
         <li class="dropdown">
-        <#if newRequestings??>
-            <a href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
-        <#else>
-            <a href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
-        </#if>
+            <#if newRequestings??>
+                <a href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+            <#else>
+                <a href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+            </#if>
         </li>
         <!-- End Notification -->
         <!-- User Menu Dropdown -->
@@ -108,7 +112,7 @@
                 <a href="/profile/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
             </li>
             <li class="active">
-                <a href="/profile/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
+                <a href="/profile/messages"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
             </li>
             <li class="active">
                 <a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>
@@ -132,7 +136,7 @@
                 <!-- Аватарка-->
                 <div class="avatarUsers tile-stats white-bg">
                     <img src= "${candidate.avatarUrl}" width="210" height="230" style="width: 210px; height: 250px:">
-                    <a href="/${candidate.id}/message" class="btn btn-purple w-md" style="margin-top: 7px; margin-right: 10px">Написать сообщение <span style="margin-left: 7px" class="ion-chatbubbles"></span></a>
+                    <a href="/users/${candidate.id}/message" class="btn btn-purple w-md" style="margin-top: 7px; margin-right: 10px">Написать сообщение <span style="margin-left: 7px" class="ion-chatbubbles"></span></a>
                     <#--<span class="btn btn-purple w-md" style="margin-top: 7px;">-->
                         <#if status == "Вы подписаны">
                         <span class="btn btn-purple w-md" style="margin-top: 7px;">
@@ -157,7 +161,7 @@
                             <a  data-toggle="dropdown" class="dropdown-toggle" href="#" class="btn btn-purple w-md" style="margin-top: 7px;"><span style="color: white"> ${status} </span><span class="caret" style="color: white"></span></a>
                             <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -20px; margin-left: -20px;">
                                 <li>
-                                    <a href="/${candidate.id}/confirmRequest?url=/users/${candidate.id}" >Добавить в друзей</a>
+                                    <a href="/${candidate.id}/confirmRequest?url=/users/${candidate.id}" >Добавить в друзья</a>
                                 </li>
                             </ul>
                         </span>

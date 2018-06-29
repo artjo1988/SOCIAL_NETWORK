@@ -45,6 +45,8 @@
 	justify-content: space-around;}
 .flexWrap.profileNums .flexItem {}
 .flexWrap.profileNums a span {display: block; text-align: center; font-weight: bold; font-size: 15px;}
+.avatarUsers.tile-stats {overflow: inherit;}
+.menuSubscrib{position: relative;}
 /* End Custom CSS */
 
 body {

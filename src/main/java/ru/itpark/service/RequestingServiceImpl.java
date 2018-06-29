@@ -44,7 +44,7 @@ public class RequestingServiceImpl implements RequestingService {
     }
 
     @Override
-    public List<UserDto> getInputUsersDtoFromRequests (User user){
+    public Optional<List<UserDto>> getInputUsersDtoFromRequests (User user){
         Optional<List<Requesting>> requestsOptional = getInputRequests(user);
         if(requestsOptional.isPresent()){
             List<UserDto> usersDto = new ArrayList<>();
@@ -52,13 +52,13 @@ public class RequestingServiceImpl implements RequestingService {
             for (Requesting request : requests) {
                 usersDto.add(UserDto.dtoUserFromUser(request.getOutputUser()));
             }
-            return usersDto;
+            return Optional.of(usersDto);
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override
-    public List<UserDto> getNewUsersDtoFromRequests(User user) {
+    public Optional<List<UserDto>> getNewUsersDtoFromRequests(User user) {
         Optional<List<Requesting>> requestsOptional = getNewRequests(user);
         if(requestsOptional.isPresent()){
             List<UserDto> usersDto = new ArrayList<>();
@@ -66,13 +66,13 @@ public class RequestingServiceImpl implements RequestingService {
             for (Requesting request : requests) {
                 usersDto.add(UserDto.dtoUserFromUser(request.getOutputUser()));
             }
-            return usersDto;
+            return Optional.of(usersDto);
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override
-    public List<UserDto> getOutputUsersDtoFromRequests(User user) {
+    public Optional<List<UserDto>> getOutputUsersDtoFromRequests(User user) {
         Optional<List<Requesting>> requestsOptional = getOutputRequests(user);
         if(requestsOptional.isPresent()){
             List<UserDto> usersDto = new ArrayList<>();
@@ -80,9 +80,9 @@ public class RequestingServiceImpl implements RequestingService {
             for (Requesting request : requests) {
                 usersDto.add(UserDto.dtoUserFromUser(request.getInputUser()));
             }
-            return usersDto;
+            return Optional.of(usersDto);
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override

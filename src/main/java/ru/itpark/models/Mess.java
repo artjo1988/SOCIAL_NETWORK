@@ -14,5 +14,7 @@ import javax.persistence.Table;
 @Getter
 
 public class Mess {
+
     private String message;
+
 }

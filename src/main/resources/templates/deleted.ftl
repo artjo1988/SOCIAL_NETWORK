@@ -110,7 +110,7 @@
 					<#--<a href="/profile/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>-->
 				<#--</li>-->
 				<#--<li class="active">-->
-					<#--<a href="/profile/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>-->
+					<#--<a href="/profile/messages"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>-->
 				<#--</li>-->
 				<#--<li class="active">-->
 					<#--<a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>-->

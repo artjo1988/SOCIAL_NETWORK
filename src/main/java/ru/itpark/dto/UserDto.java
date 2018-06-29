@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Transactional
 public class UserDto {
     private Long id;
     private String login;

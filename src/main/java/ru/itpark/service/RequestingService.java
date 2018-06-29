@@ -21,8 +21,8 @@ public interface RequestingService {
     Optional<Requesting> getCancelRequest(User user, User candidate);
     Optional<Requesting> getOutputRequest(User user, User candidate);
     Optional<Requesting> getSubscribeRequest(User user, User candidate);
-    List<UserDto> getInputUsersDtoFromRequests (User user);
-    List<UserDto> getNewUsersDtoFromRequests (User user);
-    List<UserDto> getOutputUsersDtoFromRequests (User user);
+    Optional<List<UserDto>> getInputUsersDtoFromRequests (User user);
+    Optional<List<UserDto>> getNewUsersDtoFromRequests (User user);
+    Optional<List<UserDto>> getOutputUsersDtoFromRequests (User user);
 
 }

@@ -4,42 +4,58 @@
     <list default="true" id="202ad977-43de-4222-a3d2-f4a16a66318e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/ba0b8b66-563e-429e-a64e-a3215cd6fa49/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/ba0b8b66-563e-429e-a64e-a3215cd6fa49/_metadata_/metadata" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/ba0b8b66-563e-429e-a64e-a3215cd6fa49/_metadata_/metadata.values.at" afterPath="$PROJECT_DIR$/.idea/dataSources/ba0b8b66-563e-429e-a64e-a3215cd6fa49/_metadata_/metadata.values.at" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/app/Application.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/app/Application.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/controllers/SupportController.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/controllers/SupportController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/controllers/UserController.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/controllers/UserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/dto/UserDto$UserDtoBuilder.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/dto/UserDto$UserDtoBuilder.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/dto/UserDto.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/dto/UserDto.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/models/State.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/models/State.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/security/details/UserDetailsImpl.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/security/details/UserDetailsImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/models/Chat$ChatBuilder.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/models/Chat$ChatBuilder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/models/Chat.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/models/Chat.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/models/Mess.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/models/Mess.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/service/EmailServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/service/EmailServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/service/RequestingService.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/service/RequestingService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/service/RequestingServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/service/RequestingServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/itpark/service/UserServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/ru/itpark/service/UserServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/ba0b8b66-563e-429e-a64e-a3215cd6fa49.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/ba0b8b66-563e-429e-a64e-a3215cd6fa49.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SocialNetwork.iml" afterPath="$PROJECT_DIR$/SocialNetwork.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/app/Application.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/app/Application.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/controllers/SupportController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/controllers/SupportController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/controllers/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/controllers/UserController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/dto/UserDto.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/dto/UserDto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/models/State.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/models/State.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/security/details/UserDetailsImpl.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/security/details/UserDetailsImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/models/Chat.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/models/Chat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/models/Mess.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/models/Mess.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/service/EmailServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/service/EmailServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/service/RequestingService.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/service/RequestingService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/service/RequestingServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/service/RequestingServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/itpark/service/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/ru/itpark/service/UserServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/deleted.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/deleted.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/deletedCandidate.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/deletedCandidate.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/friends.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/friends.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/friendsCandidate.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/friendsCandidate.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/login.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/profileCandidate.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/profileCandidate.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/register.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/register.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/requestsInput.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/requestsInput.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/requestsInputCandidate.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/requestsInputCandidate.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/requestsNew.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/requestsNew.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/requestsOutput.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/requestsOutput.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/users.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/users.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/application.properties" afterPath="$PROJECT_DIR$/target/classes/application.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/main.js" afterPath="$PROJECT_DIR$/target/classes/static/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/deleted.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/deleted.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/deletedCandidate.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/deletedCandidate.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/friends.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/friends.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/friendsCandidate.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/friendsCandidate.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/login.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/login.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/profile.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/profile.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/profileCandidate.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/profileCandidate.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/register.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/register.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/requestsInput.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/requestsInput.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/requestsInputCandidate.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/requestsInputCandidate.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/requestsNew.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/requestsNew.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/requestsOutput.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/requestsOutput.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/users.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/users.ftl" />
@@ -119,44 +135,91 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SupportController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/controllers/SupportController.java">
+      <file leaf-file-name="dialog.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/dialog.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1674">
-              <caret line="315" column="24" lean-forward="false" selection-start-line="315" selection-start-column="24" selection-end-line="315" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profileCandidate.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profileCandidate.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="268" column="62" lean-forward="false" selection-start-line="268" selection-start-column="62" selection-end-line="268" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requestsInputCandidate.ftl" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/requestsInputCandidate.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="132" column="251" lean-forward="false" selection-start-line="132" selection-start-column="251" selection-end-line="132" selection-end-column="251" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="friendsCandidate.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/friendsCandidate.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="143" column="264" lean-forward="true" selection-start-line="143" selection-start-column="20" selection-end-line="143" selection-end-column="264" />
+            <state relative-caret-position="391">
+              <caret line="142" column="53" lean-forward="false" selection-start-line="142" selection-start-column="53" selection-end-line="142" selection-end-column="53" />
               <folding>
-                <marker date="1529883907638" expanded="true" signature="8311:8708" ph="..." />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#a#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#textarea#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dialogs.ftl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/dialogs.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="177" column="56" lean-forward="true" selection-start-line="177" selection-start-column="56" selection-end-line="177" selection-end-column="56" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1530273441530" expanded="false" signature="6390:6404" ph="..." />
+                <marker date="1530273441530" expanded="false" signature="6750:6770" ph="..." />
+                <marker date="1530273441530" expanded="false" signature="6986:7020" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="32" column="102" lean-forward="false" selection-start-line="32" selection-start-column="87" selection-end-line="32" selection-end-column="102" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/service/ChatServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="110" column="40" lean-forward="true" selection-start-line="110" selection-start-column="40" selection-end-line="110" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="204" column="3" lean-forward="false" selection-start-line="204" selection-start-column="3" selection-end-line="207" selection-end-column="38" />
+              <folding>
+                <marker date="1530272570583" expanded="true" signature="5867:6126" ph="{&quot;type&quot;: 'GET'...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/controllers/ChatController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="95" column="53" lean-forward="false" selection-start-line="95" selection-start-column="53" selection-end-line="95" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/dto/MessageDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="36" column="109" lean-forward="false" selection-start-line="36" selection-start-column="109" selection-end-line="36" selection-end-column="109" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -166,10 +229,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -187,57 +251,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/PostService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/repositories/PostRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/PostServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/models/Requesting.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/FileStorageService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/models/SupportInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/requestings.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/requests.ftl" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/app/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/models/Post.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/changePassword.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/changeEmail.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/recoverPassword.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/recoverPasswordEmail.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/shema_table_user.sql" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ba0b8b66-563e-429e-a64e-a3215cd6fa49/console.sql" />
-        <option value="$PROJECT_DIR$/src/main/resources/shema_table_city" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/cp.ftl" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/models/Mess.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/models/City.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/repositories/CityRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/forms/UserForm.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/edit.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/register.ftl" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/models/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/security/config/SecurityConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/repositories/UserRepositori.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/repositories/RequestingRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/RequestingService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/RequestingServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/main.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
         <option value="$PROJECT_DIR$/src/main/java/ru/itpark/security/details/UserDetailsImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/itpark/models/State.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/deleted.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/deletedCandidate.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/users.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/profile.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/profileCandidate.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/requestsOutput.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/friends.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/login.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/configuration.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/hadler/MessageHadler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/configuration/WebSocketConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/configuration/StompWebSocketConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/server/public/ind.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/server/server.js" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/RequestingService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/RequestingServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/server/public/js/stomp_chat.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/server/public/js/functions.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/server/public/chat.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/server/public/js/main.js" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/register.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/EmailServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/ru/itpark/dto/UserDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/models/Chat.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/app/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/deletedCandidate.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/models/RoleMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/models/Message.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/models/Mess.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/itpark/controllers/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/requestsNew.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/deleted.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profile.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/friends.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/requestsInput.ftl" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/controllers/SupportController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/friendsCandidate.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/requestsNew.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/requestsOutput.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/forms/MessageForm.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/users.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/requestsInputCandidate.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/friendsCandidate.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/controllers/SupportController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/dto/ChatDto.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profileCandidate.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/repositories/ChatRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/ChatService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/repositories/MessageRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/service/ChatServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/dto/MessageDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/itpark/controllers/ChatController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/dialog.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/main.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/dialogs.ftl" />
       </list>
     </option>
   </component>
@@ -446,9 +510,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="width" value="1284" />
-    <option name="height" value="997" />
+    <option name="x" value="-13" />
+    <option name="y" value="1" />
+    <option name="width" value="1292" />
+    <option name="height" value="983" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -487,9 +552,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -513,10 +575,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -672,6 +730,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocialNetwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SOCIAL_NETWORK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -711,6 +799,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="security" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="listener" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -868,7 +960,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="forms" />
+              <option name="myItemId" value="hadler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocialNetwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SOCIAL_NETWORK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="itpark" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -988,12 +1106,45 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="configuration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocialNetwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SOCIAL_NETWORK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="itpark" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -1016,10 +1167,13 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="SearchEverywhereHistoryKey" value="avatar&#9;FILE&#9;dbDummy://dbtable:/32592804/ba0b8b66-563e-429e-a64e-a3215cd6fa49/social_networks.public.avatar" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Макс\Desktop\SOCIAL_NETWORK\src\main\resources\templates" />
+      <recent name="C:\Users\Макс\Desktop\SOCIAL_NETWORK\src\main\resources\static\js\server\public\js" />
+      <recent name="C:\Users\Макс\Desktop\SOCIAL_NETWORK\src\main\resources\static\js\server\public" />
       <recent name="C:\Users\Макс\Desktop\SOCIAL_NETWORK\src\main\resources\static\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -1377,9 +1531,12 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="SocialNetwork" />
+    <configuration default="false" name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ru.itpark.app.Application" />
+      <module name="SocialNetwork" />
+      <envs />
+      <method />
     </configuration>
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="Application.Application" />
@@ -1444,39 +1601,51 @@
       <workItem from="1529838424920" duration="47000" />
       <workItem from="1529855614138" duration="25749000" />
       <workItem from="1529883159488" duration="851000" />
+      <workItem from="1529923139396" duration="5248000" />
+      <workItem from="1530002171490" duration="28917000" />
+      <workItem from="1530088218421" duration="11578000" />
+      <workItem from="1530101549821" duration="4012000" />
+      <workItem from="1530106131304" duration="3590000" />
+      <workItem from="1530128426581" duration="14050000" />
+      <workItem from="1530178382782" duration="848000" />
+      <workItem from="1530179256901" duration="13140000" />
+      <workItem from="1530198348054" duration="1897000" />
+      <workItem from="1530203645239" duration="1672000" />
+      <workItem from="1530209417908" duration="173000" />
+      <workItem from="1530209616160" duration="17703000" />
+      <workItem from="1530259953973" duration="7192000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="495668000" />
+    <option name="totallyTimeSpent" value="605688000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1284" height="997" extended-state="1" />
-    <editor active="true" />
+    <frame x="-13" y="1" width="1292" height="983" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5174655" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11880046" sideWeight="0.5194805" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.025368249" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.111928105" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2175926" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07189543" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4212963" sideWeight="0.4935275" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2529412" sideWeight="0.48457792" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.046296295" sideWeight="0.48253453" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.004705882" sideWeight="0.48051947" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2720588" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23863636" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1496,35 +1665,35 @@
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43137255" sideWeight="0.5145631" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11880046" sideWeight="0.5194805" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.025368249" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.056864336" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44237012" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.047453705" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07189543" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4212963" sideWeight="0.4935275" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25490198" sideWeight="0.48457792" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2175926" sideWeight="0.4854369" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08225617" sideWeight="0.48051947" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26645005" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24594156" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -1536,7 +1705,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="26" />
+      <option name="time" value="31" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1545,24 +1714,39 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/service/ProfileServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/deletedCandidate.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="424">
+          <caret line="110" column="42" lean-forward="false" selection-start-line="110" selection-start-column="42" selection-end-line="110" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/service/EmailServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/register.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="-1020">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/service/FileStorageServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/recoverPasswordEmail.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-408">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/recoverPassword.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/models/RoleMessage.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/models/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1573,93 +1757,160 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/repositories/FileInfoRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/models/SupportInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        <state relative-caret-position="170">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/repositories/PostRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/models/Mess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        <state relative-caret-position="204">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/repositories/UserRepositori.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/changeEmail.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="-459">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/repositories/RequestingRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/deleted.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="55" column="23" lean-forward="true" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/edit.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1428">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/requestsOutput.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="64" column="12" lean-forward="false" selection-start-line="64" selection-start-column="12" selection-end-line="68" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/requestsNew.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="64" column="12" lean-forward="false" selection-start-line="64" selection-start-column="12" selection-end-line="68" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/requestsInput.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="64" column="7" lean-forward="false" selection-start-line="64" selection-start-column="7" selection-end-line="68" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/controllers/StorageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/models/RoleRequesting.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/dialog3.ftl" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="34" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="34" />
+        <state relative-caret-position="1598">
+          <caret line="94" column="9" lean-forward="false" selection-start-line="94" selection-start-column="9" selection-end-line="94" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/service/UserServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/forms/MessageForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="102">
+          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/friendsCandidate.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="190" column="115" lean-forward="false" selection-start-line="190" selection-start-column="115" selection-end-line="190" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/friends.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="636">
+          <caret line="162" column="41" lean-forward="false" selection-start-line="162" selection-start-column="41" selection-end-line="162" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/requestsInputCandidate.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="182" column="210" lean-forward="false" selection-start-line="182" selection-start-column="210" selection-end-line="182" selection-end-column="210" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/service/RequestingServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-391">
+          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/controllers/ProfileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="51" column="17" lean-forward="false" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/controllers/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1435">
+          <caret line="790" column="101" lean-forward="true" selection-start-line="790" selection-start-column="90" selection-end-line="790" selection-end-column="101" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="4" column="53265" lean-forward="false" selection-start-line="4" selection-start-column="53265" selection-end-line="4" selection-end-column="53265" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.29/tomcat-embed-core-8.5.29.jar!/org/apache/catalina/core/ApplicationFilterChain.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-235">
-          <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="168" column="46" lean-forward="true" selection-start-line="168" selection-start-column="15" selection-end-line="168" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/security/details/UserDetailsServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/models/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        <state relative-caret-position="232">
+          <caret line="4" column="37796" lean-forward="false" selection-start-line="4" selection-start-column="37796" selection-end-line="4" selection-end-column="37796" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/security/config/SecurityConfig.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/controllers/SupportController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="30" column="14" lean-forward="true" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+        <state relative-caret-position="-146">
+          <caret line="308" column="99" lean-forward="false" selection-start-line="308" selection-start-column="99" selection-end-line="308" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="270" column="28" lean-forward="false" selection-start-line="270" selection-start-column="28" selection-end-line="282" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profileCandidate.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="138" column="35" lean-forward="false" selection-start-line="138" selection-start-column="35" selection-end-line="138" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/32592804/ba0b8b66-563e-429e-a64e-a3215cd6fa49/social_networks.public.user_chat">
+    <entry file="dbDummy://dbtable:/32592804/ba0b8b66-563e-429e-a64e-a3215cd6fa49/social_networks.public.avatar">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1668,31 +1919,22 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-          <column-attributes>
-            <column name="ctid" enabled="false" />
-          </column-attributes>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/security/details/UserDetailsImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
-          <folding>
-            <element signature="e#1071#1072#0" expanded="false" />
-            <element signature="e#1098#1099#0" expanded="false" />
-          </folding>
+    <entry file="dbDummy://dbtable:/32592804/ba0b8b66-563e-429e-a64e-a3215cd6fa49/social_networks.public.city_sn">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/models/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/32592804/ba0b8b66-563e-429e-a64e-a3215cd6fa49/social_networks.public.persistent_logins">
+    <entry file="dbDummy://dbtable:/32592804/ba0b8b66-563e-429e-a64e-a3215cd6fa49/social_networks.public.post">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1716,10 +1958,108 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/32592804/ba0b8b66-563e-429e-a64e-a3215cd6fa49/social_networks.public.tbl_friends">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/users.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="159" column="52" lean-forward="true" selection-start-line="159" selection-start-column="52" selection-end-line="159" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/dto/ChatDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="58" column="1" lean-forward="false" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/models/Chat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/models/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="23" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/bootstrap-reset.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="279" column="1" lean-forward="false" selection-start-line="279" selection-start-column="1" selection-end-line="279" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/32592804/ba0b8b66-563e-429e-a64e-a3215cd6fa49/social_networks.public.message">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/service/ChatService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="19" column="62" lean-forward="false" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/repositories/MessageRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/repositories/ChatRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/service/ChatServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="110" column="40" lean-forward="true" selection-start-line="110" selection-start-column="40" selection-end-line="110" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/32592804/ba0b8b66-563e-429e-a64e-a3215cd6fa49/social_networks.public.chat">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/32592804/ba0b8b66-563e-429e-a64e-a3215cd6fa49/social_networks.public.user_chat">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -1731,222 +2071,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/controllers/ProfileController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/dto/MessageDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="81" column="61" lean-forward="false" selection-start-line="81" selection-start-column="61" selection-end-line="81" selection-end-column="61" />
+        <state relative-caret-position="248">
+          <caret line="36" column="109" lean-forward="false" selection-start-line="36" selection-start-column="109" selection-end-line="36" selection-end-column="109" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/models/Role.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/controllers/ChatController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="15" lean-forward="true" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="15" />
+        <state relative-caret-position="258">
+          <caret line="95" column="53" lean-forward="false" selection-start-line="95" selection-start-column="53" selection-end-line="95" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="204" column="3" lean-forward="false" selection-start-line="204" selection-start-column="3" selection-end-line="207" selection-end-column="38" />
+          <folding>
+            <marker date="1530272570583" expanded="true" signature="5867:6126" ph="{&quot;type&quot;: 'GET'...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/dialog.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="142" column="53" lean-forward="false" selection-start-line="142" selection-start-column="53" selection-end-line="142" selection-end-column="53" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="36" column="52" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/models/Mess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="340">
+          <caret line="32" column="102" lean-forward="false" selection-start-line="32" selection-start-column="87" selection-end-line="32" selection-end-column="102" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/changeEmail.ftl">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/dialogs.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/changePassword.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="52" column="71" lean-forward="true" selection-start-line="52" selection-start-column="67" selection-end-line="52" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/deleted.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4063">
-          <caret line="239" column="24" lean-forward="false" selection-start-line="239" selection-start-column="24" selection-end-line="240" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/deletedCandidate.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4539">
-          <caret line="267" column="73" lean-forward="false" selection-start-line="267" selection-start-column="73" selection-end-line="267" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/edit.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/register.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/recoverPasswordEmail.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/requestsOutput.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/recoverPassword.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/service/RequestingService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="11" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/users.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="844">
-          <caret line="208" column="54" lean-forward="true" selection-start-line="169" selection-start-column="48" selection-end-line="208" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/service/RequestingServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="30" column="97" lean-forward="false" selection-start-line="30" selection-start-column="97" selection-end-line="30" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/dto/UserDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-316">
-          <caret line="33" column="28" lean-forward="false" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/requestsNew.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="144" column="54" lean-forward="false" selection-start-line="144" selection-start-column="54" selection-end-line="144" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/32592804/ba0b8b66-563e-429e-a64e-a3215cd6fa49/social_networks.public.user_sn">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/requestsInput.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="144" column="54" lean-forward="false" selection-start-line="144" selection-start-column="54" selection-end-line="144" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3655">
-          <caret line="239" column="45" lean-forward="false" selection-start-line="239" selection-start-column="45" selection-end-line="239" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/controllers/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2448">
-          <caret line="495" column="0" lean-forward="true" selection-start-line="495" selection-start-column="0" selection-end-line="495" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/friends.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="179" column="20" lean-forward="false" selection-start-line="179" selection-start-column="20" selection-end-line="181" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/itpark/controllers/SupportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1674">
-          <caret line="315" column="24" lean-forward="false" selection-start-line="315" selection-start-column="24" selection-end-line="315" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profileCandidate.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="268" column="62" lean-forward="false" selection-start-line="268" selection-start-column="62" selection-end-line="268" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/friendsCandidate.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="143" column="264" lean-forward="true" selection-start-line="143" selection-start-column="20" selection-end-line="143" selection-end-column="264" />
+        <state relative-caret-position="459">
+          <caret line="177" column="56" lean-forward="true" selection-start-line="177" selection-start-column="56" selection-end-line="177" selection-end-column="56" />
           <folding>
-            <marker date="1529883907638" expanded="true" signature="8311:8708" ph="..." />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1530273441530" expanded="false" signature="6390:6404" ph="..." />
+            <marker date="1530273441530" expanded="false" signature="6750:6770" ph="..." />
+            <marker date="1530273441530" expanded="false" signature="6986:7020" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/requestsInputCandidate.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="132" column="251" lean-forward="false" selection-start-line="132" selection-start-column="251" selection-end-line="132" selection-end-column="251" />
-          <folding />
         </state>
       </provider>
     </entry>

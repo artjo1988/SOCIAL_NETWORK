@@ -23,10 +23,13 @@ public class Chat {
     @Column(name = "name")
     private String name;
 
+    @OneToMany(mappedBy = "chat")
+    private List<Message> messages;
+
     @ManyToMany
     @JoinTable(name = "user_chat",
             joinColumns = @JoinColumn(name = "chat"),
             inverseJoinColumns = @JoinColumn(name = "user_sn"))
-    private List<User> participant;
+    private List<User> participants;
 
 }

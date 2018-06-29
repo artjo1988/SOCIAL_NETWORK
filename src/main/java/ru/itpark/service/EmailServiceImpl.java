@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Transactional
+
 @Service
 public class EmailServiceImpl implements EmailService {
 

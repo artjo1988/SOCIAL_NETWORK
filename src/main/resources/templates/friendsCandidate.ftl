@@ -73,16 +73,20 @@
     <ul class="list-inline navbar-right top-menu top-right-menu">
         <!-- Messages -->
         <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count"></span> </a>
+            <#if newMessages??>
+                <a href="/profile/messages"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count">${newMessages}</span> </a>
+            <#else>
+                <a href="#"> <i class="ion-ios7-email-outline fa-2x "></i> <span class="badge badge-sm up bg-purple count"></span> </a>
+            </#if>
         </li>
         <!-- End messages -->
         <!-- Notification -->
         <li class="dropdown">
-        <#if newRequestings??>
-            <a href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
-        <#else>
-            <a href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
-        </#if>
+            <#if newRequestings??>
+                <a href="/profile/requests/new"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count">${newRequestings}</span> </a>
+            <#else>
+                <a href="#"> <i class="ion-person-add fa-2x"></i> <span class="badge badge-sm up bg-pink count"></span> </a>
+            </#if>
         </li>
         <!-- End Notification -->
         <!-- User Menu Dropdown -->
@@ -123,7 +127,7 @@
                 <a href="/profile/friends"><i class="ion-person-stalker"></i> <span class="nav-label"> Мои друзья</span></a>
             </li>
             <li class="active">
-                <a href="/profile/message"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
+                <a href="/profile/messages"><i class="ion-chatbubbles"></i> <span class="nav-label">Мои сообщения</span></a>
             </li>
             <li class="active">
                 <a href="/users"><i class="ion-ios7-search-strong"></i> <span class="nav-label">Поиск друзей</span></a>
@@ -170,7 +174,7 @@
                                         </p>
                                         <a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
                                     </div>
-                                    <div style="padding: 30px; margin-left: 110px;">
+                                    <div  class="menuSubscrib" style="padding: 30px; margin-left: 110px;">
                                         <#if  user.condition ??>
                                             <#if  user.condition == "true">
                                             <a href="#" class="btn btn-purple w-md">
@@ -182,30 +186,30 @@
                                             <#if user.status == "Вы подписаны">
                                                 <span class="btn btn-purple w-md" style="margin-top: 7px;">
                                                     <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span style="color: white"> ${user.status} </span><span class="caret" style="color: white"></span></a>
-                                                    <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -20px; margin-left: -20px;">
+                                                    <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -45px; margin-left: -20px;">
                                                         <li>
-                                                            <a href="/${user.id}/unsubscribe?url=/users/${user.id}/friends">Отписаться</a>
+                                                            <a href="/${user.id}/unsubscribe?url=/users/${candidate.id}/friends">Отписаться</a>
                                                         </li>
                                                     </ul>
                                                 </span>
                                             <#elseif user.status == "У Вас в друзьях">
                                                 <span class="btn btn-purple w-md" style="margin-top: 7px;">
                                                     <a  data-toggle="dropdown" class="dropdown-toggle" href="#" class="btn btn-purple w-md" style="margin-top: 7px;"><span style="color: white"> ${user.status} </span><span class="caret" style="color: white"></span></a>
-                                                    <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -20px; margin-left: -20px;">
+                                                    <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -45px; margin-left: -20px;">
                                                         <li>
-                                                            <a href="/${user.id}/removeFromFriends?url=/users/${user.id}/friends">Убрать из друзей</a>
+                                                            <a href="/${user.id}/removeFromFriends?url=/users/${candidate.id}/friends">Убрать из друзей</a>
                                                         </li>
                                                     </ul>
                                                 </span>
                                             <#elseif user.status == "На Вас подписан">
                                                 <span class="btn btn-purple w-md" style="margin-top: 7px;">
                                                     <a  data-toggle="dropdown" class="dropdown-toggle" href="#" class="btn btn-purple w-md" style="margin-top: 7px;"><span style="color: white">${user.status} </span><span class="caret" style="color: white"></span></a>
-                                                    <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -20px; margin-left: -20px;">
+                                                    <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none; margin-top: -45px; margin-left: -20px;">
                                                         <li>
                                                             <#if user.role == "ADMIN">
                                                                 <a href="#">Добавить в друзья</a>
                                                             <#else>
-                                                                <a href="/${user.id}/confirmRequest?url=/users/${user.id}/friends" >Добавить в друзя</a>
+                                                                <a href="/${user.id}/confirmRequest?url=/users/${candidate.id}/friends" >Добавить в друзя</a>
                                                             </#if>
                                                         </li>
                                                     </ul>
@@ -215,7 +219,7 @@
                                                     <#if user.role == "ADMIN">
                                                         <a href="#" style="color: white">Добавить в друзья</a>
                                                     <#else>
-                                                        <a  href="/${user.id}/sendRequest?url=/users/${user.id}/friends" ><span style="color: white"> ${user.status} </span></a>
+                                                        <a  href="/${user.id}/sendRequest?url=/users/${candidate.id}/friends" ><span style="color: white"> ${user.status} </span></a>
                                                     </#if>
                                                 </span>
                                             </#if>

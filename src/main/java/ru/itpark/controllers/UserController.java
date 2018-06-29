@@ -51,6 +51,9 @@ public class UserController {
     @Autowired
     private CityRepository cityRepository;
 
+    @Autowired
+    private  ChatService chatService;
+
     @GetMapping("/register")
     public String getSignUpPage(ModelMap modelMap){
         List<City> cities = cityRepository.findAll();
@@ -143,7 +146,8 @@ public class UserController {
         if(requestingService.getInputRequests(user).isPresent()) info.setSubscribers(requestingService.getInputRequests(user).get().size());
         modelMap.addAttribute("info", info);
         Integer newRequestings = requestingService.getNewRequestsCount(user);
-        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        if (newRequestings != null) modelMap.addAttribute("newRequestings", newRequestings);
+        if(chatService.getCountNewMessages(user.getChats()) != 0 ) modelMap.addAttribute("newMessages", chatService.getCountNewMessages(user.getChats()));
         return "profile";
     }
 
@@ -180,7 +184,8 @@ public class UserController {
         }
         else modelMap.addAttribute("message", new Mess("У вас пока нет друзей"));
         Integer newRequestings = requestingService.getNewRequestsCount(user);
-        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        if (newRequestings != null) modelMap.addAttribute("newRequestings", newRequestings);
+        if(chatService.getCountNewMessages(user.getChats()) != 0 ) modelMap.addAttribute("newMessages", chatService.getCountNewMessages(user.getChats()));
         List<City> cities = cityRepository.findAll();
         modelMap.addAttribute("cities", cities);
         return "friends";
@@ -196,7 +201,8 @@ public class UserController {
         UserDto userDto = UserDto.dtoUserFromUser(user);
         modelMap.addAttribute("user",userDto);
         Integer newRequestings = requestingService.getNewRequestsCount(user);
-        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        if (newRequestings != null) modelMap.addAttribute("newRequestings", newRequestings);
+        if(chatService.getCountNewMessages(user.getChats()) != 0 ) modelMap.addAttribute("newMessages", chatService.getCountNewMessages(user.getChats()));
         List<City> cities = cityRepository.findAll();
         modelMap.addAttribute("cities", cities);
         List<User> friends = new ArrayList<>();
@@ -356,7 +362,8 @@ public class UserController {
         }
         else modelMap.addAttribute("message", new Mess("Пока нет друзей"));
         Integer newRequestings = requestingService.getNewRequestsCount(user);
-        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        if (newRequestings != null) modelMap.addAttribute("newRequestings", newRequestings);
+        if(chatService.getCountNewMessages(user.getChats()) != 0 ) modelMap.addAttribute("newMessages", chatService.getCountNewMessages(user.getChats()));
         List<City> cities = cityRepository.findAll();
         modelMap.addAttribute("cities", cities);
         return "friendsCandidate";
@@ -373,7 +380,8 @@ public class UserController {
         UserDto userDto = UserDto.dtoUserFromUser(user);
         modelMap.addAttribute("user",userDto);
         Integer newRequestings = requestingService.getNewRequestsCount(user);
-        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        if (newRequestings != null) modelMap.addAttribute("newRequestings", newRequestings);
+        if(chatService.getCountNewMessages(user.getChats()) != 0 ) modelMap.addAttribute("newMessages", chatService.getCountNewMessages(user.getChats()));
         List<City> cities = cityRepository.findAll();
         modelMap.addAttribute("cities", cities);
         User candidate = userRepositori.findOne(idCandidate);
@@ -779,7 +787,8 @@ public class UserController {
         if(requestingService.getInputRequests(userCandidate).isPresent()) info.setSubscribers(requestingService.getInputRequests(userCandidate).get().size());
         modelMap.addAttribute("info", info);
         Integer newRequestings = requestingService.getNewRequestsCount(user);
-        if( newRequestings != null) modelMap.addAttribute("newRequestings" , newRequestings);
+        if (newRequestings != null) modelMap.addAttribute("newRequestings", newRequestings);
+        if(chatService.getCountNewMessages(user.getChats()) != 0 ) modelMap.addAttribute("newMessages", chatService.getCountNewMessages(user.getChats()));
         return "profileCandidate";
     }
 

@@ -27,8 +27,6 @@ public class Application {
         return new BCryptPasswordEncoder();
     }
 
-    @Autowired
-    static private UserRepositori userRepositori;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class);
