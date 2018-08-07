@@ -162,17 +162,19 @@
                     <#if users??>
                         <#list users as user>
                             <div  style="margin-bottom: 15px ; display: block">
-                                <div style="display: flex;">
-                                    <div>
-                                        <a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
-                                    </div>
-                                    <div style="padding: 30px 0 0 25px">
-                                        <p>
-                                            <a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
-                                            <br>
-                                        ${user.city}
-                                        </p>
-                                        <a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
+                                <div style="display: flex;  justify-content: space-between;">
+                                    <div style="display: flex;">
+                                        <div>
+                                            <a class="dropdown-toggle" href="/users/${user.id}"> <img class="img-circle text-center m-t-15" width='100' height='100' alt="" src="${user.avatarUrl}">
+                                        </div>
+                                        <div style="padding: 30px 0 0 25px">
+                                            <p>
+                                                <a href="/users/${user.id}"> <strong>${user.firstName} ${user.lastName}</strong></a>
+                                                <br>
+                                            ${user.city}
+                                            </p>
+                                            <a href="/users/${user.id}/message"><em>Написать сообщение</em></a>
+                                        </div>
                                     </div>
                                     <div  class="menuSubscrib" style="padding: 30px; margin-left: 110px;">
                                         <#if  user.condition ??>
